@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-display: fallback;
+    src: url(https://fonts.gstatic.com/s/inter/v2/...); /* 실제 URL은 Google Fonts에서 제공하는 URL로 대체 */
+  }
+  

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import './App.css';
-import chevronsDown from "./Images/chevrons-down.png";
+import chevronsDown from "./static/Images/chevrons-down.png";
 const Wrapper=styled.div`
 
   display:grid;
