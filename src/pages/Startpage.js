@@ -3,6 +3,8 @@ import '../css/Startpage.css';
 import chevronsDown from "../static/Images/chevrons-down.png";
 import Dummy1 from "../static/Images/dummy1.png";
 import React, {useEffect, useRef} from "react";
+import FindID from "../components/FindID";
+
 const Wrapper=styled.div`
 
   display:grid;
@@ -86,6 +88,8 @@ function Startpage() {
     content1Ref.current?.scrollIntoView({behavior:'smooth'});
   }
 
+  
+
   return (
     <Wrapper>
       <Navbar>
@@ -126,6 +130,7 @@ function Startpage() {
       </Description>
       <Image src={Dummy1} width="350px" />
     </DesciptBox>
+    <FindID />
     </Wrapper>
   );
 }
