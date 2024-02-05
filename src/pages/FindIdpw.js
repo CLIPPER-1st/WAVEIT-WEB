@@ -120,7 +120,7 @@ function FindIdpw() {
 
 
         <button className={styles.checkButton}>
-            인증번호 확인
+            아이디 찾기
           </button>
 
 
