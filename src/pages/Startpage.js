@@ -88,7 +88,6 @@ function Startpage() {
     content1Ref.current?.scrollIntoView({behavior:'smooth'});
   }
 
-  
 
   return (
     <Wrapper>
