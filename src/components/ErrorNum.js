@@ -16,7 +16,7 @@ const Modal = styled.div`
 
 const Top=styled.div`
     border-radius:10px 10px 0px 0px; 
-    background-color:rgba(148, 182, 239, 0.2);
+    background-color:rgba(255, 104, 104, 0.2);
     display:flex;
     justify-content: space-between;
     align-items:center;
@@ -40,7 +40,7 @@ const Body=styled.div`
     border-radius: 0px 0px 10px 10px; 
 
 `
-const LoginBtn=styled.button`
+const RegisterBtn=styled.button`
     color:white;
     margin: 5% 0% 10% 0%;
     width: 70%;
@@ -52,11 +52,7 @@ const LoginBtn=styled.button`
     text-align:center;
     box-shadow: 0 2px 4px rgba(0,0,0,0.3);
 `
-const FindPW=styled.a`
-    font-size:12px;
-    color:#737373;
-`
-const FindID=({isOpen, closeModal})=>{
+const ErrorNum=({isOpen, closeModal})=>{
     const [modalSize, setModalSize] = useState({ width: '37vw', height: '30vh' });
 
     const updateModalSize = () => {
@@ -80,24 +76,22 @@ const FindID=({isOpen, closeModal})=>{
         return (
         <Modal style={{ display: isOpen?"grid":"none", width: modalSize.width, height: modalSize.height,  }}>
             <Top>
-                <span>아이디 안내</span>
+                <span>인증번호 확인</span>
                 <CloseBtn onClick={closeModal}>x</CloseBtn>
             </Top>
             <Body>
                 <div style={{textAlign:"center"}}>
-                    회원님의 아이디는 <br/>
-                    <b>"wateit0000"</b>입니다.
+                    인증번호가 일치하지 않습니다.
                 </div>
-                <LoginBtn>
-                <Link to="/pages/Login" style={{color:"white", textDecoration:"none"}}>
-                    로그인 하기
+                <RegisterBtn>
+                <Link to="/dummy" style={{color:"white", textDecoration:"none"}}>
+                    인증번호 재전송
                 </Link>
-                </LoginBtn>
-                <FindPW href="/pages/FindIdpw">비밀번호 찾기</FindPW>
+                </RegisterBtn>
             </Body>
         </Modal>
     )
 }
 
-export default FindID;
+export default ErrorNum;
 

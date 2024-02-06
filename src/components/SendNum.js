@@ -24,13 +24,6 @@ const Top=styled.div`
     padding: 0px 10px;
 `
 
-const CloseBtn=styled.button`
-    color: #737373;
-    font-weight:bold;
-    border-style:none;
-    margin: 0% 2% 0% 0%;
-    background-color:transparent;
-   `
 
 const Body=styled.div`
     display:flex;
@@ -40,7 +33,7 @@ const Body=styled.div`
     border-radius: 0px 0px 10px 10px; 
 
 `
-const LoginBtn=styled.button`
+const RegisterBtn=styled.button`
     color:white;
     margin: 5% 0% 10% 0%;
     width: 70%;
@@ -52,11 +45,7 @@ const LoginBtn=styled.button`
     text-align:center;
     box-shadow: 0 2px 4px rgba(0,0,0,0.3);
 `
-const FindPW=styled.a`
-    font-size:12px;
-    color:#737373;
-`
-const FindID=({isOpen, closeModal})=>{
+const SendNum=({isOpen, closeModal})=>{
     const [modalSize, setModalSize] = useState({ width: '37vw', height: '30vh' });
 
     const updateModalSize = () => {
@@ -80,24 +69,20 @@ const FindID=({isOpen, closeModal})=>{
         return (
         <Modal style={{ display: isOpen?"grid":"none", width: modalSize.width, height: modalSize.height,  }}>
             <Top>
-                <span>아이디 안내</span>
-                <CloseBtn onClick={closeModal}>x</CloseBtn>
+                <span>인증번호 안내</span>
             </Top>
             <Body>
                 <div style={{textAlign:"center"}}>
-                    회원님의 아이디는 <br/>
-                    <b>"wateit0000"</b>입니다.
+                    입력하신 이메일로<br />
+                    인증번호가 발송되었습니다.
                 </div>
-                <LoginBtn>
-                <Link to="/pages/Login" style={{color:"white", textDecoration:"none"}}>
-                    로그인 하기
-                </Link>
-                </LoginBtn>
-                <FindPW href="/pages/FindIdpw">비밀번호 찾기</FindPW>
+                <RegisterBtn onClick={closeModal}>
+                    확인
+                </RegisterBtn>
             </Body>
         </Modal>
     )
 }
 
-export default FindID;
+export default SendNum;
 

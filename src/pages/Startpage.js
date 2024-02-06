@@ -3,7 +3,7 @@ import '../css/Startpage.css';
 import chevronsDown from "../static/Images/chevrons-down.png";
 import Dummy1 from "../static/Images/dummy1.png";
 import React, {useState,useEffect, useRef} from "react";
-import FindID from "../components/FindID";
+//import FindID from "../components/FindID";
 import { Link } from "react-router-dom";
 
 const Wrapper=styled.div`
@@ -90,16 +90,6 @@ function Startpage() {
     content1Ref.current?.scrollIntoView({behavior:'smooth'});
   }
 
-//모달창 관리 
-    const [isModalOpen, setIsModalOpen]=useState(false);
-    const openModal=()=>{
-        setIsModalOpen(true);
-    }
-
-    const closeModal=()=>{
-        setIsModalOpen(false);
-    }
-
 
   return (
     <Wrapper>
@@ -110,16 +100,16 @@ function Startpage() {
         <NavbarItem href="/dummy4">마이페이지</NavbarItem>
       </Navbar>
     <Container>
-      <Link to ={'/pages/Login'}>
+      {/* <Link to ={'/pages/Login'}>
       <button>로그인하기</button>
-      </Link>
+      </Link> */}
       <Title color={"black"} fontsize={"20px"}>
         나에게 맞는 프로젝트<br/>
         내가 원하는 팀원을 만나는 곳
       </Title>
       <br/>
       <Title color={"#2519B2"} fontsize={"25px"}>wave-it</Title>
-      <Btn onClick={openModal}>만나러가기</Btn>
+      <Btn>만나러가기</Btn>
       <Image src={chevronsDown} alt="scroll-arrow" onClick={onArrowClick}/>
     </Container>
     <DesciptBox>
@@ -145,7 +135,6 @@ function Startpage() {
       </Description>
       <Image src={Dummy1} width="350px" />
     </DesciptBox>
-    <FindID isOpen={isModalOpen} closeModal={closeModal}/>
     </Wrapper>
   );
 }

@@ -56,7 +56,7 @@ const FindPW=styled.a`
     font-size:12px;
     color:#737373;
 `
-const FindID=({isOpen, closeModal})=>{
+const SignSuccess=({isOpen, closeModal})=>{
     const [modalSize, setModalSize] = useState({ width: '37vw', height: '30vh' });
 
     const updateModalSize = () => {
@@ -80,24 +80,21 @@ const FindID=({isOpen, closeModal})=>{
         return (
         <Modal style={{ display: isOpen?"grid":"none", width: modalSize.width, height: modalSize.height,  }}>
             <Top>
-                <span>아이디 안내</span>
-                <CloseBtn onClick={closeModal}>x</CloseBtn>
+                <span>회원가입 완료</span>
             </Top>
             <Body>
                 <div style={{textAlign:"center"}}>
-                    회원님의 아이디는 <br/>
-                    <b>"wateit0000"</b>입니다.
+                    회원가입이 완료되었습니다.
                 </div>
                 <LoginBtn>
                 <Link to="/pages/Login" style={{color:"white", textDecoration:"none"}}>
-                    로그인 하기
+                    로그인
                 </Link>
                 </LoginBtn>
-                <FindPW href="/pages/FindIdpw">비밀번호 찾기</FindPW>
             </Body>
         </Modal>
     )
 }
 
-export default FindID;
+export default SignSuccess;
 

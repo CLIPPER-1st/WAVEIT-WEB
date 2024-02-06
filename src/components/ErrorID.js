@@ -84,7 +84,7 @@ const ErrorID=({isOpen, closeModal})=>{
                     관련된 아이디가 존재하지 않습니다.
                 </div>
                 <RegisterBtn>
-                <Link to="/pages/Login" style={{color:"white", textDecoration:"none"}}>
+                <Link to="/pages/Sign" style={{color:"white", textDecoration:"none"}}>
                     회원가입 하기
                 </Link>
                 </RegisterBtn>
