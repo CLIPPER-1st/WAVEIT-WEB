@@ -4,8 +4,7 @@ import Startpage from './pages/Startpage';
 import Login from "./pages/Login";
 import FindIdpw from "./pages/FindIdpw";
 import Sign from "./pages/Sign";
-
-
+import Dummy from "./pages/dummyPage";//임시페이지
 const App=()=>{
   return(
     <Routes>
@@ -13,6 +12,7 @@ const App=()=>{
       <Route path="/pages/Login" element = {<Login/>}/>
       <Route path="/pages/FindIdpw" element = {<FindIdpw/>}/>
       <Route path="/pages/Sign" element = {<Sign/>}/>
+      <Route path="/pages/dummy" element={<Dummy />}/>
     </Routes>
   )
 }

@@ -62,6 +62,7 @@ const NavbarItem=styled.a`
 const Image=styled.img`
   margin: 60px;
   width: ${props=>props.width || '160px'}; 
+  min-height: 100px;
 `
 
 const Description = styled.div`
@@ -103,9 +104,10 @@ function Startpage() {
   return (
     <Wrapper>
       <Navbar>
-        <NavbarItem href="/dummy">매칭 모집</NavbarItem>
-        <NavbarItem href="/dummy">매칭 등록</NavbarItem>
-        <NavbarItem href="/dummy">마이페이지</NavbarItem>
+      <NavbarItem href="/pages/dummy">임시페이지</NavbarItem>
+        <NavbarItem href="/dummy2">매칭 모집</NavbarItem>
+        <NavbarItem href="/dummy3">매칭 등록</NavbarItem>
+        <NavbarItem href="/dummy4">마이페이지</NavbarItem>
       </Navbar>
     <Container>
       <Link to ={'/pages/Login'}>
