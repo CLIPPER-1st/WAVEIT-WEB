@@ -2,7 +2,7 @@ import styled from "styled-components";
 import '../css/Startpage.css';
 import chevronsDown from "../static/Images/chevrons-down.png";
 import Dummy1 from "../static/Images/dummy1.png";
-import React, {useEffect, useRef} from "react";
+import React, {useState,useEffect, useRef} from "react";
 import FindID from "../components/FindID";
 
 const Wrapper=styled.div`
@@ -88,7 +88,15 @@ function Startpage() {
     content1Ref.current?.scrollIntoView({behavior:'smooth'});
   }
 
-  
+    const [isModalOpen, setIsModalOpen]=useState(false);
+    const openModal=()=>{
+        setIsModalOpen(true);
+    }
+
+    const closeModal=()=>{
+        setIsModalOpen(false);
+    }
+
 
   return (
     <Wrapper>
@@ -104,7 +112,7 @@ function Startpage() {
       </Title>
       <br/>
       <Title color={"#2519B2"} fontsize={"25px"}>wave-it</Title>
-      <Btn>만나러가기</Btn>
+      <Btn onClick={openModal}>만나러가기</Btn>
       <Image src={chevronsDown} alt="scroll-arrow" onClick={onArrowClick}/>
     </Container>
     <DesciptBox>
@@ -130,7 +138,7 @@ function Startpage() {
       </Description>
       <Image src={Dummy1} width="350px" />
     </DesciptBox>
-    <FindID />
+    <FindID isOpen={isModalOpen}/>
     </Wrapper>
   );
 }
