@@ -4,6 +4,7 @@ import chevronsDown from "../static/Images/chevrons-down.png";
 import Dummy1 from "../static/Images/dummy1.png";
 import React, {useState,useEffect, useRef} from "react";
 import FindID from "../components/FindID";
+import { Link } from "react-router-dom";
 
 const Wrapper=styled.div`
 
@@ -88,6 +89,7 @@ function Startpage() {
     content1Ref.current?.scrollIntoView({behavior:'smooth'});
   }
 
+//모달창 관리 
     const [isModalOpen, setIsModalOpen]=useState(false);
     const openModal=()=>{
         setIsModalOpen(true);
@@ -106,6 +108,9 @@ function Startpage() {
         <NavbarItem href="/dummy">마이페이지</NavbarItem>
       </Navbar>
     <Container>
+      <Link to ={'/pages/Login'}>
+      <button>로그인하기</button>
+      </Link>
       <Title color={"black"} fontsize={"20px"}>
         나에게 맞는 프로젝트<br/>
         내가 원하는 팀원을 만나는 곳
@@ -138,7 +143,7 @@ function Startpage() {
       </Description>
       <Image src={Dummy1} width="350px" />
     </DesciptBox>
-    <FindID isOpen={isModalOpen}/>
+    <FindID isOpen={isModalOpen} closeModal={closeModal}/>
     </Wrapper>
   );
 }

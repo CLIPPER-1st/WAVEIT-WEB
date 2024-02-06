@@ -8,7 +8,7 @@ const Modal = styled.div`
     height: 30vh;
     position: absolute;
     top: 40%;
-    left: 35%;
+    left: 30%;
     background-color:white;
     border-radius: 10px;
 `
@@ -55,10 +55,7 @@ const FindPW=styled.a`
     font-size:12px;
     color:#737373;
 `
-const FindID=({})=>{
-    const closeModal=()=>{
-
-    }
+const FindID=({isOpen, closeModal})=>{
     const [modalSize, setModalSize] = useState({ width: '37vw', height: '30vh' });
 
     const updateModalSize = () => {
@@ -80,7 +77,7 @@ const FindID=({})=>{
     }, []);
 
         return (
-        <Modal style={{ width: modalSize.width, height: modalSize.height }}>
+        <Modal style={{ display: isOpen?"grid":"none", width: modalSize.width, height: modalSize.height,  }}>
             <Top>
                 <span>아이디 안내</span>
                 <CloseBtn onClick={closeModal}>x</CloseBtn>
