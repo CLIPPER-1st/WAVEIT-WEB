@@ -7,7 +7,6 @@ import React, {useState,useEffect, useRef} from "react";
 import { Link } from "react-router-dom";
 
 const Wrapper=styled.div`
-
   display:grid;
   grid-template-rows:1fr 17fr;
   height:100vh;
@@ -74,7 +73,6 @@ const Description = styled.div`
   }
 `;
 
-
 const DesciptBox=styled.div`
   min-height: 500px;
   display:flex;
@@ -97,7 +95,7 @@ function Startpage() {
       <NavbarItem href="/pages/dummy">임시페이지</NavbarItem>
         <NavbarItem href="/dummy2">매칭 모집</NavbarItem>
         <NavbarItem href="/dummy3">매칭 등록</NavbarItem>
-        <NavbarItem href="/dummy4">마이페이지</NavbarItem>
+        <NavbarItem href="/pages/mypage">마이페이지</NavbarItem>
       </Navbar>
     <Container>
       {/* <Link to ={'/pages/Login'}>

@@ -100,7 +100,7 @@ const Dummy=()=>{
             <div><Link to="/pages/Login">회원가입 페이지</Link></div>
             <button  onClick={openModal}>아이디 안내 모달창</button>
             <button  onClick={openModal2}>아이디 오류 모달창</button>
-            <button  onClick={openModal3}>인증번호 발송 모달창</button>    <br />
+            <button  onClick={openModal3}>인증번호 발송 모달창</button><br />
             <button  onClick={openModal4}>이메일 오류 모달창</button>
             <button  onClick={openModal5}>인증번호 오류 모달창</button>
             <button  onClick={openModal6}>회원가입 완료 모달창</button>
