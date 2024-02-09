@@ -1,14 +1,18 @@
 import styled from 'styled-components';
 import React from 'react';
+import { Link } from 'react-router-dom';
+import '../css/MyPage.css';
 
 const Wrapper=styled.div`
-  background-color:#94B6EF;
+  background-color:white;
 `
 // 상단 네브바
 const Navbar = styled.div`
-  background-color:#94B6EF;
+  background-color:white;
+  display:grid;
   display: flex;
-  justify-content: space-between; /* 주요 항목들을 분리 */
+  justify-content: right; /* 메뉴 항목을 양 끝으로 정렬 */
+  
   width: 100%;
   padding: 10px 20px; 
   box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
@@ -16,7 +20,7 @@ const Navbar = styled.div`
 `;
 
 const Title = styled.div`
-  font-size: 25px;
+  font-size: 20px;
   font-weight: bold;
 `
 
@@ -29,10 +33,10 @@ const NavbarItems = styled.div`
   display: flex;
   gap: 50px; /* 항목들 사이의 간격 */
   margin-left: auto; /* 항목들을 오른쪽으로 이동 */
-  margin-right : 100px;
+  margin-right : 80px;
 `;
 
-const Btn = styled.div`
+const BtnLink = styled(Link)`
   position: fixed;
   bottom: 0;
   left: 50%;
@@ -43,25 +47,27 @@ const Btn = styled.div`
   align-items:center;
   font-weight: bold;
   border-radius: 50px;
-  background-color:#F4F2EF;
+  background-color:#94B6EF;
   width: 250px;
   height: 50px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  text-decoration: none;
+  color: white;
 `
 
 export default function MyPage(){
     return(
+        <div className="my-page">
         <Wrapper>
             <Navbar>
-            <div style={{ width: '50%' }}></div>
             <Title>마이페이지</Title>
             <NavbarItems>
                 <NavbarItem href="/dummy2">매칭 모집</NavbarItem>
-                <NavbarItem href="/dummy3">매칭 등록</NavbarItem>
+                <NavbarItem href="/pages/postingpage">매칭 등록</NavbarItem>
             </NavbarItems>
             </Navbar>
-            <Btn>모집 글 작성하러가기</Btn>
+            <BtnLink to="/pages/postingpage">모집 글 작성하러가기</BtnLink>
         </Wrapper>
-       
+        </div>
     );
 }
