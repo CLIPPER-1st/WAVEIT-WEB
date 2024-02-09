@@ -113,19 +113,12 @@ function FindIdpw() {
         </>
       )
       }
-
-
       </div>
-
-
 
         <button className={styles.checkButton}>
             아이디 찾기
           </button>
-
-
       </div>
-
 
     );
   }
