@@ -94,7 +94,7 @@ function Startpage() {
       <Navbar>
       <NavbarItem href="/pages/dummy">임시페이지</NavbarItem>
         <NavbarItem href="/dummy2">매칭 모집</NavbarItem>
-        <NavbarItem href="/dummy3">매칭 등록</NavbarItem>
+        <NavbarItem href="/pages/postingpage">매칭 등록</NavbarItem>
         <NavbarItem href="/pages/mypage">마이페이지</NavbarItem>
       </Navbar>
     <Container>

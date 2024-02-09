@@ -7,13 +7,14 @@ import SendNum from '../components/SendNum';
 import ErrorEmail from '../components/ErrorrEmail';
 import ErrorNum from '../components/ErrorNum';
 import SignSuccess from '../components/SignSuccess';
+
 const Container = styled.div`
-    margin: 5% 0% 0% 0%;
-    //height: 100vw;
-    display: flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
+margin: 5% 0% 0% 0%;
+//height: 100vw;
+display: flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
 `
 const BtnBox=styled.div`
 text-align:center;

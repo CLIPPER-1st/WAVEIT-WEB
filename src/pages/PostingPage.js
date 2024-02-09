@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import '../css/PostingPage.css';
+import RegisterPosting from '../components/RegisterPosting.js';
 
 const Wrapper=styled.div`
   background-color:white;
@@ -125,6 +126,15 @@ export default function PostingPage(){
     console.log(project);
     };
 
+    const [isModalOpen, setIsModalOpen]=useState(false);
+
+    const openDialog = () => {
+        setIsModalOpen(true);
+    }
+
+    const closeModal=()=>{
+        setIsModalOpen(false);
+    }
 
     return (
         <div className="posting-page">
@@ -186,7 +196,8 @@ export default function PostingPage(){
                 
             </form>
 
-            <Btn type ="submit">등록하기</Btn>
+            <Btn onClick = {openDialog}>등록하기</Btn>
+            <RegisterPosting isOpen={isModalOpen} closeModal={closeModal}/>
         </Wrapper>
         </div>
     );
