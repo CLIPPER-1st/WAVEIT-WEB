@@ -20,8 +20,14 @@ const Navbar = styled.div`
 `;
 
 const Title = styled.div`
-  font-size: 25px;
+  font-size: 20px;
   font-weight: bold;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  display:flex;
+  justify-content:center;
+  align-items:center; 
 `
 
 const NavbarItem=styled.a`
@@ -31,9 +37,9 @@ const NavbarItem=styled.a`
 `
 const NavbarItems = styled.div`
   display: flex;
-  gap: 50px; /* 항목들 사이의 간격 */
+  gap: 30px; /* 항목들 사이의 간격 */
   margin-left: auto; /* 항목들을 오른쪽으로 이동 */
-  margin-right : 80px;
+  margin-right: 50px;
 `;
 
 const Label = styled.label`
@@ -121,10 +127,6 @@ export default function PostingPage(){
     });
     };
 
-    const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(project);
-    };
 
     const [isModalOpen, setIsModalOpen]=useState(false);
 
@@ -147,54 +149,52 @@ export default function PostingPage(){
             </NavbarItems>
             </Navbar>
 
-            <form onSubmit={handleSubmit}>
-                <Row>
-                <Label>
-                프로젝트 이름 :</Label>
-                <InputField type="text" name="name" onChange={handleChange} />
-                <br/></Row>
-                <Row>
-                <Label>
-                프로젝트 분야 :</Label>
-                <Select name="field" onChange={handleChange}>
-                    <option value="">------ 선택하세요 ------</option>
-                    <option value="앱 개발">앱 개발</option>
-                    <option value="웹 개발">웹 개발</option>
-                    <option value="데이터 분석">데이터 분석</option>
-                    <option value="게임 개발">게임 개발</option>
-                    <option value="기타">기타</option>
-                </Select>
-                <br/></Row>
-                <Row>
-                <Label>
-                모집 파트 :</Label>
-                <Select name="part" onChange={handleChange}>
-                    <option value="">------ 선택하세요 ------</option>
-                    <option value="프론트엔드">프론트엔드</option>
-                    <option value="백엔드">백엔드</option>
-                    <option value="디자이너">디자이너</option>
-                    <option value="PM">PM</option>
-                    <option value="AI 개발자">AI 개발자</option>
-                    <option value="데이터 분석">데이터 분석</option>
-                    <option value="게임 개발자">게임 개발자</option>
-                </Select>
-                <br/></Row>
-                <Row>
-                <Label>
-                연락처(이메일) :</Label>
-                <InputField type="email" name="email" onChange={handleChange} />
-                <br/></Row>
-                <Row>
-                <Label>
-                모집 설명 :</Label>
-                <Textarea 
-                name="description" 
-                onChange={handleChange} 
-                placeholder="프로젝트에 대한 설명, 사용 프레임워크 등 설명해주세요."
-                />
-                <br/></Row>
+            <Row>
+            <Label>
+            프로젝트 이름 :</Label>
+            <InputField type="text" name="name" onChange={handleChange} />
+            <br/></Row>
+            <Row>
+            <Label>
+            프로젝트 분야 :</Label>
+            <Select name="field" onChange={handleChange}>
+                <option value="">------ 선택하세요 ------</option>
+                <option value="앱 개발">앱 개발</option>
+                <option value="웹 개발">웹 개발</option>
+                <option value="데이터 분석">데이터 분석</option>
+                <option value="게임 개발">게임 개발</option>
+                <option value="기타">기타</option>
+            </Select>
+            <br/></Row>
+            <Row>
+            <Label>
+            모집 파트 :</Label>
+            <Select name="part" onChange={handleChange}>
+                <option value="">------ 선택하세요 ------</option>
+                <option value="프론트엔드">프론트엔드</option>
+                <option value="백엔드">백엔드</option>
+                <option value="디자이너">디자이너</option>
+                <option value="PM">PM</option>
+                <option value="AI 개발자">AI 개발자</option>
+                <option value="데이터 분석">데이터 분석</option>
+                <option value="게임 개발자">게임 개발자</option>
+            </Select>
+            <br/></Row>
+            <Row>
+            <Label>
+            연락처(이메일) :</Label>
+            <InputField type="email" name="email" onChange={handleChange} />
+            <br/></Row>
+            <Row>
+            <Label>
+            모집 설명 :</Label>
+            <Textarea 
+            name="description" 
+            onChange={handleChange} 
+            placeholder="프로젝트에 대한 설명, 사용 프레임워크 등 설명해주세요."
+            />
+            <br/></Row>
                 
-            </form>
 
             <Btn onClick = {openDialog}>등록하기</Btn>
             <RegisterPosting isOpen={isModalOpen} closeModal={closeModal}/>

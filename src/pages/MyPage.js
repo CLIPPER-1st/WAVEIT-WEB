@@ -22,6 +22,12 @@ const Navbar = styled.div`
 const Title = styled.div`
   font-size: 20px;
   font-weight: bold;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  display:flex;
+  justify-content:center;
+  align-items:center; 
 `
 
 const NavbarItem=styled.a`
@@ -31,9 +37,9 @@ const NavbarItem=styled.a`
 `
 const NavbarItems = styled.div`
   display: flex;
-  gap: 50px; /* 항목들 사이의 간격 */
+  gap: 30px; /* 항목들 사이의 간격 */
   margin-left: auto; /* 항목들을 오른쪽으로 이동 */
-  margin-right : 80px;
+  margin-right : 50px;
 `;
 
 const BtnLink = styled(Link)`

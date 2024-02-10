@@ -19,6 +19,7 @@ const App=()=>{
       <Route path="/pages/dummy" element={<Dummy />}/>
       <Route path="/pages/mypage" element={<MyPage />}/>
       <Route path="/pages/postingpage" element={<PostingPage />}/>
+
     </Routes>
   )
 }
