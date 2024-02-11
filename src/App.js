@@ -7,7 +7,8 @@ import Sign from "./pages/Sign";
 import MyPage from "./pages/MyPage";
 import PostingPage from "./pages/PostingPage";
 import Dummy from "./pages/dummyPage";//임시페이지
-
+import SignNext from "./pages/SignNext";
+import SignFinal from "./pages/SignFinal";
 
 const App=()=>{
   return(
@@ -19,7 +20,8 @@ const App=()=>{
       <Route path="/pages/dummy" element={<Dummy />}/>
       <Route path="/pages/mypage" element={<MyPage />}/>
       <Route path="/pages/postingpage" element={<PostingPage />}/>
-
+      <Route path="/pages/SignNext" element={<SignNext/>}/>
+      <Route path="/pages/SignFinal" element={<SignFinal/>}/>
     </Routes>
   )
 }

@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import styled from 'styled-components'
 import {Link} from 'react-router-dom';
+
 const Modal = styled.div`
     display:grid;
     grid-template-rows:3fr 17fr;

@@ -34,6 +34,7 @@ const Title = styled.div`
 `
 
 const NavbarItem=styled.a`
+
   margin-right: 20px;
   text-decoration-line:none;
   font-weight:bold;
@@ -57,8 +58,8 @@ const ContentTitle = styled.div`
 `
 
 const ContentItem = styled.div`
-    margin-left : 100px;
-    margin-top : 50px;
+  margin-left : 100px;
+  margin-top : 50px;
 `
 
 const HomeStyles = styled.div`

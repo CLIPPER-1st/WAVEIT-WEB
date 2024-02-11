@@ -1,8 +1,90 @@
-
-import styles from '../css/FindIdpw.module.css';
+import styled from 'styled-components';
 import React, { useEffect, useState } from 'react';
-// import { useNavigate } from "react-router-dom";
 
+const Page = styled.div`
+  position: fixed;
+  top: 20px;
+  bottom: 0;
+  width: 100%;
+  box-shadow: 2px 2px 2px 2px gray;
+  max-width: 800px;
+  padding: 0px 20px;
+  max-height : 800px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  background-color: white;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+`
+
+const SelectWrap = styled.div`
+  width : 75%;
+  margin-left: 100px;
+  margin-top: 80px;
+  text-align: center;
+  display: flex;
+`
+
+const TitleWrap = styled.div`
+  margin-top: 100px;
+  font-size: 30px;
+  font-weight: bold;
+  color: #262626;
+  margin-left: 100px;
+`
+
+const ContentWrap = styled.div`
+  margin-top: 50px;
+`
+
+const InputTitle = styled.div`
+  font-size: 20px;
+  font-weight: 1000;
+  color: #262626;
+  margin-left: 100px;
+`
+
+const InputWrap = styled.div`
+  display: flex;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 30px;
+  margin-left: 100px;
+  margin-right: 100px;
+  background-color: white;
+  border: 1px solid #e2e0e0;
+
+  &:hover{
+    border-bottom: 1px solid #000080;
+  }
+`
+
+const InputField = styled.input`
+  width: 100%;
+  outline: none;
+  border: none;
+  height: 17px;
+  font-size: 14px;
+  font-weight: 400;
+`
+
+/*인증번호 확인 버튼*/
+const CheckButton = styled.button`
+  position: fixed;
+  width: 600px;
+  height: 60px;
+  border: none;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: #000080;
+  color: white;
+  cursor: pointer;
+  text-align: center;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`
 
 function FindIdpw() {
 
@@ -25,12 +107,10 @@ function FindIdpw() {
   };
 
     return (
-      <div className = 'page' >
+      <Page>
       
-        <div className="titleWrap">
-          아이디 비밀번호 찾기
-        </div>
-        <div className={styles.selectWrap} style={{ display: 'flex' }}>
+      <TitleWrap>아이디 비밀번호 찾기</TitleWrap>
+      <SelectWrap>
       <div
         style={{
           borderBottom: hover1 ? '1px solid blue' :'1px solid black',
@@ -59,67 +139,62 @@ function FindIdpw() {
       >
         비밀번호 찾기
       </div>
-    </div>
+    </SelectWrap>
 
-      <div className="contentWrap">
+      <ContentWrap>
 
       {!isConfirmed ?(
         <>
-          <div className="inputTitle">이름</div>
-          <div className="inputWrap">
-            <input
-              className="input"
+          <InputTitle>이름</InputTitle>
+          <InputWrap>
+            <InputField
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
-          </div>
+          </InputWrap>
           
-        <div style={{ marginTop: "26px" }} className="inputTitle">
-            이메일</div>
-          <div className="inputWrap">
-            <input
-              className="input"
+        <InputTitle><br/>이메일</InputTitle>
+          <InputWrap>
+            <InputField
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-          </div>
+          </InputWrap>
+          <CheckButton>
+            아이디 찾기
+          </CheckButton>
           </>
       )
       :
       (
         <>
-           <div className="inputTitle">아이디</div>
-          <div className="inputWrap">
-            <input
-              className="input"
+           <InputTitle>아이디</InputTitle>
+          <InputWrap>
+            <InputField
               type="text"
               value={id}
               onChange={(e) => setId(e.target.value)}
             />
-          </div>
+          </InputWrap>
           
-        <div style={{ marginTop: "26px" }} className="inputTitle">
-            인증번호</div>
-          <div className="inputWrap">
-            <input
-              className="input"
+        <InputTitle><br/>인증번호</InputTitle>
+          <InputWrap>
+            <InputField
               type="password"
               value={authNumber}
               onChange={(e) => setAuthNumber(e.target.value)}
             />
-          </div>
+          </InputWrap>
+          <CheckButton>
+            인증번호 확인
+          </CheckButton>
         </>
       )
       }
-      </div>
-
-        <button className={styles.checkButton}>
-            아이디 찾기
-          </button>
-      </div>
-
+      </ContentWrap>
+      </Page>
     );
   }
 
