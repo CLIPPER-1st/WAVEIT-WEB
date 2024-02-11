@@ -5,6 +5,7 @@ import RegisterPosting from '../components/RegisterPosting.js';
 
 const Wrapper=styled.div`
   background-color:white;
+  
 `
 // 상단 네브바
 const Navbar = styled.div`
@@ -92,15 +93,15 @@ const Textarea = styled.textarea`
   }
 `;
 
+const HomeStyles = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
 const Btn = styled.button`
-  position: fixed;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  margin: 50px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
+  margin-top : 80px;
   font-weight: bold;
   border-radius: 50px;
   background-color:#94B6EF;
@@ -195,8 +196,9 @@ export default function PostingPage(){
             />
             <br/></Row>
                 
-
+            <HomeStyles>
             <Btn onClick = {openDialog}>등록하기</Btn>
+            </HomeStyles>
             <RegisterPosting isOpen={isModalOpen} closeModal={closeModal}/>
         </Wrapper>
         </div>

@@ -10,6 +10,7 @@ const Wrapper=styled.div`
   display:grid;
   grid-template-rows:1fr 17fr;
   height:100vh;
+  background-color: #94B6EF;
 `
 
 const Container=styled.div`
