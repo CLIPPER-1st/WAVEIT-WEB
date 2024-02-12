@@ -13,7 +13,7 @@ import Matching from "./pages/Matching";
 const App=()=>{
   return(
     <Routes>
-      <Route path="/" element={<Matching />} />
+      <Route path="/" element={<Startpage />} />
       <Route path="/pages/Login" element = {<Login/>}/>
       <Route path="/pages/FindIdpw" element = {<FindIdpw/>}/>
       <Route path="/pages/Sign" element = {<Sign/>}/>
@@ -22,6 +22,7 @@ const App=()=>{
       <Route path="/pages/postingpage" element={<PostingPage />}/>
       <Route path="/pages/SignNext" element={<SignNext/>}/>
       <Route path="/pages/SignFinal" element={<SignFinal/>}/>
+      <Route path="/pages/Matching" element={<Matching />} />
     </Routes>
   )
 }

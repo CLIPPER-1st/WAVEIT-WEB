@@ -6,8 +6,8 @@ const Matchbox = styled.div`
     margin: 5vw;
     padding: 1vw;
     background-color:#D9D9D9;
-    width: 30vw;
-    height: 12vw;
+    width: 22vw;
+    height: 8vw;
     display:flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -17,8 +17,9 @@ const Matchbox = styled.div`
 const MatchContent=styled.span`
     &:first-child{
         font-weight:bold;
+        font-size: 1.2vw;
     }
-    font-size: 1.5vw;
+    font-size: 1.2vw;
 `
 
 const FieldBtn=styled.button`
@@ -27,9 +28,11 @@ const FieldBtn=styled.button`
     border-style:none;
     font-weight:bold;
     width: auto;
-    height:2.5vw;
-    font-size: 1.5vw;
+    height:2vw;
+    font-size: 1.2vw;
 `
+
+
 
 const MatchBox=({title,field, recruit})=>{
     return (

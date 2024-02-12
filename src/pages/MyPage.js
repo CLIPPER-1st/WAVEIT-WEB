@@ -90,7 +90,7 @@ class MyPage extends React.Component{
                 <Title>마이페이지</Title>
                 
                 <NavbarItems>
-                    <NavbarItem href="/dummy2">매칭 모집</NavbarItem>
+                    <NavbarItem href="/pages/Matching">매칭 모집</NavbarItem>
                     <NavbarItem href="/pages/postingpage">매칭 등록</NavbarItem>
                 </NavbarItems>
                 </Navbar>

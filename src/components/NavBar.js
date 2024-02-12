@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 //상단 네브바
 const Navbar = styled.div`
-  background-color:#ffffff;
+  background-color:rgb(253, 252, 252);
   display:grid;
   width: 100%;
   display: flex;
