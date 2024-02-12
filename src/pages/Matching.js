@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import NavBar from '../components/NavBar';
 import MatchBox from '../components/MatchBox';
 import '../css/Matching.css';
+import SettingFilter from '../components/SettingFilter';
 const Wrapper=styled.div`
-    height:100%;
+    min-height:100%;
     background-color:rgb(253, 252, 252);
 `
 const MatchContainer=styled.div`
@@ -52,20 +53,32 @@ const FilterBtn=styled.div`
     text-align:center;
     font-size: 1.2vw;
     margin-left: auto;/*버튼 오른쪽정렬*/
-`
+    `
+
 
 const Matching=()=>{
+     //모달창 열고닫기
+     const [isModalOpen, setIsModalOpen]=useState(false);
+
+     const modalOpen = () =>{
+         setIsModalOpen(true);
+     }
+     const modalClose = () =>{
+         setIsModalOpen(false);
+     }
+
+     
     return (
         <Wrapper>
             <NavBar />
             <SearchBox>
                 <TitleBox>
                     <Title>매칭 모집</Title>
-                    <FilterBtn>필터 조정</FilterBtn>
+                    <FilterBtn onClick={modalOpen}>필터 조정</FilterBtn>
                     </TitleBox>
                     <Input type="text" />
             </SearchBox>
-            
+            <SettingFilter isModalOpen={isModalOpen} modalClose={modalClose}/>
             <MatchContainer>
             <MatchBox title={"Wave-It: 개발자 매칭 서비스"} field={"웹개발"} recruit={"PM: 1, FE 2, BE 2"}></MatchBox>
                 <MatchBox title={"Data Analysis"} field={"데이터분석"} recruit={"Data-Analysis& Monitoring 1, PM: 1, FE 2, BE 2"}></MatchBox>

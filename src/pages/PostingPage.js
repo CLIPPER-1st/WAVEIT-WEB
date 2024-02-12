@@ -145,7 +145,7 @@ export default function PostingPage(){
             <Navbar>
             <Title>매칭 등록</Title>
             <NavbarItems>
-                <NavbarItem href="/dummy2">매칭 모집</NavbarItem>
+                <NavbarItem href="/pages/Matching">매칭 모집</NavbarItem>
                 <NavbarItem href="/pages/mypage">마이페이지</NavbarItem>
             </NavbarItems>
             </Navbar>

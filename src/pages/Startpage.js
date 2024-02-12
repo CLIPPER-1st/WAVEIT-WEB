@@ -3,6 +3,7 @@ import '../css/Startpage.css';
 import chevronsDown from "../static/Images/chevrons-down.png";
 import Dummy1 from "../static/Images/dummy1.png";
 import React, {useState,useEffect, useRef} from "react";
+import '../css/Start.css';
 //import FindID from "../components/FindID";
 import { Link } from "react-router-dom";
 
