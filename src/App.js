@@ -9,11 +9,11 @@ import PostingPage from "./pages/PostingPage";
 import Dummy from "./pages/dummyPage";//임시페이지
 import SignNext from "./pages/SignNext";
 import SignFinal from "./pages/SignFinal";
-
+import Matching from "./pages/Matching";
 const App=()=>{
   return(
     <Routes>
-      <Route path="/" element={<Startpage />} />
+      <Route path="/" element={<Matching />} />
       <Route path="/pages/Login" element = {<Login/>}/>
       <Route path="/pages/FindIdpw" element = {<FindIdpw/>}/>
       <Route path="/pages/Sign" element = {<Sign/>}/>
