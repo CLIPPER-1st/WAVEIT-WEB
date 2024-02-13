@@ -1,7 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import styled from 'styled-components'
-import ApplySuccess from './ApplySuccess';
-import ApplyBtn from '../static/Images/ApplyBtn.png';
 const Modal = styled.div`
     display:grid;
     grid-template-rows:3fr 17fr;
@@ -9,8 +7,8 @@ const Modal = styled.div`
     width: 37vw;
     height: 30vh;
     position: absolute;
-    top: 30%;
-    left: 30%;
+    top: 0%;
+    left: 0%;
     background-color:white;
     border-radius: 10px;
 `
@@ -46,43 +44,18 @@ const RegisterBtn=styled.button`
     text-align:center;
     box-shadow: 0 2px 4px rgba(0,0,0,0.3);
 `
-
-const Portfolio=styled.div`
-    display:flex;
-    flex-direction:column;
-    width: 90%;
-    height: 70%;
-    margin-top: 2vw;
-    font-size:1.3vw;
-    line-height: 3vw;
-    font-weight:bold;
-`
-const Text=styled.textarea`
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    background-color: rgba(217, 217, 217, 0.2);
-    width: 99%;
-    height: 60%;
-    border-style: none;
-
-`
-const Application=({title ,isOpen, closeModal})=>{
+const ApplySuccess=({isOpen, closeEndModal, closeModal})=>{
     const [modalSize, setModalSize] = useState({ width: '37vw', height: '30vh' });
-    const [isEndModalOpen, setIsEndModalOpen]=useState(false);
-    const openEndModal=()=>{
-        setIsEndModalOpen(true);
-    }
-    const closeEndModal=()=>{
-        setIsEndModalOpen(false);
-    }
+
     const updateModalSize = () => {
         // 화면 너비의 37%를 기준으로 세로 크기 계산 (4:3 비율 유지를 위해)
         const width = window.innerWidth * 0.37;
         const height = (width / 4) * 3;
         setModalSize({ width: `${width}px`, height: `${height}px` });
     };
-
-    const gotoNext=()=>{
-        openEndModal();
+    const closeAll=()=>{
+        closeModal();
+        closeEndModal();
     }
 
 
@@ -98,29 +71,20 @@ const Application=({title ,isOpen, closeModal})=>{
 
         return (
         <Modal style={{ display: isOpen?"grid":"none", width: modalSize.width, height: modalSize.height,  }}>
-            <ApplySuccess isOpen={isEndModalOpen} closeEndModal={closeEndModal} closeModal={closeModal}/>
             <Top>
-                <span style={{fontSize:"1.2vw"}}>{title}  지원</span>
+                <span>지원 완료</span>
             </Top>
             <Body>
-                <Portfolio>
-                <div style={{ justifyContent: "space-evenly"}}>
-                    <span style={{marginRight: "2vw"}}>포트폴리오</span>                    
-                    <input type="file" id="fileInput" style={{display:"none"}}/>
-                    <label for="fileInput">
-                        <img src={ApplyBtn} alt="upload file" style={{ width: "12vw", height:"2.5vw"}} />
-                    </label>
+                <div style={{textAlign:"center", margin:"4vw 0vw 5vw 0vw", fontSize: "1.5vw"}}>
+                    지원이 완료되었습니다.
                 </div>
-                <div>지원 동기 및 본인 소개</div>
-                <Text placeholder="지원 동기를 작성해주세요."></Text>
-                </Portfolio>
-                <RegisterBtn onClick={gotoNext}>
-                    지원하기
+                <RegisterBtn onClick={closeAll}>
+                    확인
                 </RegisterBtn>
             </Body>
         </Modal>
     )
 }
 
-export default Application;
+export default ApplySuccess;
 
