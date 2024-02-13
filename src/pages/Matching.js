@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 import NavBar from '../components/NavBar';
 import MatchBox from '../components/MatchBox';
@@ -57,8 +58,35 @@ const FilterBtn=styled.div`
     font-size: 1.2vw;
     margin-left: auto;/*버튼 오른쪽정렬*/
     `
+const NoMatch=styled.div`
+    width: 100vw;
+    height: 70vw;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+`
+const ViewAll=styled.span`
+        background-color:#94B6EF;
+        border-radius:2px;
+        padding: 0.5vw 1vw;
+        font-size:1.2vw;
+        font-weight: bold;
+        margin: 0% 0% 0% 81%;
+        cursor:pointer;
+`
 
-
+const RecommendBtn=styled.div`
+    width: 20vw;
+    color:white;
+    font-weight:bold;
+    margin:15vw;
+    background-color:#94B6EF;
+    border-radius:50px;
+    padding:1vw 2vw;
+    text-align:center;
+    font-size:2vw;
+` 
 const Matching=()=>{
      //모달창 열고닫기
      const [isModalOpen, setIsModalOpen]=useState(false);
@@ -85,15 +113,7 @@ const Matching=()=>{
         return fieldIncludes&&recruitIncludes;
     })
 
-    const ViewAll=styled.span`
-        background-color:#94B6EF;
-        border-radius:2px;
-        padding: 0.5vw 1vw;
-        font-size:1.2vw;
-        font-weight: bold;
-        margin: 0% 0% 0% 81%;
-        cursor:pointer;
-    `
+    
 
     const handleClickViewAll=()=>{
         setShowAll(true);
@@ -119,12 +139,19 @@ const Matching=()=>{
             />
             <MatchContainer>
                { 
-                    filteredList.map(({title, field, recruit})=>{
-                
-                    //console.log(title+","+field+","+recruit);
                     
-                    return <MatchBox title={title} field={field} recruit={recruit}/>
-                })
+                    filteredList.length > 0 ? 
+                    filteredList.map(({title, field, recruit, id}) => (
+                       //Detail 페이지로 이동
+                       <Link to={`/pages/detail/${id}`} style={{textDecoration:'none', color:'black'}}>
+                        <MatchBox key={title} title={title} field={field} recruit={recruit}/>
+                        </Link>
+                    )) : 
+                    <NoMatch>
+                    <div style={{fontSize:"2vw", fontWeight:"bold", margin:"5vw 0vw 0vw 0vw"}}>해당 검색 결과가 없습니다.</div>
+                    <RecommendBtn>추천 매칭글 보러가기</RecommendBtn>
+                    </NoMatch>
+                
                 }
             </MatchContainer>
         </Wrapper>

@@ -10,6 +10,7 @@ import Dummy from "./pages/dummyPage";//임시페이지
 import SignNext from "./pages/SignNext";
 import SignFinal from "./pages/SignFinal";
 import Matching from "./pages/Matching";
+import Detail from "./pages/Detail";
 const App=()=>{
   return(
     <Routes>
@@ -23,6 +24,7 @@ const App=()=>{
       <Route path="/pages/SignNext" element={<SignNext/>}/>
       <Route path="/pages/SignFinal" element={<SignFinal/>}/>
       <Route path="/pages/Matching" element={<Matching />} />
+      <Route path="pages/detail/:id" element={<Detail />} />
     </Routes>
   )
 }
