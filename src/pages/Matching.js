@@ -37,6 +37,7 @@ const Title=styled.span`
 margin: 5vw 0vw 2vw 0vw;
 font-size: 2vw;
 font-weight: bold;
+width:15vw;
 justify-self:center;/*타이틀 수평 가운데 정렬*/
 `
 
@@ -46,7 +47,11 @@ const TitleBox=styled.div`
     align-items:center;
     margin: 0vw 0vw 0vw 40vw;
 `
-
+const BtnBox=styled.div`
+    width:100%;
+    display:flex;
+    flex-direction:row;
+`
 const FilterBtn=styled.div`
     cursor:pointer;
     background-color:#FF6868; 
@@ -57,7 +62,8 @@ const FilterBtn=styled.div`
     height: 1.7vw; 
     text-align:center;
     font-size: 1.2vw;
-    margin-left: auto;/*버튼 오른쪽정렬*/
+    margin-right:5%;
+    margin-left:20vw;
     `
 const NoMatch=styled.div`
     width: 100vw;
@@ -73,7 +79,6 @@ const ViewAll=styled.span`
         padding: 0.5vw 1vw;
         font-size:1.2vw;
         font-weight: bold;
-        margin: 0% 0% 0% 81%;
         cursor:pointer;
 `
 
@@ -127,10 +132,16 @@ const Matching=()=>{
             <SearchBox>
                 <TitleBox>
                     <Title>매칭 모집</Title>
+                    <BtnBox>
                     <FilterBtn onClick={modalOpen}>필터 조정</FilterBtn>
-                    </TitleBox>
                     <ViewAll onClick={handleClickViewAll}>전체 보기</ViewAll>
-                    <Input type="text" />
+                    </BtnBox>
+                </TitleBox>
+                {
+                    showAll?<div >전체 검색 결과입니다.</div>
+                    :<div>"{selectedField}", "{selectedRecruit}" 필터 검색 결과입니다.</div>
+                }
+                <Input type="text" />
             </SearchBox>
             <SettingFilter 
                 isModalOpen={isModalOpen} 
@@ -139,8 +150,7 @@ const Matching=()=>{
                 setShowAll={setShowAll}
             />
             <MatchContainer>
-               { 
-                    
+               {                     
                     filteredList.length > 0 ? 
                     filteredList.map(({title, field, recruit, id}) => (
                        //Detail 페이지로 이동
