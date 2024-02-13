@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import NavBar from '../components/NavBar';
 import List from '../json/MatchList.json'
 import WishList from "../components/WishList";
+import Application from "../components/Application";
 
 const Container=styled.div`
     min-width:100%;
@@ -58,12 +59,23 @@ const Btn=styled.button`
 `
 const Detail=()=>{
     const [isModalOpen, setIsModalOpen]=useState(false);
+    const [isApplicationModalOpen, setIsApplicationModalOpen]=useState(false);
+    //찜하기 모달창
     const openModal=()=>{
         setIsModalOpen(true);
     }
     const closeModal=()=>{
         setIsModalOpen(false);
     }
+
+    //지원하기 모달창
+    const openApplicationModal=()=>{
+        setIsApplicationModalOpen(true);
+    }
+    const closeApplicationModal=()=>{
+        setIsApplicationModalOpen(false);
+    }
+
     //url 파라미터에서 id값 가져오기
     const {id}=useParams();
     //id값과 일치하는 List 가져오기
@@ -74,7 +86,7 @@ const Detail=()=>{
             <NavBar />
             <Title>{item.title}</Title>
             <GrayBox>
-                <div style={{lineHeight:"4vw",  fontSize:"1.5vw"}}><b>프로젝트 분야</b> 
+                <div style={{lineHeight:"4vw",  fontSize:"1.5vw"}}><b>프로젝트 분야 </b> 
                 {item.field.map((f, index) => (
                     <FieldBtn key={index}>{f}</FieldBtn> // 고유 key 추가
                 ))}
@@ -85,10 +97,11 @@ const Detail=()=>{
                 <div style={{lineHeight:"3vw",  fontSize:"1.5vw"}}><b>프로젝트 설명글 </b>{item.content}</div>
                 <BtnBox>
                     <Btn onClick={openModal}>찜하기</Btn>
-                    <Btn>지원하기</Btn>
+                    <Btn onClick={openApplicationModal}>지원하기</Btn>
                 </BtnBox>
             </GrayBox>
             <WishList isOpen={isModalOpen} closeModal={closeModal}/>
+            <Application title={item.title} isOpen={isApplicationModalOpen} closeModal={closeApplicationModal} />
         </Container>
     )
 
