@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useParams} from 'react-router-dom';
 import styled from 'styled-components';
 import NavBar from '../components/NavBar';
 import List from '../json/MatchList.json'
+import WishList from "../components/WishList";
+
 const Container=styled.div`
     min-width:100%;
     min-height:100%;
@@ -52,8 +54,16 @@ const Btn=styled.button`
     border-radius: 6px;
     border-style:none;
     font-size:1.3vw;
+    font-weight:bold;
 `
 const Detail=()=>{
+    const [isModalOpen, setIsModalOpen]=useState(false);
+    const openModal=()=>{
+        setIsModalOpen(true);
+    }
+    const closeModal=()=>{
+        setIsModalOpen(false);
+    }
     //url 파라미터에서 id값 가져오기
     const {id}=useParams();
     //id값과 일치하는 List 가져오기
@@ -74,11 +84,11 @@ const Detail=()=>{
                 <div style={{lineHeight:"4vw",  fontSize:"1.5vw"}}><b>연락 보내기  </b>{item.contact}</div>
                 <div style={{lineHeight:"3vw",  fontSize:"1.5vw"}}><b>프로젝트 설명글 </b>{item.content}</div>
                 <BtnBox>
-                    <Btn>찜하기</Btn>
+                    <Btn onClick={openModal}>찜하기</Btn>
                     <Btn>지원하기</Btn>
                 </BtnBox>
             </GrayBox>
-            
+            <WishList isOpen={isModalOpen} closeModal={closeModal}/>
         </Container>
     )
 

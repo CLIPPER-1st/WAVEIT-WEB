@@ -6,6 +6,7 @@ import MatchBox from '../components/MatchBox';
 import '../css/Matching.css';
 import SettingFilter from '../components/SettingFilter';
 import List from '../json/MatchList.json';
+
 const Wrapper=styled.div`
     min-height:100%;
     min-width:100%;
