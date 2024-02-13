@@ -1,0 +1,32 @@
+[
+{ 
+    "title":"wave-it: 개발자 매칭 서비스",
+    "field" : ["웹개발"],
+    "recruit":"PM1, 프론트엔드2, 백엔드2"
+},
+{ 
+    "title":"Data Analysis",
+    "field" : ["데이터 분석"],
+    "recruit":"데이터 분석1"
+},
+{ 
+    "title":"배틀그라운드",
+    "field" : ["게임개발"],
+    "recruit":"게임 개발자3, 디자이너1"
+},
+{ 
+    "title":"오버워치",
+    "field" : ["게임개발"],
+    "recruit":"PM1, 프론트엔드2, 백엔드2"
+},
+{ 
+    "title":"머신러닝 프로젝트",
+    "field" : ["기타"],
+    "recruit":"AI 개발자"
+},
+{ 
+    "title":"ABCDE",
+    "field" : ["웹개발", "앱개발"],
+    "recruit":"프론트엔드1, 디자이너1, 백엔드2"
+}
+]

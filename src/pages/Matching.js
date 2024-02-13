@@ -4,12 +4,14 @@ import NavBar from '../components/NavBar';
 import MatchBox from '../components/MatchBox';
 import '../css/Matching.css';
 import SettingFilter from '../components/SettingFilter';
+import List from '../json/MatchList.json';
 const Wrapper=styled.div`
     min-height:100%;
+    min-width:100%;
     background-color:rgb(253, 252, 252);
 `
 const MatchContainer=styled.div`
-    width: 100%;
+    min-width: 100%;
     display:grid;
     grid-template-columns:repeat(2,1fr);
     place-items: center;
@@ -44,6 +46,7 @@ const TitleBox=styled.div`
 `
 
 const FilterBtn=styled.div`
+    cursor:pointer;
     background-color:#FF6868; 
     padding: 0.5vw;
     font-weight: bold;
@@ -59,7 +62,15 @@ const FilterBtn=styled.div`
 const Matching=()=>{
      //모달창 열고닫기
      const [isModalOpen, setIsModalOpen]=useState(false);
-
+    //필터 적용을 위한 state(프로젝트 분야)
+     const [selectedField, setSelectedField] = useState('');
+     const [selectedRecruit, setSelectedRecruit] = useState('');
+     //전체보기 사용시
+     const [showAll, setShowAll] = useState(true);
+     const handleApplyFilter=(field, recruit)=>{
+        setSelectedField(field);
+        setSelectedRecruit(recruit);
+     }
      const modalOpen = () =>{
          setIsModalOpen(true);
      }
@@ -67,7 +78,28 @@ const Matching=()=>{
          setIsModalOpen(false);
      }
 
-     
+     //필터링된 리스트
+     const filteredList=showAll? List: List.filter(item=>{
+        const fieldIncludes=item.field.includes(selectedField);
+        const recruitIncludes=item.recruit.toLowerCase().includes(selectedRecruit.toLowerCase());
+        return fieldIncludes&&recruitIncludes;
+    })
+
+    const ViewAll=styled.span`
+        background-color:#94B6EF;
+        border-radius:2px;
+        padding: 0.5vw 1vw;
+        font-size:1.2vw;
+        font-weight: bold;
+        margin: 0% 0% 0% 81%;
+        cursor:pointer;
+    `
+
+    const handleClickViewAll=()=>{
+        setShowAll(true);
+        setSelectedField('');
+        setSelectedRecruit('');
+    }
     return (
         <Wrapper>
             <NavBar />
@@ -76,18 +108,24 @@ const Matching=()=>{
                     <Title>매칭 모집</Title>
                     <FilterBtn onClick={modalOpen}>필터 조정</FilterBtn>
                     </TitleBox>
+                    <ViewAll onClick={handleClickViewAll}>전체 보기</ViewAll>
                     <Input type="text" />
             </SearchBox>
-            <SettingFilter isModalOpen={isModalOpen} modalClose={modalClose}/>
+            <SettingFilter 
+                isModalOpen={isModalOpen} 
+                modalClose={modalClose}
+                onApply={handleApplyFilter}//콜백함수
+                setShowAll={setShowAll}
+            />
             <MatchContainer>
-            <MatchBox title={"Wave-It: 개발자 매칭 서비스"} field={"웹개발"} recruit={"PM: 1, FE 2, BE 2"}></MatchBox>
-                <MatchBox title={"Data Analysis"} field={"데이터분석"} recruit={"Data-Analysis& Monitoring 1, PM: 1, FE 2, BE 2"}></MatchBox>
-                <MatchBox title={"Hello1"} field={"앱개발"} recruit={"PM: 1, FE 1, BE 1"}></MatchBox>
-                <MatchBox title={"Hello2"} field={"앱개발"} recruit={"PM: 1, FE 1, BE 1"}></MatchBox>
-                <MatchBox title={"Wave-It: 개발자 매칭 서비스"} field={"웹개발"} recruit={"PM: 1, FE 2, BE 2"}></MatchBox>
-                <MatchBox title={"Data Analysis"} field={"데이터분석"} recruit={"Data-Analysis& Monitoring 1, PM: 1, FE 2, BE 2"}></MatchBox>
-                <MatchBox title={"Hello1"} field={"앱개발"} recruit={"PM: 1, FE 1, BE 1"}></MatchBox>
-                <MatchBox title={"Hello2"} field={"앱개발"} recruit={"PM: 1, FE 1, BE 1"}></MatchBox>
+               { 
+                    filteredList.map(({title, field, recruit})=>{
+                
+                    //console.log(title+","+field+","+recruit);
+                    
+                    return <MatchBox title={title} field={field} recruit={recruit}/>
+                })
+                }
             </MatchContainer>
         </Wrapper>
         

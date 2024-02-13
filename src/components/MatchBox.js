@@ -6,7 +6,7 @@ const Matchbox = styled.div`
     margin: 5vw;
     padding: 1vw;
     background-color:#D9D9D9;
-    width: 22vw;
+    width: 24vw;
     height: 8vw;
     display:flex;
     flex-direction: column;
@@ -30,6 +30,7 @@ const FieldBtn=styled.button`
     width: auto;
     height:2vw;
     font-size: 1.2vw;
+    margin: 0px 3px;
 `
 
 
@@ -39,7 +40,12 @@ const MatchBox=({title,field, recruit})=>{
         <Matchbox>
             <MatchContent>{title}</MatchContent>
             <hr style={{fontSize:"3px"}}/>
-            <MatchContent>프로젝트 분야: <FieldBtn>{field}</FieldBtn></MatchContent>
+            <MatchContent>
+                프로젝트 분야: 
+                {field.map((f, index) => (
+                    <FieldBtn key={index}>{f}</FieldBtn> // 고유 key 추가
+                ))}
+            </MatchContent>
             <MatchContent>모집 파트: {recruit}</MatchContent>
         </Matchbox>
         
