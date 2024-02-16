@@ -6,10 +6,13 @@ const Page = styled.div`
   top: 20px;
   bottom: 0;
   width: 100%;
-  box-shadow: 2px 2px 2px 2px gray;
-  max-width: 800px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+  margin-top:100px;
+  border-style:none;
+  border-radius:6px;
+  max-width: 700px;
   padding: 0px 20px;
-  max-height : 800px;
+  max-height : 700px;
   left: 50%;
   transform: translate(-50%, 0);
   background-color: white;
@@ -21,21 +24,21 @@ const Page = styled.div`
 const SelectWrap = styled.div`
   width : 75%;
   margin-left: 100px;
-  margin-top: 80px;
+  margin-top: 70px;
   text-align: center;
   display: flex;
 `
 
 const TitleWrap = styled.div`
   margin-top: 100px;
-  font-size: 30px;
+  font-size: 23px;
   font-weight: bold;
   color: #262626;
   margin-left: 100px;
 `
 
 const ContentWrap = styled.div`
-  margin-top: 50px;
+  margin-top: 45px;
 `
 
 const InputTitle = styled.div`
@@ -46,17 +49,28 @@ const InputTitle = styled.div`
 `
 
 const InputWrap = styled.div`
-  display: flex;
-  border-radius: 8px;
-  padding: 20px;
-  margin-top: 30px;
-  margin-left: 100px;
-  margin-right: 100px;
-  background-color: white;
-  border: 1px solid #e2e0e0;
+  // display: flex;
+  // border-radius: 8px;
+  // padding: 20px;
+  // margin-top: 30px;
+  // margin-left: 100px;
+  // margin-right: 100px;
+  // background-color: white;
+  // border: 1px solid #e2e0e0;
 
-  &:hover{
-    border-bottom: 1px solid #000080;
+  // &:hover{
+  //   border-bottom: 1px solid #000080;
+  // }
+
+  display: flex;
+  width: 450px;
+  border-style:none;
+  border-bottom: 1.4px solid #D9D9D9; 
+  padding: 20px;
+  margin-left: 100px;
+  background-color: white;
+  &: hover{
+    border-bottom: 1.4px solid #737373; 
   }
 `
 
@@ -71,13 +85,15 @@ const InputField = styled.input`
 
 /*인증번호 확인 버튼*/
 const CheckButton = styled.button`
+  font-weight:bold;
   position: fixed;
-  width: 600px;
+  width: 530px;
   height: 60px;
   border: none;
   font-size: 20px;
   font-weight: bold;
-  background-color: #000080;
+  background-color: #2519B2;
+  border-radius:3px;
   color: white;
   cursor: pointer;
   text-align: center;

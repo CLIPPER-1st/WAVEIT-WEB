@@ -3,14 +3,17 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 const Page = styled.div`
+margin-top:100px;
+  border-style:none;
+  border-radius:10px;
   position: fixed;
   top: 20px;
   bottom: 0;
   width: 100%;
-  box-shadow: 2px 2px 2px 2px gray;
-  max-width: 800px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+  max-width: 700px;
   padding: 0px 20px;
-  max-height : 800px;
+  max-height : 700px;
   left: 50%;
   transform: translate(-50%, 0);
   background-color: white;
@@ -32,15 +35,16 @@ const InputTitle = styled.div`
   margin-left: 100px;
 `
 const InputWrap = styled.div`
-  width: 420px;
   display: flex;
-  border-radius: 8px;
+  width: 380px;
+  border-style:none;
+  border-bottom: 1.4px solid #D9D9D9; 
   padding: 20px;
-  margin-top: 30px;
   margin-left: 100px;
-  margin-right: 10px;
   background-color: white;
-  border: 1px solid #e2e0e0;
+  &: hover{
+    border-bottom: 1.4px solid #737373; 
+  }
 `
 const InputField = styled.input`
   width: 100%;
@@ -58,20 +62,29 @@ const ContentWrap = styled.div`
 const RequestButton = styled.button`
   width : 100px;
   height: 50px;
-  background-color: #000080;
+  background-color: #94B6EF;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
   color: white;
-  border-radius: 20%;
+  border-radius: 6px;
+  border-style:none;
+  font-size: 16px;
   margin-top: 30px;
   margin-left: 20px;
+
 `
 
 /*확인 버튼*/
 const ConfirmButton =styled.button`
   width : 100px;
   height: 50px;
-  background-color: #000080;
+  background-color: #D9D9D9;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  font-weight:bold;
+  font-size:16px;
+  border-radius:6px;
+  border-style:none;
   color: white;
-  border-radius: 20%;
+  color: white;
   margin-top: 30px;
   margin-left: 20px;
 `
@@ -84,11 +97,12 @@ const BottomButton = styled.button`
   border: none;
   font-size: 20px;
   font-weight: bold;
-  background-color: #000080;
+  background-color: #2519B2;
+  border-radius:3px;
   color: white;
   cursor: pointer;
   text-align: center;
-  top: 71%;
+  top: 85%;
   left: 50%;
   transform: translate(-50%, -50%);
 `
@@ -103,7 +117,7 @@ function Sign() {
       <Page>
       
         <TitleWrap>회원가입</TitleWrap>
-        <div style = {{marginLeft : "100px", marginTop : "10px"}}>
+        <div style = {{marginLeft : "100px", marginTop : "10px", color:"#737373"}}>
         가입을 위해 이메일 인증을 진행해주세요.
         </div>
         

@@ -94,7 +94,9 @@ class MyPage extends React.Component{
                     <NavbarItem href="/pages/postingpage">매칭 등록</NavbarItem>
                 </NavbarItems>
                 </Navbar>
-
+                
+                {/* components > MatchBox 컴포넌트에 json파일 내용
+                    읽어오도록 만들어놔서 나중에 API 연동할 때 갖다 쓰시면 편할거에요! */}
                 <Content>
                     <ContentTitle>내가 모집중인 프로젝트</ContentTitle>
                     <ContentItem>
