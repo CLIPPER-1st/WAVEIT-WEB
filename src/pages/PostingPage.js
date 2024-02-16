@@ -4,12 +4,13 @@ import '../css/PostingPage.css';
 import RegisterPosting from '../components/RegisterPosting.js';
 
 const Wrapper=styled.div`
-  background-color:white;
+height: 100%;
+  background-color:rgb(253, 252, 252);
   
 `
 // 상단 네브바
 const Navbar = styled.div`
-  background-color:white;
+  background-color:rgb(253, 252, 252);
   display:grid;
   display: flex;
   justify-content: right; /* 메뉴 항목을 양 끝으로 정렬 */
@@ -50,8 +51,9 @@ const Label = styled.label`
 
 const InputField = styled.input`
   padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  border-style:none;
+  background-color:#D9D9D9;
+  border-radius:3px;
   width: 400px;
   float: left;
   margin-right : auto;
@@ -63,8 +65,10 @@ const InputField = styled.input`
 `;
 
 const Select = styled.select`
-  width: 400px;
-  border-radius: 4px;
+  width: 415px;
+  border-style:none;
+  background-color:#D9D9D9;
+  border-radius:3px;
   height : 30px;
   margin-right : auto;
 `
@@ -80,10 +84,11 @@ const Row = styled.div`
 `;
 
 const Textarea = styled.textarea`
-  width: 1000px;  
-  height: 150px;  // 높이를 200픽셀로 설정
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  width: 900px;  
+  height:200px;
+  border-style:none;
+  background-color:#D9D9D9;
+  border-radius:3px;
   padding : 20px 20px;
   margin-right : auto;
 
@@ -105,6 +110,7 @@ const Btn = styled.button`
   font-weight: bold;
   border-radius: 50px;
   background-color:#94B6EF;
+  font-size:1.2vw;
   width: 250px;
   height: 50px;
   color: white;
