@@ -33,6 +33,8 @@ const Btn = styled.button`
   color: white;
   border : none;
 `
+//components > MatchBox 컴포넌트에 json파일 내용
+//읽어오도록 만들어놔서 나중에 API 연동할 때 갖다 쓰시면 편할거에요!
 
 const RecruitProject = (props) => {
     return(
