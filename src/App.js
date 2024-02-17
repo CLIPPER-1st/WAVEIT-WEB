@@ -11,6 +11,9 @@ import SignNext from "./pages/SignNext";
 import SignFinal from "./pages/SignFinal";
 import Matching from "./pages/Matching";
 import Detail from "./pages/Detail";
+import Portfolio from "./pages/Portfolio";
+import EditPortfolio from "./pages/EditPortfolio";
+import WritePortfolio from "./pages/WritePortfolio";
 
 const App=()=>{
   return(
@@ -26,6 +29,9 @@ const App=()=>{
       <Route path="/pages/SignFinal" element={<SignFinal/>}/>
       <Route path="/pages/Matching" element={<Matching />} />
       <Route path="pages/detail/:id" element={<Detail />} />
+      <Route path="/pages/Portfolio" element={<Portfolio />} />
+      <Route path="/pages/EditPortfolio" element={<EditPortfolio />} />
+      <Route path="/pages/WritePortfolio" element={<WritePortfolio />} />
     </Routes>
   )
 }

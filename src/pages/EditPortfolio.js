@@ -2,7 +2,22 @@ import styled from 'styled-components';
 import React from 'react';
 import { Link, Component } from 'react-router-dom';
 import '../css/MyPage.css';
-import RecruitProject from "../components/RecruitProject";
+import MyPortfolio from "../components/MyPortfolio";
+
+const Page = styled.div`
+  position: absolute; // 절대 위치 지정
+  top: 50%; // 상하 중앙에 위치
+  left: 50%; // 좌우 중앙에 위치
+  transform: translate(-50%, -50%); // 위치 조정
+  margin-top:50px;
+  border-style:none;
+  width: 800px;
+  height: 400px;
+  background-color: #D9D9D9;
+  display: flex;
+  flex-direction: column;
+  padding: 50px 30px;
+`;
 
 const Wrapper=styled.div`
   background-color:white;
@@ -22,16 +37,11 @@ const Navbar = styled.div`
 `;
 
 const Title = styled.div`
-  font-size: 20px;
   font-weight: bold;
-  position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
-  display:flex;
-  justify-content:center;
-  align-items:center; 
-  margin: 0;
-`
+  text-align: center; 
+  margin-top: 50px;
+`;
+
 
 const NavbarItem=styled.a`
 
@@ -48,6 +58,11 @@ const NavbarItems = styled.div`
   margin-right : 50px;
 `;
 
+const Label = styled.label`
+  margin-bottom: 30px; 
+`;
+
+
 const Content = styled.div`
 `
 
@@ -62,32 +77,13 @@ const ContentItem = styled.div`
   margin-top : 50px;
 `
 
-const HomeStyles = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
 
-const Btn = styled.button`
-  margin-top : 80px;
-  font-weight: bold;
-  border-radius: 50px;
-  background-color:#94B6EF;
-  width: 250px;
-  height: 50px;
-  color: white;
-  border : none;
-`
 
-class MyPage extends React.Component{
-    render(){
+export default function EditPortfolio(){
         return(
-            <div className="my-page">
             <Wrapper>
                 <Navbar>
                 
-                <Title>마이페이지</Title>
                 
                 <NavbarItems>
                     <NavbarItem href="/pages/Matching">매칭 모집</NavbarItem>
@@ -95,34 +91,24 @@ class MyPage extends React.Component{
                 </NavbarItems>
                 </Navbar>
                 
-                {/* components > MatchBox 컴포넌트에 json파일 내용
-                    읽어오도록 만들어놔서 나중에 API 연동할 때 갖다 쓰시면 편할거에요! */}
+                <Title>포트폴리오</Title>
+                <Page>
+                    <Label>이름 :</Label>
+                    <Label>대학 및 전공 :</Label>
+                    <Label>연락처 :</Label>
+                    <Label>사용 가능 언어 :</Label>
+                    <Label>프로젝트 경력 :</Label>
+                </Page>
                 <Content>
-                    <ContentTitle>내가 모집중인 프로젝트</ContentTitle>
+                    
                     
                     <ContentItem>
-                    <Link to="/pages/portfolio">
-                    내가 작성한 포트폴리오
-                    </Link><br/>
-                    <Link to="/pages/WritePortfolio">
-                    포트폴리오 작성하기
-                    </Link><br/><br/>
-                    <RecruitProject/>
+                    
                     </ContentItem>
                     
                 </Content>
-
-                <HomeStyles>
-                <Link to="/pages/postingpage">
-                <Btn>모집 글 작성하러가기</Btn>
-                </Link>
-                </HomeStyles>
-
-                
+           
             </Wrapper>
-            </div>
         );
-        }
     }
     
-    export default MyPage;

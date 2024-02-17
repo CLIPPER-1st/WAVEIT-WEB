@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import React from 'react';
 import { Link, Component } from 'react-router-dom';
 import '../css/MyPage.css';
-import RecruitProject from "../components/RecruitProject";
+import MyPortfolio from "../components/MyPortfolio";
 
 const Wrapper=styled.div`
   background-color:white;
@@ -80,7 +80,7 @@ const Btn = styled.button`
   border : none;
 `
 
-class MyPage extends React.Component{
+class Portfolio extends React.Component{
     render(){
         return(
             <div className="my-page">
@@ -95,26 +95,20 @@ class MyPage extends React.Component{
                 </NavbarItems>
                 </Navbar>
                 
-                {/* components > MatchBox 컴포넌트에 json파일 내용
-                    읽어오도록 만들어놔서 나중에 API 연동할 때 갖다 쓰시면 편할거에요! */}
+               
                 <Content>
-                    <ContentTitle>내가 모집중인 프로젝트</ContentTitle>
+                    <ContentTitle>내가 작성한 프로젝트</ContentTitle>
                     
                     <ContentItem>
-                    <Link to="/pages/portfolio">
-                    내가 작성한 포트폴리오
-                    </Link><br/>
-                    <Link to="/pages/WritePortfolio">
-                    포트폴리오 작성하기
-                    </Link><br/><br/>
-                    <RecruitProject/>
+                    
+                    <MyPortfolio/>
                     </ContentItem>
                     
                 </Content>
 
                 <HomeStyles>
-                <Link to="/pages/postingpage">
-                <Btn>모집 글 작성하러가기</Btn>
+                <Link to="/pages/EditPortfolio">
+                <Btn>포트폴리오 수정하기</Btn>
                 </Link>
                 </HomeStyles>
 
@@ -125,4 +119,4 @@ class MyPage extends React.Component{
         }
     }
     
-    export default MyPage;
+    export default Portfolio;
