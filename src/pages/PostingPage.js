@@ -84,7 +84,7 @@ const Row = styled.div`
 `;
 
 const Textarea = styled.textarea`
-  width: 900px;  
+  width: 800px;  
   height:200px;
   border-style:none;
   background-color:#D9D9D9;
