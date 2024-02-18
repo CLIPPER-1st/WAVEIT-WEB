@@ -155,9 +155,10 @@ export default function Login() {
     //로그인 전, 후 페이지 전환에 사용
     const [isLoggedIn, setIsLoggedIn]=useState(false);
 
-    //API 명세 받기 전, 추후 url endpoint수정해야 함.
+    //API 명세(endpoint: api/user/login)
     const handleLogin=async(event)=>{
       event.preventDefault();
+      //서버로 로그인 요청할 때, input 태그에 입력받은 id, pw를 보낼 것임.
       const userData = {
         username: id,
         password: pw
@@ -165,7 +166,7 @@ export default function Login() {
 
 
       //서버로 로그인 요청 request 보내기(id, pw 전송)
-      API.post('/accounts/token/', userData)
+      API.post('/user/login/', userData)
       .then((response)=>{
         if(response.status === 200 || response.status === 201){
           console.log("Login Success!: ", response.data);

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 import NavBar from '../components/NavBar';
@@ -6,7 +6,7 @@ import MatchBox from '../components/MatchBox';
 import '../css/Matching.css';
 import SettingFilter from '../components/SettingFilter';
 import List from '../json/MatchList.json';
-
+import API from '../api/axios';
 const Wrapper=styled.div`
     min-height:100%;
     min-width:100%;
@@ -94,6 +94,30 @@ const RecommendBtn=styled.div`
     font-size:2vw;
 ` 
 const Matching=()=>{
+    /***********************************************/
+    const [info, setInfo] = useState([]);
+
+    useEffect(()=>{
+        fetchMatchInfoData();
+    },[]);
+
+    //matchInfo 가져오기
+    const fetchMatchInfoData = async() =>{
+        const access_token = localStorage.getItem('access');
+        try{
+            const response = await API.get(`/post/projects/${id}`,{
+                headers:{
+                    Authorization: `Bearer ${access_token}`,
+                },
+            });
+            setInfo(response.data);
+        }catch(e){
+            console.log('API 오류: ',e);
+        }
+    };
+    /***********************************************/
+    
+
      //모달창 열고닫기
      const [isModalOpen, setIsModalOpen]=useState(false);
     //필터 적용을 위한 state(프로젝트 분야)
