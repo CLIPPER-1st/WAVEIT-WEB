@@ -2,9 +2,7 @@ import React, {useState} from 'react';
 import {useParams} from 'react-router-dom';
 import styled from 'styled-components';
 import NavBar from '../components/NavBar';
-import List from '../json/MatchList.json'
-import WishList from "../components/WishList";
-import Application from "../components/Application";
+import List from '../json/MatchList.json';
 
 const Container=styled.div`
     min-width:100%;
@@ -17,7 +15,7 @@ const Container=styled.div`
 `
 const GrayBox=styled.div`
     width: 55vw;
-    height: 30vw;
+    height: 50vw;
     background-color:#D9D9D9;
     box-sizing: border-box;
     padding: 2vw;
@@ -43,20 +41,26 @@ const FieldBtn=styled.button`
 `
 const BtnBox=styled.div`
     display: flex;
-    width: 100%;
+    flex-direction: column;
+    width: 50vw;
     justify-content: space-evenly;
+    background-color: white;
 `
 
 const Btn=styled.button`
     margin: 1vw;
-    width: 10vw;
-    height: 4vw;
-    background-color:#F0F4FF; 
+    width: 20vw;
+    height: 5vw;;
+    background-color:#D9D9D9; 
     border-radius: 6px;
     border-style:none;
     font-size:1.3vw;
     font-weight:bold;
 `
+const ButtonContainer = styled.div`
+    display: flex;
+`;
+
 const Detail=()=>{
     const [isModalOpen, setIsModalOpen]=useState(false);
     const [isApplicationModalOpen, setIsApplicationModalOpen]=useState(false);
@@ -95,15 +99,20 @@ const Detail=()=>{
                 <div style={{lineHeight:"4vw",  fontSize:"1.5vw"}}><b>모집자 프로필 </b> {item.profile}</div>
                 <div style={{lineHeight:"4vw",  fontSize:"1.5vw"}}><b>연락 보내기  </b>{item.contact}</div>
                 <div style={{lineHeight:"3vw",  fontSize:"1.5vw"}}><b>프로젝트 설명글 </b>{item.content}</div>
-                <BtnBox>
-                <Btn onClick={openModal}>찜하기</Btn>
-                    <Btn onClick={openApplicationModal}>지원하기</Btn>
+                <br/><BtnBox>
+                    
+                    <div>지원 동기 글 내용</div>
+                    
+                    <ButtonContainer>
+                        <Btn>지원 유저 프로필</Btn>
+                        <Btn>포트폴리오</Btn>
+                    </ButtonContainer>
                 </BtnBox>
             </GrayBox>
-            <WishList isOpen={isModalOpen} closeModal={closeModal}/>
-            <Application title={item.title} isOpen={isApplicationModalOpen} closeModal={closeApplicationModal} />
+            
         </Container>
     )
+
 }
 
 export default Detail;

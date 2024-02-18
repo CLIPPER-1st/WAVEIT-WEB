@@ -41,7 +41,6 @@ const Title = styled.div`
   margin-top: 50px;
 `
 
-
 const NavbarItem=styled.a`
 
   margin-right: 20px;
@@ -86,6 +85,7 @@ const InputField = styled.input`
 const Textarea  = styled.textarea`
   width: 500px;
   height: 80px
+
 `
 
 export default function WritePortfolio(){
@@ -143,7 +143,7 @@ export default function WritePortfolio(){
                      value={state.contact} 
                      onChange={handleChange}
                      style={{width : '500px'}}
-                     placeholder="ex) 이메일을 입력해주세요."/>
+                     placeholder="ex) 이메일을 입력해주세요"/>
                 </Row>
                 
                 <Row>
@@ -173,7 +173,8 @@ export default function WritePortfolio(){
                     <Textarea 
                     name="projectExperience"
                     value={state.projectExperience} 
-                    onChange={handleChange} />
+                    onChange={handleChange}
+                    placeholder="ex) 프로젝트 경력을 입력해주세요" />
                 </Row>
                 <Row>
                     <Label>기타 :</Label>

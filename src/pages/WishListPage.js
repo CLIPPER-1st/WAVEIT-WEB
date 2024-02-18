@@ -5,6 +5,7 @@ import '../css/MyPage.css';
 import RecruitProject from "../components/RecruitProject";
 import MatchBox from '../components/MatchBox';
 import List from '../json/MatchList.json';
+import Detail from './Detail';
 
 const Wrapper=styled.div`
   background-color:white;
@@ -96,7 +97,9 @@ const NoMatch=styled.div`
     align-items:center;
 `
 
-export default function MyPage(){
+export default function WishListPage(){
+
+
         return(
             <div className="my-page">
             <Wrapper>
@@ -113,19 +116,10 @@ export default function MyPage(){
                 {/* components > MatchBox 컴포넌트에 json파일 내용
                     읽어오도록 만들어놔서 나중에 API 연동할 때 갖다 쓰시면 편할거에요! */}
                 <Content>
-                    <ContentTitle>내가 모집중인 프로젝트</ContentTitle>
-                    <HomeStyles>
-                      <Link to="/pages/WishListPage">
-                        <button>내가 찜한 프로젝트</button></Link>
-                      <Link to="/pages/ApplicationPage">
-                        <button>내가 지원한 프로젝트</button></Link>
-                      <Link to="/pages/portfolio">
-                        <button>내가 작성한 포트폴리오</button></Link>
-                      <Link to="/pages/WritePortfolio">
-                        <button>포트폴리오 작성하기</button></Link>
-                      </HomeStyles>
-                    <ContentItem>
+                    <ContentTitle>내가 찜한 프로젝트</ContentTitle>
                     
+                    <ContentItem>
+
                     <MatchContainer>
                     {                     
                     List.length > 0 ? 
@@ -137,22 +131,14 @@ export default function MyPage(){
                     )) : 
                     <NoMatch>
                     <div style={{fontSize:"2vw", fontWeight:"bold", margin:"5vw 0vw 0vw 0vw"}}>해당 검색 결과가 없습니다.</div>
-                    내가 모집중인 프로젝트가 없습니다
+                    내가 찜한 프로젝트가 없습니다
                     </NoMatch>
                     }
                     </MatchContainer>
-
                     </ContentItem>
                     
                 </Content>
 
-                <HomeStyles>
-                <Link to="/pages/postingpage">
-                <Btn>모집 글 작성하러가기</Btn>
-                </Link>
-                </HomeStyles>
-
-                
             </Wrapper>
             </div>
         );

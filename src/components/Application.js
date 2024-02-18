@@ -85,6 +85,12 @@ const Application=({title ,isOpen, closeModal})=>{
         openEndModal();
     }
 
+    // 지원동기 상태관리
+    const [text, setText] = useState('');
+
+    const handleChange = (event) => {
+        setText(event.target.value);
+    };
 
     useEffect(() => {
         window.addEventListener('resize', updateModalSize);
@@ -112,7 +118,11 @@ const Application=({title ,isOpen, closeModal})=>{
                     </label>
                 </div>
                 <div>지원 동기 및 본인 소개</div>
-                <Text placeholder="지원 동기를 작성해주세요."></Text>
+                <Text
+                placeholder="지원 동기를 작성해주세요."
+                value={text}
+                onChange={handleChange}
+                />
                 </Portfolio>
                 <RegisterBtn onClick={gotoNext}>
                     지원하기
