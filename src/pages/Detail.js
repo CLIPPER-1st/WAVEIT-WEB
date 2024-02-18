@@ -6,6 +6,10 @@ import List from '../json/MatchList.json'
 import WishList from "../components/WishList";
 import Application from "../components/Application";
 
+// import recoil
+import { useRecoilState } from 'recoil';
+import { LikeState, ApplicationState} from '../recoil/recoil';
+
 const Container=styled.div`
     min-width:100%;
     min-height:100%;
@@ -46,7 +50,6 @@ const BtnBox=styled.div`
     width: 100%;
     justify-content: space-evenly;
 `
-
 const Btn=styled.button`
     margin: 1vw;
     width: 10vw;
@@ -57,9 +60,32 @@ const Btn=styled.button`
     font-size:1.3vw;
     font-weight:bold;
 `
-const Detail=()=>{
+const Detail=({ matchData })=>{
     const [isModalOpen, setIsModalOpen]=useState(false);
     const [isApplicationModalOpen, setIsApplicationModalOpen]=useState(false);
+    
+    const [likeState, setLikeState] = useRecoilState(LikeState);
+    const [applicationState, setApplicationState] = useRecoilState(ApplicationState);
+
+    const handleLike = () => {
+        setLikeState([...likeState, matchData]);
+    };
+
+    const handleApplication = () => {
+        setApplicationState([...applicationState, matchData]);
+    };
+
+    const handleClick1 = () => {
+        handleLike();
+        openModal();
+    };
+
+    const handleClick2 = () => {
+        handleApplication();
+        openApplicationModal();
+    };
+    
+    
     //찜하기 모달창
     const openModal=()=>{
         setIsModalOpen(true);
@@ -96,8 +122,8 @@ const Detail=()=>{
                 <div style={{lineHeight:"4vw",  fontSize:"1.5vw"}}><b>연락 보내기  </b>{item.contact}</div>
                 <div style={{lineHeight:"3vw",  fontSize:"1.5vw"}}><b>프로젝트 설명글 </b>{item.content}</div>
                 <BtnBox>
-                <Btn onClick={openModal}>찜하기</Btn>
-                    <Btn onClick={openApplicationModal}>지원하기</Btn>
+                    <Btn onClick={handleClick1}>찜하기</Btn>
+                    <Btn onClick={handleClick2}>지원하기</Btn>
                 </BtnBox>
             </GrayBox>
             <WishList isOpen={isModalOpen} closeModal={closeModal}/>

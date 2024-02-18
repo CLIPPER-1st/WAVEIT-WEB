@@ -5,7 +5,8 @@ import '../css/MyPage.css';
 import RecruitProject from "../components/RecruitProject";
 import MatchBox from '../components/MatchBox';
 import List from '../json/MatchList.json';
-import Detail from './Detail';
+import { useRecoilState, useRecoilValue} from "recoil";
+import { LikeState } from "../recoil/recoil";
 
 const Wrapper=styled.div`
   background-color:white;
@@ -99,7 +100,7 @@ const NoMatch=styled.div`
 
 export default function WishListPage(){
 
-
+    const likeState = useRecoilValue(LikeState);
         return(
             <div className="my-page">
             <Wrapper>
@@ -112,9 +113,7 @@ export default function WishListPage(){
                     <NavbarItem href="/pages/postingpage">매칭 등록</NavbarItem>
                 </NavbarItems>
                 </Navbar>
-                
-                {/* components > MatchBox 컴포넌트에 json파일 내용
-                    읽어오도록 만들어놔서 나중에 API 연동할 때 갖다 쓰시면 편할거에요! */}
+        
                 <Content>
                     <ContentTitle>내가 찜한 프로젝트</ContentTitle>
                     
@@ -122,8 +121,8 @@ export default function WishListPage(){
 
                     <MatchContainer>
                     {                     
-                    List.length > 0 ? 
-                    List.map(({title, field, recruit, id}) => (
+                        LikeState.length > 0 ? 
+                        LikeState.map(({title, field, recruit, id}) => (
                        //Detail 페이지로 이동
                        <Link to={`/pages/mypagedetail/${id}`} style={{textDecoration:'none', color:'black'}}>
                         <MatchBox key={title} title={title} field={field} recruit={recruit}/>

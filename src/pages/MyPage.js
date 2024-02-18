@@ -117,8 +117,8 @@ export default function MyPage(){
                     <HomeStyles>
                       <Link to="/pages/WishListPage">
                         <button>내가 찜한 프로젝트</button></Link>
-                      <Link to="/pages/ApplicationPage">
-                        <button>내가 지원한 프로젝트</button></Link>
+                      {/*<Link to="/pages/ApplicationPage">
+                        <button>내가 지원한 프로젝트</button></Link>*/}
                       <Link to="/pages/portfolio">
                         <button>내가 작성한 포트폴리오</button></Link>
                       <Link to="/pages/WritePortfolio">

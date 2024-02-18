@@ -1,14 +1,14 @@
 import { atom } from "recoil";
 
-// 내가 찜한 프로젝트
-export const WishState = atom({
-    key:"WishState",
-    default: [],
-});
-
 // 내가 지원한 프로젝트
 export const ApplicationState = atom({
     key:"ApplicationState",
+    default: [],
+});
+
+// 내가 찜한 프로젝트
+export const LikeState = atom({
+    key:"LikeState",
     default: [],
 });
 
