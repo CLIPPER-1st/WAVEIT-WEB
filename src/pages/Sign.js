@@ -112,6 +112,27 @@ function Sign() {
 
   const [email, setEmail] = useState(''); 
   const [cernumber, setCernumber] = useState(''); 
+  
+  const handleEmailChange = (event) =>{
+    setEmail(event.target.value);
+  }
+
+  const handleCernumberChange = (event) =>{
+    setCernumber(event.target.value);
+  }
+  /**************************************************************/
+  /*이메일 인증번호 요청
+  endpoint: api/user/email-verify*/
+  const requestEmailVerification = async(email) => {
+    try{
+      const response = await axios.post('/user/email-verify', {email});
+      alert('발송된 인증번호를 이메일에서 확인해주세요.');
+    }catch(error){
+      alert('인증번호 요청에 실패했습니다.');
+      console.log('이메일 인증 오류: ',error.response? error.response.data:error);
+    }
+  }
+  /**************************************************************/
 
     return (
       <Page>
@@ -129,10 +150,11 @@ function Sign() {
                 <InputField
                 type="email"
                 value={email}
+                onChange={handleEmailChange}
                 />
                 
             </InputWrap>
-            <RequestButton> 인증요청 </RequestButton>
+            <RequestButton onClick={()=>requestEmailVerification(email)}> 인증요청 </RequestButton>
           </div>
           
           <InputTitle><br/>인증번호</InputTitle>
@@ -142,6 +164,7 @@ function Sign() {
                 <InputField
                 type="password"
                 value={cernumber}
+                onChange={handleCernumberChange}
                 />
             </InputWrap>
             <ConfirmButton> 확인 </ConfirmButton>

@@ -164,7 +164,7 @@ export default function Login() {
         password: pw
       };
 
-
+      /*********************************************************************/
       //서버로 로그인 요청 request 보내기(id, pw 전송)
       API.post('/user/login/', userData)
       .then((response)=>{
@@ -202,7 +202,7 @@ export default function Login() {
       })
       
     }
-  
+  /*********************************************************************/
     useEffect(() => {
       if(idValid && pwValid) {
         setNotAllow(false);

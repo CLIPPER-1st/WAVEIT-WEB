@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import React,{useState} from 'react';
-import { Link, Component } from 'react-router-dom';
+import { Link, Component, useNavigate } from 'react-router-dom';
 import '../css/MyPage.css';
 import axios from 'axios';
 const Page = styled.div`
@@ -118,6 +118,7 @@ export default function WritePortfolio(){
         JS: '',
     });
     
+    const navigate=useNavigate();
     const handleChange = (e) => {
         setState({ ...state, [e.target.name]: e.target.value });
     };
@@ -132,17 +133,21 @@ export default function WritePortfolio(){
         const access_token=localStorage.getItem('access');
         const response=await axios.post('api/user/portfolio',
         {
-          user
-          Id:userId,
+          userId:userId,
           link:portfolioLink,
         }, {
           headers:{
           Authorization: `Bearer ${access_token}`,
         },
       });
-        console;log('Porfolio link 저장: ', response.data);
+        console.log('Porfolio link 저장: ', response.data);
+        navigate('/pages/mypage');
+        alert("포트폴리오 저장에 성공하였습니다.");
+
       } catch (error) {
         console.error('Portfolio link 저장 오류: ', error.response ? error.response.data : error);
+        alert("포트폴리오 저장에 실패하였습니다.");
+       
       }
     };
 
