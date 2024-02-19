@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 import React,{useState} from 'react';
-import { Link, Component } from 'react-router-dom';
+import { Link, Component, useNavigate } from 'react-router-dom';
 import '../css/MyPage.css';
 
 // import recoil
 import { useRecoilState, useRecoilValue} from "recoil";
 import { PortfolioState } from "../recoil/recoil";
-
+import axios from 'axios';
 
 const Page = styled.div`
   position: absolute; // 절대 위치 지정
@@ -16,11 +16,12 @@ const Page = styled.div`
   margin-top:50px;
   border-style:none;
   width: 800px;
-  height: 500px;
+  height: 600px;
   background-color: #D9D9D9;
   display: flex;
   flex-direction: column;
   padding: 50px 30px;
+  justify-content:center;
 `
 
 const Wrapper=styled.div`
@@ -108,13 +109,59 @@ const Textarea  = styled.textarea`
   height: 80px
 `
 
+const ApplyBtn = styled.button`
+    color:white;
+    margin: 5% 0% 0% 17%;
+    width: 500px;
+    min-height:30px;
+    border-style:none;
+    font-weight:bold;
+    background-color:#94B6EF;
+    border-radius: 3px;
+    text-align:center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+`
+
+
+
 export default function WritePortfolio(){
     const [state, setPortfolioState] = useRecoilState(PortfolioState);
 
     
+    const navigate=useNavigate();
     const handleChange = (e) => {
         setPortfolioState({ ...state, [e.target.name]: e.target.value });
     };
+
+    /*********************************************************************/
+    /*임시*/
+    const userId=1;
+    const portfolioLink='/dummy';
+    /*마이페이지 - 내 포트폴리오 저장 로직 수행*/
+    const savePortfolioLink=async(userId, portfolioLink)=>{
+      try{
+        const access_token=localStorage.getItem('access');
+        const response=await axios.post('api/user/portfolio',
+        {
+          userId:userId,
+          link:portfolioLink,
+        }, {
+          headers:{
+          Authorization: `Bearer ${access_token}`,
+        },
+      });
+        console.log('Porfolio link 저장: ', response.data);
+        navigate('/pages/mypage');
+        alert("포트폴리오 저장에 성공하였습니다.");
+
+      } catch (error) {
+        console.error('Portfolio link 저장 오류: ', error.response ? error.response.data : error);
+        alert("포트폴리오 저장에 실패하였습니다.");
+       
+      }
+    };
+
+    /*********************************************************************/
 
     return(
         <div className="my-page">
@@ -127,7 +174,7 @@ export default function WritePortfolio(){
             </Navbar>
             
             <Title>포트폴리오 작성</Title>
-            <Page>
+            <Page as="form">
                 <Row>
                     <Label>이름 :</Label>
                     <InputField
@@ -193,9 +240,9 @@ export default function WritePortfolio(){
                     value={state.etc} 
                     onChange={handleChange} />
                 </Row>
-                <HomeStyles>
-                <Btn>등록하기</Btn>
-                </HomeStyles>
+
+                <ApplyBtn onClick={()=>savePortfolioLink(userId, portfolioLink)}>저장하기</ApplyBtn>
+
             </Page>
 
         </Wrapper>
