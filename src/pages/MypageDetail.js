@@ -2,13 +2,11 @@ import React, {useState} from 'react';
 import {useParams} from 'react-router-dom';
 import styled from 'styled-components';
 import NavBar from '../components/NavBar';
-import List from '../json/MatchList.json'
-import WishList from "../components/WishList";
-import Application from "../components/Application";
+import List from '../json/MatchList.json';
 
 // import recoil
-import { useRecoilState } from 'recoil';
-import { LikeState, ApplicationState} from '../recoil/recoil';
+import { useRecoilState, useRecoilValue} from "recoil";
+import { RecruitState } from "../recoil/recoil";
 
 const Container=styled.div`
     min-width:100%;
@@ -21,7 +19,7 @@ const Container=styled.div`
 `
 const GrayBox=styled.div`
     width: 55vw;
-    height: 30vw;
+    height: 50vw;
     background-color:#D9D9D9;
     box-sizing: border-box;
     padding: 2vw;
@@ -47,60 +45,29 @@ const FieldBtn=styled.button`
 `
 const BtnBox=styled.div`
     display: flex;
-    width: 100%;
+    flex-direction: column;
+    width: 50vw;
     justify-content: space-evenly;
+    background-color: white;
 `
+
 const Btn=styled.button`
     margin: 1vw;
-    width: 10vw;
-    height: 4vw;
-    background-color:#F0F4FF; 
+    width: 20vw;
+    height: 5vw;;
+    background-color:#D9D9D9; 
     border-radius: 6px;
     border-style:none;
     font-size:1.3vw;
     font-weight:bold;
 `
-const Detail=({ matchData })=>{
-    const [isModalOpen, setIsModalOpen]=useState(false);
-    const [isApplicationModalOpen, setIsApplicationModalOpen]=useState(false);
-    
-    const [likeState, setLikeState] = useRecoilState(LikeState);
-    const [applicationState, setApplicationState] = useRecoilState(ApplicationState);
+const ButtonContainer = styled.div`
+    display: flex;
+`;
 
-    const handleLike = () => {
-        setLikeState([...likeState, matchData]);
-    };
+const Detail=()=>{
 
-    const handleApplication = () => {
-        setApplicationState([...applicationState, matchData]);
-    };
-
-    const handleClick1 = () => {
-        handleLike();
-        openModal();
-    };
-
-    const handleClick2 = () => {
-        handleApplication();
-        openApplicationModal();
-    };
-    
-    
-    //찜하기 모달창
-    const openModal=()=>{
-        setIsModalOpen(true);
-    }
-    const closeModal=()=>{
-        setIsModalOpen(false);
-    }
-
-    //지원하기 모달창
-    const openApplicationModal=()=>{
-        setIsApplicationModalOpen(true);
-    }
-    const closeApplicationModal=()=>{
-        setIsApplicationModalOpen(false);
-    }
+    const recruitData = useRecoilValue(RecruitState);
 
     //url 파라미터에서 id값 가져오기
     const {id}=useParams();
@@ -113,7 +80,7 @@ const Detail=({ matchData })=>{
             <Title>{item.title}</Title>
             <GrayBox>
                 <div style={{lineHeight:"4vw",  fontSize:"1.5vw"}}><b>프로젝트 분야 </b> 
-                {item.field.map((f, index) => (
+                {recruitData.field.map((f, index) => (
                     <FieldBtn key={index}>{f}</FieldBtn> // 고유 key 추가
                 ))}
                 </div>
@@ -121,15 +88,20 @@ const Detail=({ matchData })=>{
                 <div style={{lineHeight:"4vw",  fontSize:"1.5vw"}}><b>모집자 프로필 </b> {item.profile}</div>
                 <div style={{lineHeight:"4vw",  fontSize:"1.5vw"}}><b>연락 보내기  </b>{item.contact}</div>
                 <div style={{lineHeight:"3vw",  fontSize:"1.5vw"}}><b>프로젝트 설명글 </b>{item.content}</div>
-                <BtnBox>
-                    <Btn onClick={handleClick1}>찜하기</Btn>
-                    <Btn onClick={handleClick2}>지원하기</Btn>
+                <br/><BtnBox>
+                    
+                    <div>지원 동기 글 내용</div>
+                    
+                    <ButtonContainer>
+                        <Btn>지원 유저 프로필</Btn>
+                        <Btn>포트폴리오</Btn>
+                    </ButtonContainer>
                 </BtnBox>
             </GrayBox>
-            <WishList isOpen={isModalOpen} closeModal={closeModal}/>
-            <Application title={item.title} isOpen={isApplicationModalOpen} closeModal={closeApplicationModal} />
+            
         </Container>
     )
+
 }
 
 export default Detail;

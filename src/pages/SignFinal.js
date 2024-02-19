@@ -100,7 +100,7 @@ export default function Login() {
 
     const handleAgeChange = (event) => {
         setAge(event.target.value);
-      };
+    };
 
     return (
       <Page>

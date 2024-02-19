@@ -4,11 +4,8 @@ import { Link, Component } from 'react-router-dom';
 import '../css/MyPage.css';
 import RecruitProject from "../components/RecruitProject";
 import MatchBox from '../components/MatchBox';
-import List from '../json/MatchList.json';
-
-// import recoil
 import { useRecoilState, useRecoilValue} from "recoil";
-import { RecruitState } from "../recoil/recoil";
+import { ApplicationState } from "../recoil/recoil";
 
 const Wrapper=styled.div`
   background-color:white;
@@ -100,42 +97,29 @@ const NoMatch=styled.div`
     align-items:center;
 `
 
-export default function MyPage(){
-  const recruitData = useRecoilValue(RecruitState);
+export default function WishListPage(){
 
+    const ApplicationState = useRecoilValue(ApplicationState);
         return(
             <div className="my-page">
             <Wrapper>
                 <Navbar>
-                
                 <Title>마이페이지</Title>
-                
                 <NavbarItems>
                     <NavbarItem href="/pages/Matching">매칭 모집</NavbarItem>
                     <NavbarItem href="/pages/postingpage">매칭 등록</NavbarItem>
                 </NavbarItems>
                 </Navbar>
-                
-                {/* components > MatchBox 컴포넌트에 json파일 내용
-                    읽어오도록 만들어놔서 나중에 API 연동할 때 갖다 쓰시면 편할거에요! */}
+    
                 <Content>
-                    <ContentTitle>내가 모집중인 프로젝트</ContentTitle>
-                    <HomeStyles>
-                      <Link to="/pages/WishListPage">
-                        <button>내가 찜한 프로젝트</button></Link>
-                      {/*<Link to="/pages/ApplicationPage">
-                        <button>내가 지원한 프로젝트</button></Link>*/}
-                      <Link to="/pages/portfolio">
-                        <button>내가 작성한 포트폴리오</button></Link>
-                      <Link to="/pages/WritePortfolio">
-                        <button>포트폴리오 작성하기</button></Link>
-                      </HomeStyles>
-                    <ContentItem>
+                    <ContentTitle>내가 지원한 프로젝트</ContentTitle>
                     
+                    <ContentItem>
+
                     <MatchContainer>
                     {                     
-                    recruitData.length > 0 ? 
-                    recruitData.map(({title, field, recruit, id}) => (
+                        ApplicationState.length > 0 ? 
+                        ApplicationState.map(({title, field, recruit, id}) => (
                        //Detail 페이지로 이동
                        <Link to={`/pages/mypagedetail/${id}`} style={{textDecoration:'none', color:'black'}}>
                         <MatchBox key={title} title={title} field={field} recruit={recruit}/>
@@ -143,22 +127,14 @@ export default function MyPage(){
                     )) : 
                     <NoMatch>
                     <div style={{fontSize:"2vw", fontWeight:"bold", margin:"5vw 0vw 0vw 0vw"}}>해당 검색 결과가 없습니다.</div>
-                    내가 모집중인 프로젝트가 없습니다
+                    내가 지원한 프로젝트가 없습니다
                     </NoMatch>
                     }
                     </MatchContainer>
-
                     </ContentItem>
                     
                 </Content>
 
-                <HomeStyles>
-                <Link to="/pages/postingpage">
-                <Btn>모집 글 작성하러가기</Btn>
-                </Link>
-                </HomeStyles>
-
-                
             </Wrapper>
             </div>
         );
