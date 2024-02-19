@@ -2,7 +2,12 @@ import styled from 'styled-components';
 import React from 'react';
 import { Link, Component } from 'react-router-dom';
 import '../css/MyPage.css';
-import MyPortfolio from "../components/MyPortfolio";
+// import MyPortfolio from "../components/MyPortfolio";
+import MatchBox from '../components/MatchBox';
+
+// import recoil
+import { useRecoilState, useRecoilValue} from "recoil";
+import { PortfolioState } from "../recoil/recoil";
 
 const Wrapper=styled.div`
   background-color:white;
@@ -61,6 +66,20 @@ const ContentItem = styled.div`
   margin-left : 100px;
   margin-top : 50px;
 `
+const MatchContainer=styled.div`
+    min-width: 100%;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    place-items: center;
+`
+const NoMatch=styled.div`
+    width: 100vw;
+    height: 70vw;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+`
 
 const HomeStyles = styled.div`
   display: flex;
@@ -80,8 +99,11 @@ const Btn = styled.button`
   border : none;
 `
 
-class Portfolio extends React.Component{
-    render(){
+export default function Portfolio() {
+
+    // useRecoilState 훅을 사용하여 PortfolioState를 가져오고 업데이트
+    const portfolioData = useRecoilValue(PortfolioState);
+
         return(
             <div className="my-page">
             <Wrapper>
@@ -100,8 +122,21 @@ class Portfolio extends React.Component{
                     <ContentTitle>내가 작성한 프로젝트</ContentTitle>
                     
                     <ContentItem>
-                    
-                    <MyPortfolio/>
+                        <MatchContainer>
+                        {                     
+                        portfolioData.length > 0 ? 
+                        portfolioData.map(({title, field, recruit, id}) => (
+                        //Detail 페이지로 이동
+                        <Link to={`/pages/portfoliodetail/${id}`} style={{textDecoration:'none', color:'black'}}>
+                            <MatchBox key={title} title={title} field={field} recruit={recruit}/>
+                            </Link>
+                        )) : 
+                        <NoMatch>
+                        <div style={{fontSize:"2vw", fontWeight:"bold", margin:"5vw 0vw 0vw 0vw"}}>해당 검색 결과가 없습니다.</div>
+                        내가 작성한 포트폴리오가 없습니다.
+                        </NoMatch>
+                        }
+                        </MatchContainer>
                     </ContentItem>
                     
                 </Content>
@@ -116,7 +151,6 @@ class Portfolio extends React.Component{
             </Wrapper>
             </div>
         );
-        }
+        
     }
     
-    export default Portfolio;

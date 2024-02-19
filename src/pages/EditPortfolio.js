@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import React from 'react';
 import { Link, Component } from 'react-router-dom';
 import '../css/MyPage.css';
-import MyPortfolio from "../components/MyPortfolio";
 
 const Page = styled.div`
   position: absolute; // 절대 위치 지정
@@ -77,8 +76,6 @@ const ContentItem = styled.div`
   margin-top : 50px;
 `
 
-
-
 export default function EditPortfolio(){
         return(
             <Wrapper>
@@ -100,7 +97,6 @@ export default function EditPortfolio(){
                     <Label>프로젝트 경력 :</Label>
                 </Page>
                 <Content>
-                    
                     
                     <ContentItem>
                     

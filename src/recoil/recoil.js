@@ -73,6 +73,22 @@ export const LikeState = atom({
     default: [],
 });
 
+// 내가 작성한 포트폴리오
+export const PortfolioState = atom({
+    key:"Portfolio",
+    default: {
+        name: '',
+        universityAndMajor: '',
+        contact: '',
+        projectExperience: '',
+        etc: '',
+        Java: '',
+        Python: '',
+        C: '',
+        JS: '',
+      },
+});
+
 export const MatchDataState = atom({
     key: "MatchDataState",
     default :

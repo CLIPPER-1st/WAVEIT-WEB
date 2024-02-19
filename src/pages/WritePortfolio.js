@@ -3,9 +3,14 @@ import React,{useState} from 'react';
 import { Link, Component } from 'react-router-dom';
 import '../css/MyPage.css';
 
+// import recoil
+import { useRecoilState, useRecoilValue} from "recoil";
+import { PortfolioState } from "../recoil/recoil";
+
+
 const Page = styled.div`
   position: absolute; // 절대 위치 지정
-  top: 50%; // 상하 중앙에 위치
+  top: 40%; 
   left: 50%; // 좌우 중앙에 위치
   transform: translate(-50%, -50%); // 위치 조정
   margin-top:50px;
@@ -81,29 +86,34 @@ const InputField = styled.input`
     outline: none;  
   }
 `
+const HomeStyles = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
+const Btn = styled.button`
+  margin-top : 80px;
+  font-weight: bold;
+  border-radius: 50px;
+  background-color:#94B6EF;
+  width: 250px;
+  height: 50px;
+  color: white;
+  border : none;
+`
 
 const Textarea  = styled.textarea`
   width: 500px;
   height: 80px
-
 `
 
 export default function WritePortfolio(){
+    const [state, setPortfolioState] = useRecoilState(PortfolioState);
 
-    const [state, setState] = useState({
-        name: '',
-        universityAndMajor: '',
-        contact: '',
-        projectExperience: '',
-        etc: '',
-        Java: '',
-        Python: '',
-        C: '',
-        JS: '',
-    });
     
     const handleChange = (e) => {
-        setState({ ...state, [e.target.name]: e.target.value });
+        setPortfolioState({ ...state, [e.target.name]: e.target.value });
     };
 
     return(
@@ -183,6 +193,9 @@ export default function WritePortfolio(){
                     value={state.etc} 
                     onChange={handleChange} />
                 </Row>
+                <HomeStyles>
+                <Btn>등록하기</Btn>
+                </HomeStyles>
             </Page>
 
         </Wrapper>

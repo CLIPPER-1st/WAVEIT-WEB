@@ -73,7 +73,7 @@ const HomeStyles = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`;
+`
 
 const Btn = styled.button`
   margin-top : 80px;

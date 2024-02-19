@@ -13,6 +13,7 @@ import Matching from "./pages/Matching";
 import Detail from "./pages/Detail";
 import MypageDetail from "./pages/MypageDetail";
 import Portfolio from "./pages/Portfolio";
+import PortfolioDetail from "./pages/PortfolioDetail";
 import EditPortfolio from "./pages/EditPortfolio";
 import WritePortfolio from "./pages/WritePortfolio";
 import WishListPage from "./pages/WishListPage";
@@ -33,6 +34,7 @@ const App=()=>{
       <Route path="/pages/Matching" element={<Matching />} />
       <Route path="pages/detail/:id" element={<Detail />} />
       <Route path="pages/mypagedetail/:id" element={<MypageDetail />} />
+      <Route path="pages/portfoliodetail/:id" element={<PortfolioDetail />} />
       <Route path="/pages/Portfolio" element={<Portfolio />} />
       <Route path="/pages/EditPortfolio" element={<EditPortfolio />} />
       <Route path="/pages/WritePortfolio" element={<WritePortfolio />} />
