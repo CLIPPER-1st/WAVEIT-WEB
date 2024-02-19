@@ -6,7 +6,7 @@ import List from '../json/MatchList.json';
 
 // import recoil
 import { useRecoilState, useRecoilValue} from "recoil";
-import { RecruitState } from "../recoil/recoil";
+import { LikeState } from "../recoil/recoil";
 
 const Container=styled.div`
     min-width:100%;
@@ -65,24 +65,22 @@ const ButtonContainer = styled.div`
     display: flex;
 `;
 
-const MyPageDetail=()=>{
+const WishListDetail=()=>{
 
-    const recruitData = useRecoilValue(RecruitState);
+    const LikeData = useRecoilValue(LikeState);
 
     //url 파라미터에서 id값 가져오기
     const {id}=useParams();
     //id값과 일치하는 List 가져오기
     //url에서 가져오는 params는 string 타입이므로, 타입변환 필요.
-    const item=recruitData.find(item=>String(item.id)===id);
+    const item=LikeData.find(item=>String(item.id)===id);
     return (
         <Container>
             <NavBar />
             <Title>{item.title}</Title>
             <GrayBox>
                 <div style={{lineHeight:"4vw",  fontSize:"1.5vw"}}><b>프로젝트 분야 </b> 
-  
                     <FieldBtn>{item.field}</FieldBtn> 
-
                 </div>
                 
                 <div style={{lineHeight:"4vw", fontSize:"1.5vw"}}><b>모집 파트 </b> {item.recruit}</div>
@@ -105,4 +103,4 @@ const MyPageDetail=()=>{
 
 }
 
-export default MyPageDetail;
+export default WishListDetail;

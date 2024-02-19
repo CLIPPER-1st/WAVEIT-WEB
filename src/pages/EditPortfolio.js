@@ -80,7 +80,6 @@ export default function EditPortfolio(){
             <Wrapper>
                 <Navbar>
                 
-                
                 <NavbarItems>
                     <NavbarItem href="/pages/Matching">매칭 모집</NavbarItem>
                     <NavbarItem href="/pages/postingpage">매칭 등록</NavbarItem>

@@ -86,7 +86,7 @@ const BottomButton = styled.button`
   transform: translate(-50%, -50%);
 `
 
-export default function Login() {
+export default function Signnext() {
     const [id, setId] = useState('');
     const [pw, setPw] = useState('');
     const [pwcheck, setPwCheck] = useState('');

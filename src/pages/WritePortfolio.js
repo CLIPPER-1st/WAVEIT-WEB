@@ -10,7 +10,7 @@ import axios from 'axios';
 
 const Page = styled.div`
   position: absolute; // 절대 위치 지정
-  top: 40%; 
+  top: 50%; 
   left: 50%; // 좌우 중앙에 위치
   transform: translate(-50%, -50%); // 위치 조정
   margin-top:50px;

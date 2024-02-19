@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import React from 'react';
 import { Link, Component } from 'react-router-dom';
 import '../css/MyPage.css';
-import RecruitProject from "../components/RecruitProject";
 import MatchBox from '../components/MatchBox';
 import { useRecoilState, useRecoilValue} from "recoil";
 import { ApplicationState } from "../recoil/recoil";
@@ -97,9 +96,9 @@ const NoMatch=styled.div`
     align-items:center;
 `
 
-export default function WishListPage(){
+export default function ApplicationPage(){
 
-    const ApplicationState = useRecoilValue(ApplicationState);
+    const ApplicationData = useRecoilValue(ApplicationState);
         return(
             <div className="my-page">
             <Wrapper>
@@ -118,10 +117,10 @@ export default function WishListPage(){
 
                     <MatchContainer>
                     {                     
-                        ApplicationState.length > 0 ? 
-                        ApplicationState.map(({title, field, recruit, id}) => (
-                       //Detail 페이지로 이동
-                       <Link to={`/pages/mypagedetail/${id}`} style={{textDecoration:'none', color:'black'}}>
+                        ApplicationData.length > 0 ? 
+                        ApplicationData.map(({title, field, recruit, id}) => (
+                       //ApplicationDetail 페이지로 이동
+                       <Link to={`/pages/applicationdetail/${id}`} style={{textDecoration:'none', color:'black'}}>
                         <MatchBox key={title} title={title} field={field} recruit={recruit}/>
                         </Link>
                     )) : 

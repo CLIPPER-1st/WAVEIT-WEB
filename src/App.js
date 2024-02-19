@@ -12,6 +12,8 @@ import SignFinal from "./pages/SignFinal";
 import Matching from "./pages/Matching";
 import Detail from "./pages/Detail";
 import MypageDetail from "./pages/MypageDetail";
+import WishListDetail from './pages/WishListDetail';
+import ApplicationDetail from './pages/ApplicationDetail';
 import Portfolio from "./pages/Portfolio";
 import PortfolioDetail from "./pages/PortfolioDetail";
 import EditPortfolio from "./pages/EditPortfolio";
@@ -34,6 +36,8 @@ const App=()=>{
       <Route path="/pages/Matching" element={<Matching />} />
       <Route path="pages/detail/:id" element={<Detail />} />
       <Route path="pages/mypagedetail/:id" element={<MypageDetail />} />
+      <Route path="pages/wishlistdetail/:id" element={<WishListDetail />} />
+      <Route path="pages/applicationdetail/:id" element={<ApplicationDetail />} />
       <Route path="pages/portfoliodetail/:id" element={<PortfolioDetail />} />
       <Route path="/pages/Portfolio" element={<Portfolio />} />
       <Route path="/pages/EditPortfolio" element={<EditPortfolio />} />

@@ -60,7 +60,14 @@ const Btn=styled.button`
     font-size:1.3vw;
     font-weight:bold;
 `
-const Detail=({ matchData })=>{
+const Detail=()=>{
+
+    //url 파라미터에서 id값 가져오기
+    const {id}=useParams();
+    //id값과 일치하는 List 가져오기
+    //url에서 가져오는 params는 string 타입이므로, 타입변환 필요.
+    const item=List.find(item=>String(item.id)===id);
+
     const [isModalOpen, setIsModalOpen]=useState(false);
     const [isApplicationModalOpen, setIsApplicationModalOpen]=useState(false);
     
@@ -68,11 +75,11 @@ const Detail=({ matchData })=>{
     const [applicationState, setApplicationState] = useRecoilState(ApplicationState);
 
     const handleLike = () => {
-        setLikeState([...likeState, matchData]);
+        setLikeState([...likeState, item]);
     };
 
     const handleApplication = () => {
-        setApplicationState([...applicationState, matchData]);
+        setApplicationState([...applicationState, item]);
     };
 
     const handleClick1 = () => {
@@ -102,11 +109,6 @@ const Detail=({ matchData })=>{
         setIsApplicationModalOpen(false);
     }
 
-    //url 파라미터에서 id값 가져오기
-    const {id}=useParams();
-    //id값과 일치하는 List 가져오기
-    //url에서 가져오는 params는 string 타입이므로, 타입변환 필요.
-    const item=List.find(item=>String(item.id)===id);
     return (
         <Container>
             <NavBar />

@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import React from 'react';
 import { Link, Component } from 'react-router-dom';
 import '../css/MyPage.css';
-import RecruitProject from "../components/RecruitProject";
 import MatchBox from '../components/MatchBox';
 import List from '../json/MatchList.json';
 
@@ -115,16 +114,14 @@ export default function MyPage(){
                     <NavbarItem href="/pages/postingpage">매칭 등록</NavbarItem>
                 </NavbarItems>
                 </Navbar>
-                
-                {/* components > MatchBox 컴포넌트에 json파일 내용
-                    읽어오도록 만들어놔서 나중에 API 연동할 때 갖다 쓰시면 편할거에요! */}
+   
                 <Content>
                     <ContentTitle>내가 모집중인 프로젝트</ContentTitle>
                     <HomeStyles>
                       <Link to="/pages/WishListPage">
                         <button>내가 찜한 프로젝트</button></Link>
-                      {/*<Link to="/pages/ApplicationPage">
-                        <button>내가 지원한 프로젝트</button></Link>*/}
+                      <Link to="/pages/ApplicationPage">
+                        <button>내가 지원한 프로젝트</button></Link>
                       <Link to="/pages/portfolio">
                         <button>내가 작성한 포트폴리오</button></Link>
                       <Link to="/pages/WritePortfolio">
@@ -136,7 +133,7 @@ export default function MyPage(){
                     {                     
                     recruitData.length > 0 ? 
                     recruitData.map(({title, field, recruit, id}) => (
-                       //Detail 페이지로 이동
+                       //MyPageDetail 페이지로 이동
                        <Link to={`/pages/mypagedetail/${id}`} style={{textDecoration:'none', color:'black'}}>
                         <MatchBox key={title} title={title} field={field} recruit={recruit}/>
                         </Link>

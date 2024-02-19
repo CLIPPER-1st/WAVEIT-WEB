@@ -126,7 +126,7 @@ export default function Portfolio() {
                         {                     
                         portfolioData.length > 0 ? 
                         portfolioData.map(({title, field, recruit, id}) => (
-                        //Detail 페이지로 이동
+                        //PortfolioDetail 페이지로 이동
                         <Link to={`/pages/portfoliodetail/${id}`} style={{textDecoration:'none', color:'black'}}>
                             <MatchBox key={title} title={title} field={field} recruit={recruit}/>
                             </Link>
@@ -142,9 +142,10 @@ export default function Portfolio() {
                 </Content>
 
                 <HomeStyles>
-                <Link to="/pages/EditPortfolio">
-                <Btn>포트폴리오 수정하기</Btn>
-                </Link>
+                {/*수정기능 페이지 구현
+                EditProfile없애고 portfoliodetail에서 포트폴리오 상세보기 + 수정 기능 
+                <Btn onClick={() => alert('해당 포트폴리오를 누르면 수정이 가능합니다!')}>포트폴리오 수정하기</Btn>*/}
+                
                 </HomeStyles>
 
                 

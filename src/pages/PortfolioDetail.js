@@ -45,7 +45,7 @@ const FieldBtn=styled.button`
 `
 
 
-const Detail=()=>{
+const PortfolioDetail=()=>{
 
     const portfolioData = useRecoilValue(PortfolioState);
 
@@ -70,4 +70,4 @@ const Detail=()=>{
 
 }
 
-export default Detail;
+export default PortfolioDetail;

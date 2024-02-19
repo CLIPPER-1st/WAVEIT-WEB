@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 import React from 'react';
-import { Link, Component } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import '../css/MyPage.css';
-import RecruitProject from "../components/RecruitProject";
 import MatchBox from '../components/MatchBox';
 import List from '../json/MatchList.json';
 import { useRecoilState, useRecoilValue} from "recoil";
@@ -100,7 +99,7 @@ const NoMatch=styled.div`
 
 export default function WishListPage(){
 
-    const likeState = useRecoilValue(LikeState);
+    const LikeData = useRecoilValue(LikeState);
         return(
             <div className="my-page">
             <Wrapper>
@@ -121,10 +120,10 @@ export default function WishListPage(){
 
                     <MatchContainer>
                     {                     
-                        LikeState.length > 0 ? 
-                        LikeState.map(({title, field, recruit, id}) => (
-                       //Detail 페이지로 이동
-                       <Link to={`/pages/mypagedetail/${id}`} style={{textDecoration:'none', color:'black'}}>
+                        LikeData.length > 0 ? 
+                        LikeData.map(({title, field, recruit, id}) => (
+                       //WishListDetail 페이지로 이동
+                       <Link to={`/pages/wishlistdetail/${id}`} style={{textDecoration:'none', color:'black'}}>
                         <MatchBox key={title} title={title} field={field} recruit={recruit}/>
                         </Link>
                     )) : 

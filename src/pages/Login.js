@@ -165,44 +165,17 @@ export default function Login() {
       };
 
       /*********************************************************************/
+
       //서버로 로그인 요청 request 보내기(id, pw 전송)
-      API.post('/user/login/', userData)
+      API.post('/accounts/token/', userData)
       .then((response)=>{
         if(response.status === 200 || response.status === 201){
           console.log("Login Success!: ", response.data);
-          //로그인 성공 시 access token 발급 -> 다른 페이지 접근 시 필요
-          localStorage.setItem('access',response.data.access);
-          //refresh token
-          localStorage.setItem('refresh',response.data.refresh);
-          setIsLoggedIn(true);
-          navigate('/home');
         }
       })
-      .catch((error)=>{
-        if(error.response){
-          const errorData=error.response.data;
-          let errorMessage='';
-
-          if(errorData.non_field_errors){
-            errorMessage = errorData.non_field_errors[0];
-          } else if(errorData.username){
-            errorMessage = errorData.username[0];
-          } else if (errorData.password){
-            errorMessage=errorData.password[0];
-          }
-          if(errorMessage.includes('Invalid credentials')){
-            alert('아이디 또는 비밀번호가 잘못되었습니다. 다시 시도해주세요.')
-          }
-          else{
-            alert('로그인에 실패하였습니다. 다시 시도해주세요.');
-          }
-        }else{
-          console.log(error);
-        }
-      })
-      
     }
   /*********************************************************************/
+  
     useEffect(() => {
       if(idValid && pwValid) {
         setNotAllow(false);
