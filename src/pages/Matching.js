@@ -104,8 +104,9 @@ const Matching=()=>{
     //matchInfo 가져오기
     const fetchMatchInfoData = async() =>{
         const access_token = localStorage.getItem('access');
+
         try{
-            const response = await API.get(`/post/projects/${id}`,{
+            const response = await API.get(`/post/projects/`,{
                 headers:{
                     Authorization: `Bearer ${access_token}`,
                 },

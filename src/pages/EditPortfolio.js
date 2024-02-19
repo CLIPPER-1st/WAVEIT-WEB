@@ -79,6 +79,8 @@ const ContentItem = styled.div`
 
 
 
+
+
 export default function EditPortfolio(){
         return(
             <Wrapper>
@@ -92,12 +94,13 @@ export default function EditPortfolio(){
                 </Navbar>
                 
                 <Title>포트폴리오</Title>
-                <Page>
+                <Page as="form">
                     <Label>이름 :</Label>
                     <Label>대학 및 전공 :</Label>
                     <Label>연락처 :</Label>
                     <Label>사용 가능 언어 :</Label>
                     <Label>프로젝트 경력 :</Label>
+                    
                 </Page>
                 <Content>
                     
