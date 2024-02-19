@@ -71,15 +71,15 @@ const Detail=()=>{
     const [isModalOpen, setIsModalOpen]=useState(false);
     const [isApplicationModalOpen, setIsApplicationModalOpen]=useState(false);
     
-    const [likeState, setLikeState] = useRecoilState(LikeState);
-    const [applicationState, setApplicationState] = useRecoilState(ApplicationState);
+    const [likes, setLikeState] = useRecoilState(LikeState);
+    const [application, setApplicationState] = useRecoilState(ApplicationState);
 
     const handleLike = () => {
-        setLikeState([...likeState, item]);
+        setLikeState([...likes, item]);
     };
 
     const handleApplication = () => {
-        setApplicationState([...applicationState, item]);
+        setApplicationState([...application, item]);
     };
 
     const handleClick1 = () => {
@@ -92,7 +92,7 @@ const Detail=()=>{
         openApplicationModal();
     };
     
-    
+
     //찜하기 모달창
     const openModal=()=>{
         setIsModalOpen(true);

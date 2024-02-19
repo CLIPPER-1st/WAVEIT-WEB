@@ -176,6 +176,14 @@ export default function WritePortfolio(){
             <Title>포트폴리오 작성</Title>
             <Page as="form">
                 <Row>
+                    <Label>프로젝트 이름 :</Label>
+                    <InputField
+                     type="text" 
+                     name="portfolioname" 
+                     value={state.portfolioname} 
+                     onChange={handleChange}/>
+                </Row>
+                <Row>
                     <Label>이름 :</Label>
                     <InputField
                      type="text" 

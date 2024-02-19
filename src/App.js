@@ -38,7 +38,7 @@ const App=()=>{
       <Route path="pages/mypagedetail/:id" element={<MypageDetail />} />
       <Route path="pages/wishlistdetail/:id" element={<WishListDetail />} />
       <Route path="pages/applicationdetail/:id" element={<ApplicationDetail />} />
-      <Route path="pages/portfoliodetail/:id" element={<PortfolioDetail />} />
+      <Route path="pages/portfoliodetail/:portfolioname" element={<PortfolioDetail />} />
       <Route path="/pages/Portfolio" element={<Portfolio />} />
       <Route path="/pages/EditPortfolio" element={<EditPortfolio />} />
       <Route path="/pages/WritePortfolio" element={<WritePortfolio />} />

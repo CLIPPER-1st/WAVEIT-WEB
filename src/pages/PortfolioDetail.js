@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import {useParams} from 'react-router-dom';
 import styled from 'styled-components';
 import NavBar from '../components/NavBar';
-import List from '../json/MatchList.json';
 
 // import recoil
 import { useRecoilState, useRecoilValue} from "recoil";
@@ -44,24 +43,35 @@ const FieldBtn=styled.button`
     margin: 0px 3px;
 `
 
-
 const PortfolioDetail=()=>{
 
     const portfolioData = useRecoilValue(PortfolioState);
 
     //url 파라미터에서 id값 가져오기
-    const {id}=useParams();
+    const {portfolioname}=useParams();
     //id값과 일치하는 List 가져오기
     //url에서 가져오는 params는 string 타입이므로, 타입변환 필요.
-    const item=portfolioData.find(item=>String(item.id)===id);
+    const item=portfolioData.find(item=>item.portfolioname===portfolioname);
     return (
         <Container>
             <NavBar />
-            <Title>{item.title}</Title>
+            <Title>{item.portfolioname}</Title>
             <GrayBox>
-                
-                <div style={{lineHeight:"4vw", fontSize:"1.5vw"}}><b>포트폴리오 이름 </b> {item.name}</div>
-                
+                <div style={{lineHeight:"4vw", fontSize:"1.5vw"}}>
+                    <b>이름 : </b> {item.name}</div>
+                <div style={{lineHeight:"4vw", fontSize:"1.5vw"}}>
+                    <b>대학 및 전공 : </b> {item.universityAndMajor}</div>
+                <div style={{lineHeight:"4vw",  fontSize:"1.5vw"}}>
+                    <b>연락처 : </b> {item.contact}</div>
+                <div style={{lineHeight:"4vw",  fontSize:"1.5vw"}}>
+                    <b>사용가능언어 : </b> 
+                    <FieldBtn>Java-{item. Java}</FieldBtn>
+                    <FieldBtn>Python-{item. Python}</FieldBtn>
+                    <FieldBtn>C언어-{item. C}</FieldBtn>
+                    <FieldBtn>JS-{item. JS}</FieldBtn>
+                    </div>
+                <div style={{lineHeight:"4vw",  fontSize:"1.5vw"}}>
+                    <b>프로젝트 경력 : </b> {item.projectExperience}</div>
                 <br/>
             </GrayBox>
             

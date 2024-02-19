@@ -2,8 +2,7 @@ import styled from 'styled-components';
 import React from 'react';
 import { Link, Component } from 'react-router-dom';
 import '../css/MyPage.css';
-// import MyPortfolio from "../components/MyPortfolio";
-import MatchBox from '../components/MatchBox';
+import PortfolioMatchBox from '../components/PortfolioMatchBox';
 
 // import recoil
 import { useRecoilState, useRecoilValue} from "recoil";
@@ -125,10 +124,10 @@ export default function Portfolio() {
                         <MatchContainer>
                         {                     
                         portfolioData.length > 0 ? 
-                        portfolioData.map(({title, field, recruit, id}) => (
+                        portfolioData.map(({portfolioname}) => (
                         //PortfolioDetail 페이지로 이동
-                        <Link to={`/pages/portfoliodetail/${id}`} style={{textDecoration:'none', color:'black'}}>
-                            <MatchBox key={title} title={title} field={field} recruit={recruit}/>
+                        <Link to={`/pages/portfoliodetail/${portfolioname}`} style={{textDecoration:'none', color:'black'}}>
+                            <PortfolioMatchBox key={portfolioname} name={portfolioname} />
                             </Link>
                         )) : 
                         <NoMatch>

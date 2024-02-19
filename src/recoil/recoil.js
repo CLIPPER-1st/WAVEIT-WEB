@@ -132,17 +132,44 @@ export const LikeState = atom({
 // 내가 작성한 포트폴리오
 export const PortfolioState = atom({
     key:"Portfolio",
-    default: {
-        name: '',
-        universityAndMajor: '',
-        contact: '',
-        projectExperience: '',
-        etc: '',
-        Java: '',
-        Python: '',
-        C: '',
-        JS: '',
-      },
+    default: [
+        {
+            "portfolioname": "첫번째 포트폴리오",
+            "name": "홍길동",
+            "universityAndMajor": "서울대학교 컴퓨터공학과",
+            "contact": "gildong@gmail.com",
+            "projectExperience": "첫 프로젝트입니다",
+            "etc": "없음",
+            "Java": "하",
+            "Python": "상",
+            "C": "상",
+            "JS": "중",
+        },
+        {
+            "portfolioname": "두번째 포트폴리오",
+            "name": "홍길동",
+            "universityAndMajor": "서울대학교 컴퓨터공학과",
+            "contact": "gildong@gmail.com",
+            "projectExperience": "두번째 프로젝트입니다",
+            "etc": "없음",
+            "Java": "하",
+            "Python": "하",
+            "C": "하",
+            "JS": "중",
+        },
+        {
+            "portfolioname": "세번째 포트폴리오",
+            "name": "홍길동",
+            "universityAndMajor": "서울대학교 컴퓨터공학과",
+            "contact": "gildong@gmail.com",
+            "projectExperience": "세번째 프로젝트입니다",
+            "etc": "없음",
+            "Java": "상",
+            "Python": "상",
+            "C": "상",
+            "JS": "중",
+        }
+    ]
 });
 
 export const MatchDataState = atom({
