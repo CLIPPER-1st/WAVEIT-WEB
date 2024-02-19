@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-
+import axios from 'axios';
 const Page = styled.div`
 margin-top:100px;
   border-style:none;
@@ -120,9 +120,9 @@ function Sign() {
   const handleCernumberChange = (event) =>{
     setCernumber(event.target.value);
   }
-  /**************************************************************/
-  /*이메일 인증번호 요청
-  endpoint: api/user/email-verify*/
+  /***********이메일 인증번호 발송 요청 & 확인*********************************/
+  //endpoint: api/user/email-verify
+
   const requestEmailVerification = async(email) => {
     try{
       const response = await axios.post('/user/email-verify', {email});
@@ -131,6 +131,24 @@ function Sign() {
       alert('인증번호 요청에 실패했습니다.');
       console.log('이메일 인증 오류: ',error.response? error.response.data:error);
     }
+  }
+
+  //endpoint: api/user/email-verify/{verify_code}
+  /* ??????????????url 통해서 verify_code 전송하면 verified 필드 설정해서 응답 준다고 가정   */ 
+  const verifyEmailCode = async(email, cernumber) =>{
+   try{
+    const response = await axios.get(`api/user/email-verify/${cernumber}`);
+    if(response.data.verified){
+      alert("이메일 인증 성공! 다음을 눌러주세요.");
+    }else{
+      alert("올바른 인증번호가 아닙니다. 다시 시도해주세요.");
+      setCernumber('');
+    }
+   }catch(error){
+      alert("이메일 인증 오류가 발생했습니다. 다시 시도하세요.");
+      setCernumber('');
+      console.error('이메일 인증 검증 오류: ', error.response ? error.response.data : error);
+   }
   }
   /**************************************************************/
 
@@ -167,7 +185,7 @@ function Sign() {
                 onChange={handleCernumberChange}
                 />
             </InputWrap>
-            <ConfirmButton> 확인 </ConfirmButton>
+            <ConfirmButton onClick={()=>verifyEmailCode(email, cernumber)}> 확인 </ConfirmButton>
           </div>
         </ContentWrap>
         <Link to ={'/pages/SignNext'}>
