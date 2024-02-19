@@ -6,6 +6,10 @@ import RecruitProject from "../components/RecruitProject";
 import MatchBox from '../components/MatchBox';
 import List from '../json/MatchList.json';
 
+// import recoil
+import { useRecoilState, useRecoilValue} from "recoil";
+import { RecruitState } from "../recoil/recoil";
+
 const Wrapper=styled.div`
   background-color:white;
 `
@@ -97,6 +101,8 @@ const NoMatch=styled.div`
 `
 
 export default function MyPage(){
+  const recruitData = useRecoilValue(RecruitState);
+
         return(
             <div className="my-page">
             <Wrapper>
@@ -128,8 +134,8 @@ export default function MyPage(){
                     
                     <MatchContainer>
                     {                     
-                    List.length > 0 ? 
-                    List.map(({title, field, recruit, id}) => (
+                    recruitData.length > 0 ? 
+                    recruitData.map(({title, field, recruit, id}) => (
                        //Detail 페이지로 이동
                        <Link to={`/pages/mypagedetail/${id}`} style={{textDecoration:'none', color:'black'}}>
                         <MatchBox key={title} title={title} field={field} recruit={recruit}/>

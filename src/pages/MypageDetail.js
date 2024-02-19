@@ -4,6 +4,10 @@ import styled from 'styled-components';
 import NavBar from '../components/NavBar';
 import List from '../json/MatchList.json';
 
+// import recoil
+import { useRecoilState, useRecoilValue} from "recoil";
+import { RecruitState } from "../recoil/recoil";
+
 const Container=styled.div`
     min-width:100%;
     min-height:100%;
@@ -62,23 +66,8 @@ const ButtonContainer = styled.div`
 `;
 
 const Detail=()=>{
-    const [isModalOpen, setIsModalOpen]=useState(false);
-    const [isApplicationModalOpen, setIsApplicationModalOpen]=useState(false);
-    //찜하기 모달창
-    const openModal=()=>{
-        setIsModalOpen(true);
-    }
-    const closeModal=()=>{
-        setIsModalOpen(false);
-    }
 
-    //지원하기 모달창
-    const openApplicationModal=()=>{
-        setIsApplicationModalOpen(true);
-    }
-    const closeApplicationModal=()=>{
-        setIsApplicationModalOpen(false);
-    }
+    const recruitData = useRecoilValue(RecruitState);
 
     //url 파라미터에서 id값 가져오기
     const {id}=useParams();
@@ -91,7 +80,7 @@ const Detail=()=>{
             <Title>{item.title}</Title>
             <GrayBox>
                 <div style={{lineHeight:"4vw",  fontSize:"1.5vw"}}><b>프로젝트 분야 </b> 
-                {item.field.map((f, index) => (
+                {recruitData.field.map((f, index) => (
                     <FieldBtn key={index}>{f}</FieldBtn> // 고유 key 추가
                 ))}
                 </div>
