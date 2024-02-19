@@ -73,17 +73,18 @@ const Detail=()=>{
     const {id}=useParams();
     //id값과 일치하는 List 가져오기
     //url에서 가져오는 params는 string 타입이므로, 타입변환 필요.
-    const item=List.find(item=>String(item.id)===id);
+    const item=recruitData.find(item=>String(item.id)===id);
     return (
         <Container>
             <NavBar />
             <Title>{item.title}</Title>
             <GrayBox>
                 <div style={{lineHeight:"4vw",  fontSize:"1.5vw"}}><b>프로젝트 분야 </b> 
-                {recruitData.field.map((f, index) => (
-                    <FieldBtn key={index}>{f}</FieldBtn> // 고유 key 추가
-                ))}
+  
+                    <FieldBtn>{item.field}</FieldBtn> 
+
                 </div>
+                
                 <div style={{lineHeight:"4vw", fontSize:"1.5vw"}}><b>모집 파트 </b> {item.recruit}</div>
                 <div style={{lineHeight:"4vw",  fontSize:"1.5vw"}}><b>모집자 프로필 </b> {item.profile}</div>
                 <div style={{lineHeight:"4vw",  fontSize:"1.5vw"}}><b>연락 보내기  </b>{item.contact}</div>
