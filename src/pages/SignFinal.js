@@ -4,20 +4,23 @@ import styled from 'styled-components';
 
 
 const Page = styled.div`
-  position: fixed;
-  top: 20px;
-  bottom: 0;
-  width: 100%;
-  box-shadow: 2px 2px 2px 2px gray;
-  max-width: 800px;
-  padding: 0px 20px;
-  max-height : 800px;
-  left: 50%;
-  transform: translate(-50%, 0);
-  background-color: white;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
+margin-top:100px;
+border-style:none;
+border-radius:10px;
+position: fixed;
+top: 20px;
+bottom: 0;
+width: 100%;
+box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+max-width: 700px;
+padding: 0px 20px;
+max-height : 700px;
+left: 50%;
+transform: translate(-50%, 0);
+background-color: white;
+overflow: hidden;
+display: flex;
+flex-direction: column;
 `
 
 const TitleWrap = styled.div`
@@ -40,18 +43,16 @@ const InputTitle = styled.div`
 `
 
 const InputWrap = styled.div`
-  display: flex;
-  border-radius: 8px;
-  padding: 20px;
-  margin-top: 30px;
-  margin-left: 100px;
-  margin-right: 100px;
-  background-color: white;
-  border: 1px solid #e2e0e0;
-
-  &:hover{
-    border-bottom: 1px solid #000080;
-  }
+display: flex;
+width: 470px;
+border-style:none;
+border-bottom: 1.4px solid #D9D9D9; 
+padding: 20px;
+margin-left: 100px;
+background-color: white;
+&: hover{
+  border-bottom: 1.4px solid #737373; 
+}
 `
 
 const InputField = styled.input`
@@ -70,19 +71,20 @@ const Check = styled.div`
 
 /*다음 버튼*/
 const BottomButton = styled.button`
-  position: fixed;
-  width: 600px;
-  height: 60px;
-  border: none;
-  font-size: 20px;
-  font-weight: bold;
-  background-color: #000080;
-  color: white;
-  cursor: pointer;
-  text-align: center;
-  top: 87%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+position: fixed;
+width: 500px;
+height: 60px;
+border: none;
+font-size: 20px;
+font-weight: bold;
+background-color: #2519B2;
+border-radius:3px;
+color: white;
+cursor: pointer;
+text-align: center;
+top: 85%;
+left: 50%;
+transform: translate(-50%, -50%);
 `
 
 export default function Login() {
