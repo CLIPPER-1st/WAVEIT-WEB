@@ -160,7 +160,7 @@ export default function Login() {
       event.preventDefault();
       //서버로 로그인 요청할 때, input 태그에 입력받은 id, pw를 보낼 것임.
       const userData = {
-        username: id,
+        loginId: id,
         password: pw
       };
 

@@ -1,12 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
-import NavBar from '../components/NavBar';
 import MatchBox from '../components/MatchBox';
 import '../css/Matching.css';
 import SettingFilter from '../components/SettingFilter';
 import List from '../json/MatchList.json';
 import API from '../api/axios';
+import MypageNavbar from '../components/MypageNavbar';
+import NavBar from '../components/NavBar';
 const Wrapper=styled.div`
     min-height:100%;
     min-width:100%;
@@ -96,10 +97,18 @@ const RecommendBtn=styled.div`
 const Matching=()=>{
     /***********************************************/
     const [info, setInfo] = useState([]);
-
+    /*로그인 되어있는 상태에서만 네브바에 '마이페이지' 나타나도록*/
+    const [isLoggedIn, setIsLoggedIn]=useState(false);
     useEffect(()=>{
         fetchMatchInfoData();
     },[]);
+    //모달창 열고닫기
+    const [isModalOpen, setIsModalOpen]=useState(false);
+    //필터 적용을 위한 state(프로젝트 분야)
+     const [selectedField, setSelectedField] = useState('');
+     const [selectedRecruit, setSelectedRecruit] = useState('');
+     //전체보기 사용시
+     const [showAll, setShowAll] = useState(true);
 
     //matchInfo 가져오기
     const fetchMatchInfoData = async() =>{
@@ -117,15 +126,6 @@ const Matching=()=>{
         }
     };
     /***********************************************/
-    
-
-     //모달창 열고닫기
-     const [isModalOpen, setIsModalOpen]=useState(false);
-    //필터 적용을 위한 state(프로젝트 분야)
-     const [selectedField, setSelectedField] = useState('');
-     const [selectedRecruit, setSelectedRecruit] = useState('');
-     //전체보기 사용시
-     const [showAll, setShowAll] = useState(true);
      const handleApplyFilter=(field, recruit)=>{
         setSelectedField(field);
         setSelectedRecruit(recruit);
@@ -153,7 +153,13 @@ const Matching=()=>{
     }
     return (
         <Wrapper>
-            <NavBar />
+            <NavBar 
+            isLoggedIn={isLoggedIn}
+            menuItems={[
+                {href:"/pages/postingpage", text:"매칭 등록"},
+            ]}
+
+            />
             <SearchBox>
                 <TitleBox>
                     <Title>매칭 모집</Title>

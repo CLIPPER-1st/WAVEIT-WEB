@@ -76,7 +76,13 @@ const WishListDetail=()=>{
     const item=LikeData.find(item=>String(item.id)===id);
     return (
         <Container>
-            <NavBar />
+            <NavBar 
+                isLoggedIn={true}
+                menuItems={[
+                    {href:"/pages/Matching", text:"매칭 모집"},
+                    {href:"/pages/postingpage", text:"매칭 등록"}
+                ]}
+            /> 
             <Title>{item.title}</Title>
             <GrayBox>
                 <div style={{lineHeight:"4vw",  fontSize:"1.5vw"}}><b>프로젝트 분야 </b> 

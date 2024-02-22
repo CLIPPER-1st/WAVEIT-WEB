@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import React,{useState} from 'react';
 import { Link, Component, useNavigate } from 'react-router-dom';
 import '../css/MyPage.css';
-
+import NavBar from '../components/NavBar';
 // import recoil
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { PortfolioState } from "../recoil/recoil";
@@ -48,21 +48,6 @@ const Title = styled.div`
   font-weight: bold;
   text-align: center; 
   margin-top: 50px;
-`
-
-const NavbarItem=styled.a`
-
-  margin-right: 20px;
-  text-decoration-line:none;
-  font-weight:bold;
-  color: black;
-`
-const NavbarItems = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 30px; /* 항목들 사이의 간격 */
-  margin-left: auto; /* 항목들을 오른쪽으로 이동 */
-  margin-right : 50px;
 `
 
 const Label = styled.label`
@@ -169,12 +154,18 @@ export default function WritePortfolio(){
     return(
         <div className="my-page">
         <Wrapper>
-            <Navbar>
-            <NavbarItems>
-                <NavbarItem href="/pages/Matching">매칭 모집</NavbarItem>
-                <NavbarItem href="/pages/postingpage">매칭 등록</NavbarItem>
-            </NavbarItems>
-            </Navbar>
+        <NavBar
+        isLoggedIn={true}
+        menuItems={[
+          {
+            href: "/pages/Matching", text:"매칭 모집" 
+          },
+          {
+            href: "/pages/postingpage", text:"매칭 등록" 
+          },
+        ]}
+      />
+        
             
             <Title>포트폴리오 작성</Title>
             <Page as="form">

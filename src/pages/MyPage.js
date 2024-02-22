@@ -4,67 +4,45 @@ import { Link, Component } from 'react-router-dom';
 import '../css/MyPage.css';
 import MatchBox from '../components/MatchBox';
 import List from '../json/MatchList.json';
-
+import MypageNavBar from '../components/MypageNavbar';
 // import recoil
 import { useRecoilState, useRecoilValue} from "recoil";
 import { RecruitState } from "../recoil/recoil";
+import MypageNavbar from '../components/MypageNavbar';
+import NavBar from '../components/NavBar';
 
 const Wrapper=styled.div`
   background-color:white;
 `
-// 상단 네브바
-const Navbar = styled.div`
-  background-color:white;
-  display:grid;
-  display: flex;
-  justify-content: space-between; /* 가운데 정렬과 오른쪽 정렬을 동시에 설정 */
-  align-items: center;
-
-  width: 100%;
-  padding: 10px 20px; 
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
-  z-index: 1000; /* 다른 요소들 위에 상단바가 오도록 설정 */
-`;
 
 const Title = styled.div`
   font-size: 20px;
   font-weight: bold;
-  position: fixed;
+  //position: fixed;
   left: 50%;
   transform: translateX(-50%);
   display:flex;
   justify-content:center;
   align-items:center; 
-  margin: 0;
+  margin: 0% 0% 0% 50%;
 `
-
-const NavbarItem=styled.a`
-
-  margin-right: 20px;
-  text-decoration-line:none;
-  font-weight:bold;
-  color: black;
-`
-const NavbarItems = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 30px; /* 항목들 사이의 간격 */
-  margin-left: auto; /* 항목들을 오른쪽으로 이동 */
-  margin-right : 50px;
-`;
 
 const Content = styled.div`
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
 `
 
 const ContentTitle = styled.div`
-  margin-left : 100px;
-  margin-top : 50px;
+  text-align:center;
+  margin-top:2vw;
+  font-size:22px;
   font-weight:bold;
 `
 
 const ContentItem = styled.div`
   margin-left : 100px;
-  margin-top : 50px;
+  margin-top : 0px;
 `
 
 const HomeStyles = styled.div`
@@ -75,15 +53,22 @@ const HomeStyles = styled.div`
 `
 
 const Btn = styled.button`
-  margin-top : 80px;
+  margin: 2vw;
   font-weight: bold;
   border-radius: 50px;
   background-color:#94B6EF;
-  width: 250px;
+  width: 200px;
   height: 50px;
   color: white;
   border : none;
 `
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top:20px;
+`;
+
 const MatchContainer=styled.div`
     min-width: 100%;
     display:grid;
@@ -105,28 +90,20 @@ export default function MyPage(){
         return(
             <div className="my-page">
             <Wrapper>
-                <Navbar>
-                
-                <Title>마이페이지</Title>
-                
-                <NavbarItems>
-                    <NavbarItem href="/pages/Matching">매칭 모집</NavbarItem>
-                    <NavbarItem href="/pages/postingpage">매칭 등록</NavbarItem>
-                </NavbarItems>
-                </Navbar>
+            <NavBar 
+                isLoggedIn={true}
+                menuItems={[
+                    {href:"/pages/Matching", text:"매칭 모집"},
+                    {href:"/pages/postingpage", text:"매칭 등록"}
+                ]}
+            /> 
+            <MypageNavBar /> 
    
                 <Content>
-                    <ContentTitle>내가 모집중인 프로젝트</ContentTitle>
-                    <HomeStyles>
-                      <Link to="/pages/WishListPage">
-                        <button>내가 찜한 프로젝트</button></Link>
-                      <Link to="/pages/ApplicationPage">
-                        <button>내가 지원한 프로젝트</button></Link>
-                      <Link to="/pages/portfolio">
-                        <button>내가 작성한 포트폴리오</button></Link>
-                      <Link to="/pages/WritePortfolio">
-                        <button>포트폴리오 작성하기</button></Link>
-                      </HomeStyles>
+                    <ContentTitle>마이페이지 - 내가 모집중인 프로젝트</ContentTitle>
+                    <ButtonContainer>
+                      <Btn><Link to="/pages/postingpage" style={{textDecoration:"none", color:"white"}}>모집 글 작성하러가기</Link></Btn>
+                    </ButtonContainer>
                     <ContentItem>
                     
                     <MatchContainer>
@@ -151,7 +128,7 @@ export default function MyPage(){
 
                 <HomeStyles>
                 <Link to="/pages/postingpage">
-                <Btn>모집 글 작성하러가기</Btn>
+                
                 </Link>
                 </HomeStyles>
 

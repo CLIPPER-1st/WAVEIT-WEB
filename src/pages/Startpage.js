@@ -6,6 +6,7 @@ import React, {useState,useEffect, useRef} from "react";
 import '../css/Start.css';
 //import FindID from "../components/FindID";
 import { Link } from "react-router-dom";
+import NavBar from "../components/NavBar";
 
 const Wrapper=styled.div`
   display:grid;
@@ -41,6 +42,7 @@ const Btn=styled.div`
   width: 186px;
   height: 51px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  color:black;
 `
 //상단 네브바
 const Navbar = styled.div`
@@ -83,7 +85,7 @@ const DesciptBox=styled.div`
 `
 
 function Startpage() {
-
+  const [isLoggedIn, setIsLoggedIn]=useState(false);
   const content1Ref=useRef(null);
   
   const onArrowClick=()=>{
@@ -93,12 +95,26 @@ function Startpage() {
 
   return (
     <Wrapper>
-      <Navbar>
+      {/* <Navbar>
       <NavbarItem href="/pages/dummy">임시페이지</NavbarItem>
         <NavbarItem href="/pages/Matching">매칭 모집</NavbarItem>
         <NavbarItem href="/pages/postingpage">매칭 등록</NavbarItem>
         <NavbarItem href="/pages/mypage">마이페이지</NavbarItem>
-      </Navbar>
+      </Navbar> */}
+      <NavBar
+        isLoggedIn={false}
+        menuItems={[
+        {
+            href: "/pages/dummy", text:"임시페이지" 
+          },
+          {
+            href: "/pages/Matching", text:"매칭 모집" 
+          },
+          {
+            href: "/pages/postingpage", text:"매칭 등록" 
+          },
+        ]}
+      ></NavBar>
     <Container>
       {/* <Link to ={'/pages/Login'}>
       <button>로그인하기</button>
@@ -109,9 +125,9 @@ function Startpage() {
       </Title>
       <br/>
       <Title color={"#2519B2"} fontsize={"25px"}>wave-it</Title>
-      <Btn>만나러가기</Btn>
+      <Link to="/pages/matching" style={{ textDecoration: 'none' }}><Btn as="div">만나러가기</Btn></Link>
       <Image src={chevronsDown} alt="scroll-arrow" onClick={onArrowClick}/>
-    </Container>
+    </Container>s
     <DesciptBox>
       <Description>
         <span>나에게 맞는 프로젝트</span><br />

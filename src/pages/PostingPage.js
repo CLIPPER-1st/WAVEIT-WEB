@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import '../css/PostingPage.css';
-
+import NavBar from '../components/NavBar.js';
 // import component
 import RegisterPosting from '../components/RegisterPosting.js';
 
@@ -14,41 +14,17 @@ height: 100%;
   background-color:rgb(253, 252, 252);
   
 `
-// 상단 네브바
-const Navbar = styled.div`
-  background-color:rgb(253, 252, 252);
-  display:grid;
-  display: flex;
-  justify-content: right; /* 메뉴 항목을 양 끝으로 정렬 */
-  
-  width: 100%;
-  padding: 10px 20px; 
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
-  z-index: 1000; /* 다른 요소들 위에 상단바가 오도록 설정 */
-`;
 
 const Title = styled.div`
-  font-size: 20px;
+  font-size: 22px;
   font-weight: bold;
-  position: fixed;
   left: 50%;
-  transform: translateX(-50%);
   display:flex;
   justify-content:center;
   align-items:center; 
+  min-width: 100%;
+  margin-top: 2vw;
 `
-
-const NavbarItem=styled.a`
-  text-decoration-line:none;
-  font-weight:bold;
-  color: black;
-`
-const NavbarItems = styled.div`
-  display: flex;
-  gap: 30px; /* 항목들 사이의 간격 */
-  margin-left: auto; /* 항목들을 오른쪽으로 이동 */
-  margin-right: 50px;
-`;
 
 const Label = styled.label`
   font-weight: bold;
@@ -112,7 +88,7 @@ const HomeStyles = styled.div`
 `;
 
 const Btn = styled.button`
-  margin-top : 80px;
+  margin-top : 0.5vw;
   font-weight: bold;
   border-radius: 50px;
   background-color:#94B6EF;
@@ -140,7 +116,7 @@ export default function PostingPage(){
     });
     };
 
-
+    const [isLoggedIn, setIsLoggedIn]=useState(false);
     const [isModalOpen, setIsModalOpen]=useState(false);
 
     const openDialog = () => {
@@ -154,14 +130,14 @@ export default function PostingPage(){
     return (
         <div className="posting-page">
         <Wrapper>
-            <Navbar>
-            <Title>매칭 등록</Title>
-            <NavbarItems>
-                <NavbarItem href="/pages/Matching">매칭 모집</NavbarItem>
-                <NavbarItem href="/pages/mypage">마이페이지</NavbarItem>
-            </NavbarItems>
-            </Navbar>
-
+            <NavBar 
+              isLoggedIn={isLoggedIn}
+              menuItems={[
+                {href:"/pages/Matching", text:"매칭 모집"}
+              ]}
+            />
+            <Title as="div">매칭 등록</Title>
+            <div style={{margin:"5%"}}>
             <Row>
             <Label>
             프로젝트 이름 :</Label>
@@ -207,6 +183,7 @@ export default function PostingPage(){
             placeholder="프로젝트에 대한 설명, 사용 프레임워크 등 설명해주세요."
             />
             <br/></Row>
+            </div>
                 
             <HomeStyles>
             <Btn onClick = {openDialog}>등록하기</Btn>

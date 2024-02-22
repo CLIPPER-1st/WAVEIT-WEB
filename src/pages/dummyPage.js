@@ -105,6 +105,7 @@ const Dummy=()=>{
             <button  onClick={openModal4}>이메일 오류 모달창</button>
             <button  onClick={openModal5}>인증번호 오류 모달창</button>
             <button  onClick={openModal6}>회원가입 완료 모달창</button>
+            <div><Link to="/pages/mypage">마이페이지</Link></div>
             <FindID isOpen={isModalOpen} closeModal={closeModal}/>
             <ErrorID isOpen={isModalOpen2} closeModal={closeModal2}/>
             <SendNum isOpen={isModalOpen4} closeModal={closeModal4}/>

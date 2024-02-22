@@ -97,7 +97,13 @@ const PortfolioDetail = () => {
 
     return (
         <Container>
-            <NavBar />
+            <NavBar 
+                isLoggedIn={true}
+                menuItems={[
+                    {href:"/pages/Matching", text:"매칭 모집"},
+                    {href:"/pages/postingpage", text:"매칭 등록"}
+                ]}
+            /> 
             <Title>{item.portfolioname}</Title>
             <GrayBox>
                 {isEditing ? (

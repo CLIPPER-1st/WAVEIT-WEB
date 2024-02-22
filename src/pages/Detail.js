@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import {useParams} from 'react-router-dom';
 import styled from 'styled-components';
-import NavBar from '../components/NavBar';
 import List from '../json/MatchList.json'
 import WishList from "../components/WishList";
 import Application from "../components/Application";
+import NavBar from "../components/NavBar";
 
 // import recoil
 import { useRecoilState } from 'recoil';
@@ -67,7 +67,7 @@ const Detail=()=>{
     //id값과 일치하는 List 가져오기
     //url에서 가져오는 params는 string 타입이므로, 타입변환 필요.
     const item=List.find(item=>String(item.id)===id);
-
+    const [isLoggedIn, setIsLoggedIn]=useState(false);
     const [isModalOpen, setIsModalOpen]=useState(false);
     const [isApplicationModalOpen, setIsApplicationModalOpen]=useState(false);
     
@@ -111,7 +111,12 @@ const Detail=()=>{
 
     return (
         <Container>
-            <NavBar />
+            <NavBar 
+                isLoggedIn={isLoggedIn}
+                menuItems={[
+                    {href:"/pages/Matching", text:"매칭 모집"},
+                ]}
+            />
             <Title>{item.title}</Title>
             <GrayBox>
                 <div style={{lineHeight:"4vw",  fontSize:"1.5vw"}}><b>프로젝트 분야 </b> 

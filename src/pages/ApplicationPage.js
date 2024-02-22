@@ -5,6 +5,8 @@ import '../css/MyPage.css';
 import MatchBox from '../components/MatchBox';
 import { useRecoilState, useRecoilValue} from "recoil";
 import { ApplicationState } from "../recoil/recoil";
+import NavBar from '../components/NavBar';
+import MypageNavbar from '../components/MypageNavbar';
 
 const Wrapper=styled.div`
   background-color:white;
@@ -24,31 +26,17 @@ const Navbar = styled.div`
 `;
 
 const Title = styled.div`
-  font-size: 20px;
+  font-size: 22px;
   font-weight: bold;
-  position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
-  display:flex;
-  justify-content:center;
-  align-items:center; 
-  margin: 0;
-`
-
-const NavbarItem=styled.a`
-
-  margin-right: 20px;
-  text-decoration-line:none;
-  font-weight:bold;
-  color: black;
-`
-const NavbarItems = styled.div`
   display: flex;
-  align-items: center;
-  gap: 30px; /* 항목들 사이의 간격 */
-  margin-left: auto; /* 항목들을 오른쪽으로 이동 */
-  margin-right : 50px;
+  justify-content: center;
+  align-items: center; 
+  margin-top: 2vw;
+  text-align: center; // 필요한 경우 추가
+  // min-width 제거 또는 조정
+  // position: relative; 또는 absolute 추가 가능
 `;
+
 
 const Content = styled.div`
 `
@@ -102,16 +90,18 @@ export default function ApplicationPage(){
         return(
             <div className="my-page">
             <Wrapper>
-                <Navbar>
-                <Title>마이페이지</Title>
-                <NavbarItems>
-                    <NavbarItem href="/pages/Matching">매칭 모집</NavbarItem>
-                    <NavbarItem href="/pages/postingpage">매칭 등록</NavbarItem>
-                </NavbarItems>
-                </Navbar>
-    
+              <NavBar 
+                isLoggedIn={true}
+                menuItems={[
+                  {href:"/pages/Matching", text:"매칭 모집"},
+                  {href:"/pages/postingpage", text:"매칭 등록"}
+                ]}
+                />
+                <MypageNavbar />
+              <div style={{display:"flex",minWidth:"100%", justifyContent:"center"}}>
+                <Title>마이페이지 - 내가 지원한 프로젝트</Title>
+              </div>
                 <Content>
-                    <ContentTitle>내가 지원한 프로젝트</ContentTitle>
                     
                     <ContentItem>
 
