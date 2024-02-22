@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+
 //상단 네브바
 const Navbar = styled.div`
   background-color:rgb(253, 252, 252);
@@ -18,8 +19,6 @@ const NavbarItem=styled.a`
   color: black;
   margin: 0px 50px 0px 0px;
 `
-
-
 const NavBar =()=>{
     return(
     <Navbar>

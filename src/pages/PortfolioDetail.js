@@ -69,6 +69,7 @@ const Row=styled.div`
 const Label=styled.label`
     width : 110px;
     margin-bottom : 20px;
+    font-weight:bold;
 `
 
 const PortfolioDetail = () => {

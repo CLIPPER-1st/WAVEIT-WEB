@@ -4,7 +4,7 @@ export const API = axios.create({
     baseURL:"~~~",
 
     headers:{
-        "Conttent-Type":"application/json"
+        'Content-Type': 'application/json; charset=utf-8'
     },
     withCredentials:true
 })

@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import '../css/PostingPage.css';
+
+// import component
 import RegisterPosting from '../components/RegisterPosting.js';
 
-const Wrapper=styled.div`
+// import recoil
+import { useRecoilState, useRecoilValue, useSetRecoilState} from "recoil";
+import { MatchDataState, RecruitState } from "../recoil/recoil";
+
+const Wrapper=styled.div` 
 height: 100%;
   background-color:rgb(253, 252, 252);
   
@@ -84,7 +90,7 @@ const Row = styled.div`
 `;
 
 const Textarea = styled.textarea`
-  width: 700px;  
+  width: 600px;  
   height:200px;
   border-style:none;
   background-color:#D9D9D9;

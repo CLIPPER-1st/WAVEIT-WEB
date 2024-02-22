@@ -1,12 +1,18 @@
 import styled from 'styled-components';
-import React from 'react';
+import React, { useEffect, useState } from "react";
 import { Link, Component } from 'react-router-dom';
 import '../css/MyPage.css';
+
+// import component
 import PortfolioMatchBox from '../components/PortfolioMatchBox';
 
 // import recoil
-import { useRecoilState, useRecoilValue} from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { PortfolioState } from "../recoil/recoil";
+
+// import axios
+import axios from "../api/axios";
+import { fetchPortfolio } from "../api/apiFunction";
 
 const Wrapper=styled.div`
   background-color:white;
@@ -102,8 +108,22 @@ export default function Portfolio() {
 
     // useRecoilState 훅을 사용하여 PortfolioState를 가져오고 업데이트
     const portfolioData = useRecoilValue(PortfolioState);
+    const setPortfolioData = useSetRecoilState(PortfolioState); // Recoil 상태 설정 함수
 
-        return(
+    useEffect(() => {
+        const fetchPortfolioData = async () => {
+          try {
+            const response = await fetchPortfolio(); // 사용자 데이터를 가져오는 API 경로
+            setPortfolioData(response); // 가져온 데이터를 Recoil 상태에 설정
+          } catch (error) {
+            console.error("Failed to fetch user data:", error);
+          }
+        };
+    
+        fetchPortfolioData();
+      }, [setPortfolioData]); // 의존성 배열에 setPortfolioData 추가
+
+      return(
             <div className="my-page">
             <Wrapper>
                 <Navbar>

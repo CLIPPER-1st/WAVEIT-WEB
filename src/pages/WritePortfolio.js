@@ -4,9 +4,12 @@ import { Link, Component, useNavigate } from 'react-router-dom';
 import '../css/MyPage.css';
 
 // import recoil
-import { useRecoilState, useRecoilValue} from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { PortfolioState } from "../recoil/recoil";
-import axios from 'axios';
+
+// import axios
+import axios from "axios";
+
 
 const Page = styled.div`
   position: absolute; // 절대 위치 지정

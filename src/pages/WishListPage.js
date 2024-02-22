@@ -1,11 +1,18 @@
 import styled from 'styled-components';
-import React from 'react';
+import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import '../css/MyPage.css';
-import MatchBox from '../components/MatchBox';
-import List from '../json/MatchList.json';
-import { useRecoilState, useRecoilValue} from "recoil";
+
+// import recoil
+import { useRecoilState, useRecoilValue, useSetRecoilState} from "recoil";
 import { LikeState } from "../recoil/recoil";
+
+// import component
+import MatchBox from '../components/MatchBox';
+
+// import axios
+import axios from "../api/axios";
+import { fetchLikeProject } from "../api/apiFunction";
 
 const Wrapper=styled.div`
   background-color:white;
@@ -99,7 +106,22 @@ const NoMatch=styled.div`
 
 export default function WishListPage(){
 
+    const setLikeData = useSetRecoilState(LikeState); // Recoil 상태 설정 함수
     const LikeData = useRecoilValue(LikeState);
+
+    useEffect(() => {
+        const fetchLikeData = async () => {
+          try {
+            const response = await fetchLikeProject(); // 사용자 데이터를 가져오는 API 경로
+            setLikeData(response); // 가져온 데이터를 Recoil 상태에 설정
+          } catch (error) {
+            console.error("Failed to fetch user data:", error);
+          }
+        };
+    
+        fetchLikeData();
+      }, [setLikeData]); // 의존성 배열에 setLikeData 추가
+
         return(
             <div className="my-page">
             <Wrapper>

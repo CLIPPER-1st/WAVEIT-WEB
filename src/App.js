@@ -16,7 +16,6 @@ import WishListDetail from './pages/WishListDetail';
 import ApplicationDetail from './pages/ApplicationDetail';
 import Portfolio from "./pages/Portfolio";
 import PortfolioDetail from "./pages/PortfolioDetail";
-import EditPortfolio from "./pages/EditPortfolio";
 import WritePortfolio from "./pages/WritePortfolio";
 import WishListPage from "./pages/WishListPage";
 import ApplicationPage from "./pages/ApplicationPage";
@@ -40,7 +39,6 @@ const App=()=>{
       <Route path="pages/applicationdetail/:id" element={<ApplicationDetail />} />
       <Route path="pages/portfoliodetail/:portfolioname" element={<PortfolioDetail />} />
       <Route path="/pages/Portfolio" element={<Portfolio />} />
-      <Route path="/pages/EditPortfolio" element={<EditPortfolio />} />
       <Route path="/pages/WritePortfolio" element={<WritePortfolio />} />
       <Route path="/pages/WishListPage" element={<WishListPage/>}/>
       <Route path="/pages/ApplicationPage" element={<ApplicationPage/>}/>
