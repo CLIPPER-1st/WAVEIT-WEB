@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {useParams} from 'react-router-dom';
+import {useParams, useNavigate} from 'react-router-dom';
 import styled from 'styled-components';
 import List from '../json/MatchList.json'
 import WishList from "../components/WishList";
@@ -61,6 +61,7 @@ const Btn=styled.button`
     font-weight:bold;
 `
 const Detail=()=>{
+    const navigate=useNavigate();
 
     //url 파라미터에서 id값 가져오기
     const {id}=useParams();
@@ -74,6 +75,11 @@ const Detail=()=>{
     const [likes, setLikeState] = useRecoilState(LikeState);
     const [application, setApplicationState] = useRecoilState(ApplicationState);
 
+    /*isLoggedIn이 false인 경우*/
+    const gotoLogin =() =>{
+        alert("로그인이 필요한 서비스입니다.");
+        navigate("/pages/Login");
+    }
     const handleLike = () => {
         setLikeState([...likes, item]);
     };
@@ -82,19 +88,20 @@ const Detail=()=>{
         setApplicationState([...application, item]);
     };
 
+    
     const handleClick1 = () => {
-        handleLike();
-        openModal();
+        isLoggedIn?openModal():gotoLogin();
     };
 
     const handleClick2 = () => {
-        handleApplication();
-        openApplicationModal();
+        
+        isLoggedIn?openApplicationModal():gotoLogin();
     };
-    
+
 
     //찜하기 모달창
     const openModal=()=>{
+        handleLike();
         setIsModalOpen(true);
     }
     const closeModal=()=>{
@@ -103,6 +110,7 @@ const Detail=()=>{
 
     //지원하기 모달창
     const openApplicationModal=()=>{
+        handleApplication();
         setIsApplicationModalOpen(true);
     }
     const closeApplicationModal=()=>{

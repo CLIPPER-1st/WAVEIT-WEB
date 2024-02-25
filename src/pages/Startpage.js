@@ -7,7 +7,9 @@ import '../css/Start.css';
 //import FindID from "../components/FindID";
 import { Link } from "react-router-dom";
 import NavBar from "../components/NavBar";
-
+import Main1 from '../static/Images/main1.PNG';
+import Main2 from '../static/Images/main2.PNG';
+import Main3 from '../static/Images/main3.PNG';
 const Wrapper=styled.div`
   display:grid;
   grid-template-rows:1fr 17fr;
@@ -64,8 +66,8 @@ const NavbarItem=styled.a`
 `
 const Image=styled.img`
   margin: 60px;
-  width: ${props=>props.width || '160px'}; 
-  min-height: 100px;
+  width:30vw;
+  min-height: 15vw;
 `
 
 const Description = styled.div`
@@ -121,14 +123,15 @@ function Startpage() {
       <br/>
       <Title color={"#2519B2"} fontsize={"25px"}>wave-it</Title>
       <Link to="/pages/matching" style={{ textDecoration: 'none' }}><Btn as="div">만나러가기</Btn></Link>
-      <Image src={chevronsDown} alt="scroll-arrow" onClick={onArrowClick}/>
-    </Container>s
+      <Image src={chevronsDown} alt="scroll-arrow" onClick={onArrowClick}
+      style={{width: "10vw", minHeight: "7vw"}}/>
+    </Container>
     <DesciptBox>
       <Description>
         <span>나에게 맞는 프로젝트</span><br />
         <span>원하는 조건으로 필터링하여 나에게 맞는 프로젝트만</span>
       </Description>
-      <Image src={Dummy1} width="350px"/>
+      <Image src={Main1} width="350px"/>
     </DesciptBox>
     <DesciptBox>
       <Description  ref={content1Ref}>
@@ -137,14 +140,14 @@ function Startpage() {
               그리고 어떤 분위기를 추구하는지
               매칭 등록을 통하여 원하는 팀원과 프로젝트를 시작할 수 있습니다.</span>
       </Description>
-      <Image src={Dummy1} width="350px" />
+      <Image src={Main2} width="350px" />
     </DesciptBox>
     <DesciptBox>
       <Description>
-        <span>매칭 점수</span><br />
-        <span>과거 팀원의 후기와 인증된 경력으로 팀원의 실력을 확인할 수 있습니다.</span>
+        <span>포트폴리오로 확인하는 경력</span><br />
+        <span>과거 팀원의 경력 및 기술 스택 파악이 가능한 포트폴리오를 통해 원하는 팀원을 컨택할 수 있습니다.</span>
       </Description>
-      <Image src={Dummy1} width="350px" />
+      <Image src={Main3} width="350px" />
     </DesciptBox>
     </Wrapper>
   );

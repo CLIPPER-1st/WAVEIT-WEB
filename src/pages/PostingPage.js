@@ -88,7 +88,6 @@ const HomeStyles = styled.div`
 `;
 
 const Btn = styled.button`
-  margin-top : 0.5vw;
   font-weight: bold;
   border-radius: 50px;
   background-color:#94B6EF;
@@ -116,7 +115,7 @@ export default function PostingPage(){
     });
     };
 
-    const [isLoggedIn, setIsLoggedIn]=useState(false);
+    const [isLoggedIn, setIsLoggedIn]=useState(true);
     const [isModalOpen, setIsModalOpen]=useState(false);
 
     const openDialog = () => {
