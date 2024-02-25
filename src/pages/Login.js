@@ -243,7 +243,7 @@ export default function Login() {
           <Link to ={'/pages/FindIdpw'}>
             <ButtonId>아이디 비밀번호 찾기</ButtonId></Link>
           <ButtonDivider>|</ButtonDivider>
-          <Link to = {'/pages/Sign'}>
+          <Link to = {'/pages/SignNext'}>
             <ButtonSign>회원가입</ButtonSign>
           </Link>
         </div>

@@ -5,7 +5,7 @@ import MatchBox from '../components/MatchBox';
 import '../css/Matching.css';
 import SettingFilter from '../components/SettingFilter';
 import List from '../json/MatchList.json';
-import API from '../api/axios';
+import axios from '../api/axios';
 import MypageNavbar from '../components/MypageNavbar';
 import NavBar from '../components/NavBar';
 const Wrapper=styled.div`
@@ -93,29 +93,35 @@ const RecommendBtn=styled.div`
     padding:1vw 2vw;
     text-align:center;
     font-size:2vw;
-` 
+`
+/*매칭 모집 전체 페이지*/ 
+
 const Matching=()=>{
     /***********************************************/
     const [info, setInfo] = useState([]);
+
     /*로그인 되어있는 상태에서만 네브바에 '마이페이지' 나타나도록*/
     const [isLoggedIn, setIsLoggedIn]=useState(false);
+
     useEffect(()=>{
         fetchMatchInfoData();
     },[]);
+
     //모달창 열고닫기
     const [isModalOpen, setIsModalOpen]=useState(false);
-    //필터 적용을 위한 state(프로젝트 분야)
+
+    //필터 적용을 위한 state(프로젝트 분야 & 모집 분야)
      const [selectedField, setSelectedField] = useState('');
      const [selectedRecruit, setSelectedRecruit] = useState('');
-     //전체보기 사용시
+     
+    //전체보기 사용시
      const [showAll, setShowAll] = useState(true);
 
     //matchInfo 가져오기
     const fetchMatchInfoData = async() =>{
         const access_token = localStorage.getItem('access');
-
         try{
-            const response = await API.get(`/post/projects/`,{
+            const response = await axios.get(`/api/post/`,{
                 headers:{
                     Authorization: `Bearer ${access_token}`,
                 },
@@ -138,19 +144,19 @@ const Matching=()=>{
      }
 
      //필터링된 리스트
+     //API 연동시 List -> info로 교체
      const filteredList=showAll? List: List.filter(item=>{
         const fieldIncludes=item.field.includes(selectedField);
         const recruitIncludes=item.recruit.toLowerCase().includes(selectedRecruit.toLowerCase());
         return fieldIncludes&&recruitIncludes;
     })
 
-    
-
     const handleClickViewAll=()=>{
         setShowAll(true);
         setSelectedField('');
         setSelectedRecruit('');
     }
+
     return (
         <Wrapper>
             <NavBar 
@@ -181,7 +187,8 @@ const Matching=()=>{
                 setShowAll={setShowAll}
             />
             <MatchContainer>
-               {                     
+               {                   
+               /*api 연동시 map({item}=><MatchBox title={item.title} ... >)*/  
                     filteredList.length > 0 ? 
                     filteredList.map(({title, field, recruit, id}) => (
                        //Detail 페이지로 이동

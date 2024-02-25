@@ -157,13 +157,17 @@ export default function Signnext() {
 
     /************************************************************/
     //존재하는 아이디인지 확인
-    //endpoint: api/user/{member_id}
+    //endpoint: api/user/checkduplicate
     const checkIdDuplicate = async(id) =>{
       //서버 요청으로 아이디 중복 검사 로직을 요청
      
         try{
-          const response=await axios.get(`api/user/${id}`);
-          if(response.data.verified){
+          const response=await axios.post('/api/user/checkduplicate', {loginId: id});
+          /*추후 수정 필요*/
+          if(id===""){
+            alert("아이디 입력란이 비어있습니다.");
+          }
+          else if(response.data.isDuplicate === false){
             alert("사용 가능한 아이디입니다. 비밀번호를 설정해주세요.");
           }else{
             alert("해당 아이디는 이미 존재합니다. 아이디를 변경해주세요.");
@@ -177,9 +181,9 @@ export default function Signnext() {
     }
 
 
-    const checkPasswordSame =() =>{
+    const checkPasswordSame =({pwcheck}) =>{
       if(pw==="" || pwcheck===""){
-        alert("입력란이 비어있습니다.");
+        alert("비밀번호 입력란이 비어있습니다.");
       }
       else if(pw===pwcheck){
         alert("비밀번호 일치 확인 완료되었습니다. 다음을 눌러주세요.");
@@ -206,7 +210,7 @@ export default function Signnext() {
               onChange={handleIDChange}
             />
           </InputWrap>
-          <ConfirmButton bgcolor={"#94B6EF"} onClick={checkIdDuplicate}>확인</ConfirmButton>
+          <ConfirmButton bgcolor={"#94B6EF"} onClick={()=>checkIdDuplicate(id)}>확인</ConfirmButton>
           </div>
           <InputTitle><br/>비밀번호</InputTitle>
 
@@ -218,7 +222,7 @@ export default function Signnext() {
               onChange={handlePwChange}
             />
           </InputWrap>
-          <ConfirmButton bgcolor={"#D9D9D9"} onClick={()=>checkPasswordSame()}>확인</ConfirmButton>
+          <ConfirmButton bgcolor={"#D9D9D9"} onClick={()=>checkPasswordSame(pwcheck)}>확인</ConfirmButton>
           </div>
           <InputTitle><br/>비밀번호 확인</InputTitle>
           
