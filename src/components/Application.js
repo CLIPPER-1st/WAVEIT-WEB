@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import styled from 'styled-components'
 import ApplySuccess from './ApplySuccess';
 import ApplyBtn from '../static/Images/ApplyBtn.png';
+import {useNavigate} from 'react-router-dom';
+import axios from 'axios';
 const Modal = styled.div`
     display:grid;
     grid-template-rows:3fr 17fr;
@@ -65,9 +67,12 @@ const Text=styled.textarea`
     border-style: none;
 
 `
-const Application=({title ,isOpen, closeModal})=>{
+const Application=({postId, userId, title ,isOpen, closeModal})=>{
+    const navigate=useNavigate();
     const [modalSize, setModalSize] = useState({ width: '37vw', height: '30vh' });
     const [isEndModalOpen, setIsEndModalOpen]=useState(false);
+    const [portfolioLink, setPortfolioLink] = useState('');
+    
     const openEndModal=()=>{
         setIsEndModalOpen(true);
     }
@@ -91,8 +96,46 @@ const Application=({title ,isOpen, closeModal})=>{
     const handleChange = (event) => {
         setText(event.target.value);
     };
+    /****************지원서 제출 로직 구현***********************/
+    const submitApplication = async() =>{
 
-    useEffect(() => {
+        const access_token=localStorage.getItem('access');
+        if(!access_token){
+            alert('로그인이 필요한 서비스입니다.');
+            navigate('/pages/Login');
+        }
+
+        try{
+            const response=await axios.post(`/api/post/${postId}/${userId}/apply`,{
+                motivation:text,
+                portfoliolink:""/*...*/
+            },{
+                headers:{
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${access_token}`
+                }
+            });
+
+            if(response.data.check){
+                /*추후 모달창으로 변경 필요 -> handleClick1() 함수 여기에 넣기*/
+                alert("지원 완료되었습니다.");/*추후 openEndModal()로 변경 필요*/
+            }else{
+                alert("서버 응답 실패: 지원서 제출에 실패했습니다.");
+            }
+        }catch(error){
+            console.error("지원서 제출 API 오류: ", error);
+            alert("API 오류: 지원서 제출에 실패했습니다.")
+        }
+    }
+
+    const handleRegisterclick = async() =>{
+        await submitApplication();
+        //성공하면 모달 열기
+    }
+     /************************************************************/
+    
+    
+     useEffect(() => {
         window.addEventListener('resize', updateModalSize);
         updateModalSize(); // 컴포넌트 마운트 시 초기 크기 설정
 
