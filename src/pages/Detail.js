@@ -80,7 +80,7 @@ const Detail=()=>{
 
     /*API 연동시 fetchMatchDetailInfo함수에서 세팅한 detail state로 사용*/
     const item=List.find(item=>String(item.id)===id);
-    const [isLoggedIn, setIsLoggedIn]=useState(false);
+    const [isLoggedIn, setIsLoggedIn]=useState(true);
     const [isModalOpen, setIsModalOpen]=useState(false);
     const [isApplicationModalOpen, setIsApplicationModalOpen]=useState(false);
     
@@ -89,15 +89,16 @@ const Detail=()=>{
 
     const [detail, setDetail] = useState(null);
 
+    const userId=localStorage.getItem("userId");
     /*isLoggedIn이 false인 경우*/
     const gotoLogin =() =>{
         alert("로그인이 필요한 서비스입니다.");
         navigate("/pages/Login");
     }
 
-    /*찜하기 누르면 찜목록(likes)에 추가*/
+    /*찜하기 누르면 찜목록(likes)에 추가 -> API 연동시 detail*/
     const handleLike = () => {
-        setLikeState([...likes, item]);
+        setLikeState([...likes, detail]);
     };
 
     const handleApplication = () => {
@@ -147,7 +148,7 @@ const Detail=()=>{
         }
 
         try{
-            const resposne=await axios.patch(`/api/post/${id}/like`,{},{
+            const response=await axios.patch(`/api/post/${id}/like`,{},{
                 headers:{
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${access_token}`
@@ -159,11 +160,11 @@ const Detail=()=>{
                 alert("찜하기에 성공했니다.");
                 handleLike();
             }else{
-                alert("응답 실패: 찜하기 실패했습니다.");
-                console.log("찜하기 실패: ",response.data);
+                alert("서버 응답 실패: 찜하기에 실패했습니다.");
             }
-        }catch{
-            console.log("찜하기 API 오류: ", response.data);
+        }catch(error){
+            console.error("찜하기 API 오류: ", error);
+            alert("API 오류: 찜하기에 실패했습니다.")
         }
     }
     /**********************************************************************/
@@ -178,7 +179,7 @@ const Detail=()=>{
             });
             setDetail(response.data);
         }catch(e){
-            console.log('API 오류: ',e);
+            console.log('API 오류: ', e);
         }
     };
     /*id값 변경될 때마다 요청이 이루어지도록 - 의존성 배열에 id 추가*/
@@ -211,7 +212,7 @@ const Detail=()=>{
                 </BtnBox>
             </GrayBox>
             <WishList isOpen={isModalOpen} closeModal={closeModal}/>
-            <Application title={item.title} isOpen={isApplicationModalOpen} closeModal={closeApplicationModal} />
+            <Application postId={id} userId={userId} title={item.title} isOpen={isApplicationModalOpen} closeModal={closeApplicationModal} />
         </Container>
     )
 }

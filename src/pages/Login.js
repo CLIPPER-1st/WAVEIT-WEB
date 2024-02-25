@@ -170,7 +170,10 @@ export default function Login() {
       API.post('/accounts/token/', userData)
       .then((response)=>{
         if(response.status === 200 || response.status === 201){
+          /*userId 저장*/
+          localStorage.setItem("userId", response.data.id);
           console.log("Login Success!: ", response.data);
+
         }
       })
     }
