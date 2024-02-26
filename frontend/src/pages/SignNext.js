@@ -45,6 +45,7 @@ const InputTitle = styled.div`
 const InputWrap = styled.div`
   display: flex;
   width: 350px;
+
   border-style:none;
   border-bottom: 1.4px solid #D9D9D9; 
   padding: 20px;
@@ -53,6 +54,8 @@ const InputWrap = styled.div`
   &: hover{
     border-bottom: 1.4px solid #737373; 
   }
+
+
 `
 
 const InputField = styled.input`
@@ -224,7 +227,7 @@ export default function Signnext() {
         </div>
         <ContentWrap>
           <InputTitle>아이디</InputTitle>
-          <div style={{display:"flex"}}>
+          <div style={{display:"flex" , alignItems: "center"}}>
           <InputWrap>
             <InputField
               type="text"
@@ -236,7 +239,7 @@ export default function Signnext() {
           </div>
           <InputTitle><br/>비밀번호</InputTitle>
 
-          <div style={{display:"flex", margin:"0px"}}>
+          <div style={{display:"flex", margin:"0px", alignItems: "center"}}>
           <InputWrap>
             <InputField
               type="password"
