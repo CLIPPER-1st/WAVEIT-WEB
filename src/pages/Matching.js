@@ -101,7 +101,8 @@ const Matching=()=>{
     const [info, setInfo] = useState([]);
 
     /*로그인 되어있는 상태에서만 네브바에 '마이페이지' 나타나도록*/
-    const [isLoggedIn, setIsLoggedIn]=useState(false);
+    const storedUserId = localStorage.getItem("userId");
+    const [isLoggedIn, setIsLoggedIn]=useState(storedUserId);
 
     useEffect(()=>{
         fetchMatchInfoData();

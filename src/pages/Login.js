@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link , useNavigate} from "react-router-dom";
 import styled from 'styled-components';
 import Kakao from '../static/Images/kakao.png';
-import API from '../api/axios';
+import API from '../api/axios.js';
+import axios from 'axios';
 
 const Page = styled.div`
 margin-top:100px;
@@ -167,13 +168,21 @@ export default function Login() {
       /*********************************************************************/
 
       //서버로 로그인 요청 request 보내기(id, pw 전송)
-      API.post('/accounts/token/', userData)
+      axios.post('/api/user/login', userData)
       .then((response)=>{
-        if(response.status === 200 || response.status === 201){
+        if(response.status === 200 || response.status === 201 || response.check===true){
           /*userId 저장*/
           localStorage.setItem("userId", response.data.id);
           console.log("Login Success!: ", response.data);
-
+          alert("로그인 성공!");
+          navigate("/");
+        }
+      })
+      .catch((error)=>{
+        if(error.response && error.response.status ===401){
+          alert("잘못된 아이디 혹은 비밀번호를 입력하셨습니다.\n 다시 시도해주세요.");
+        }else{
+          console.error("로그인: Error 발생,", error);
         }
       })
     }
@@ -251,7 +260,7 @@ export default function Login() {
           </Link>
         </div>
         <div>
-          <BottomButton type="submit">로그인</BottomButton>
+          <BottomButton type="submit" onClick={handleLogin}>로그인</BottomButton>
           <div>
           <LoginText>
             소셜 계정으로 로그인

@@ -87,7 +87,8 @@ const DesciptBox=styled.div`
 `
 
 function Startpage() {
-  const [isLoggedIn, setIsLoggedIn]=useState(true);
+  const storedUserId = localStorage.getItem("userId");
+  const [isLoggedIn, setIsLoggedIn]=useState(storedUserId);
   const content1Ref=useRef(null);
   
   const onArrowClick=()=>{
