@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from 'styled-components';
 import axios from 'axios';
 
@@ -106,6 +106,7 @@ const ConfirmButton =styled.button`
   `
 
 export default function Signnext() {
+    const navigate=  useNavigate();
     const [id, setId] = useState('');
     const [pw, setPw] = useState('');
     const [pwcheck, setPwCheck] = useState('');
@@ -164,32 +165,53 @@ export default function Signnext() {
         try{
           const response=await axios.post('/api/user/checkduplicate', {loginId: id});
           /*추후 수정 필요*/
-          if(id===""){
-            alert("아이디 입력란이 비어있습니다.");
+          if(response.data === "사용 가능한 아이디입니다." && id!=""){
+            setIdValid(true);
+            alert(response.data);
           }
-          else if(response.data === "사용 가능한 아이디입니다."){
-            alert("사용 가능한 아이디입니다.");
-          }else{
-            alert("중복된 아이디입니다. 아이디를 변경해주세요.");
+          else{
+            alert("사용할 수 없는 아이디입니다.");
           }
         }catch(error){
           console.log("아이디 중복 검사 오류: ",error);
+          /**중복된 아이디 치니까 왜 409 Error가 나지?
+           * 이따 다시 확인 필요
+           */
+          alert("사용할 수 없는 아이디입니다.");
         }
-        
-      
-     
     }
 
 
-    const checkPasswordSame =({pwcheck}) =>{
+    const checkPasswordSame =(pwcheck) =>{
       if(pw==="" || pwcheck===""){
         alert("비밀번호 입력란이 비어있습니다.");
       }
       else if(pw===pwcheck){
         alert("비밀번호 일치 확인 완료되었습니다. 다음을 눌러주세요.");
+        setPwValid(true);
       }else{
         alert("비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
-        setPwCheck("");
+        setPw("");
+      }
+    }
+
+    const BottomBtn =() =>{
+      if(id!="" && pw!="" && pwcheck!=""){
+        if(!idValid && !pwValid){
+          alert("아이디 중복 및 비밀번호 일치 확인을 해주세요.");
+        }
+        else if(!idValid){
+          alert("아이디 중복 확인을 해주세요.");
+        }
+        if(!pwValid){
+          alert("비밀번호 일치 확인을 해주세요.");
+        }
+        if(pwValid && idValid){
+          navigate("/pages/SignFinal",{state:{id,pw}});
+        }
+       
+      } else{
+        alert("비어있는 입력란이 있습니다.");
       }
     }
     /************************************************************/
@@ -228,7 +250,7 @@ export default function Signnext() {
           
           <InputWrap>
             <InputField
-              type="pwcheck"
+              type="password"
               value={pwcheck}
               onChange={handlePwCheckChange}
             />
@@ -240,8 +262,8 @@ export default function Signnext() {
             )}
           </ErrorMessageWrap>
         </ContentWrap>
-        <Link to ={'/pages/SignFinal'}>
-        <BottomButton>다음</BottomButton></Link>
+        
+        <BottomButton onClick={BottomBtn}>다음</BottomButton>
       </Page>
 
     );

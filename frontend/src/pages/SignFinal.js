@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styled from 'styled-components';
+import axios from 'axios';
 
 
 const Page = styled.div`
@@ -36,7 +37,7 @@ const ContentWrap = styled.div`
 `
 
 const InputTitle = styled.div`
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 1000;
   color: #262626;
   margin-left: 100px;
@@ -47,7 +48,7 @@ display: flex;
 width: 470px;
 border-style:none;
 border-bottom: 1.4px solid #D9D9D9; 
-padding: 20px;
+padding: 5px;
 margin-left: 100px;
 background-color: white;
 &: hover{
@@ -87,28 +88,79 @@ left: 50%;
 transform: translate(-50%, -50%);
 `
 
-export default function Login() {
+export default function Signup() {
+
+    const navigate=useNavigate();
+    const location = useLocation();
+    /*useLocation 훅을 사용해 상태 전달받기*/
+    const {id, pw} = location.state || {};
     const [name, setName] = useState("");
-    const [nickname, setNickname] = useState("");
-    const [age, setAge] = useState("");
+    const [phone, setPhone] = useState("");
+    const [email, setEmail] = useState("");
+    const [age,setAge]=useState(false);
   
     const handleNameChange = (event) => {
       setName(event.target.value);
     };
   
-    const handleNicknameChange = (event) => {
-      setNickname(event.target.value);
+    const handlePhoneChange = (event) => {
+      setPhone(event.target.value);
     };
 
+    const handleEmailChange = (event) =>{
+      setEmail(event.target.value);
+    }
+
     const handleAgeChange = (event) => {
-        setAge(event.target.value);
+        setAge(event.target.checked);
     };
+
+    /*완료 버튼*/
+    const BottomBtn =() =>{
+      if(name!="" && phone!="" && email!="" && age){
+        successSignup({id, pw, name, phone, email});
+       
+      } else{
+        if(!age){
+          alert("만 14세 이상만 가입 가능합니다.");
+        }else{
+          alert("비어있는 입력란이 있습니다.");
+        }
+        
+      }
+    }
+    const successSignup = async ({id, pw, name, phone, email}) => {
+      const signupData = {
+        "loginId": id,
+        "password": pw,
+        "name": name,
+        "phone": phone,
+        "email": email,
+        "introduce": "Hello"
+      };
+    
+      console.log("signupData: ", signupData);
+      
+      try {
+        const response = await axios.post('/api/user/signup', signupData);
+        if(response.data === "redirect:/login"){
+          alert("회원가입이 완료되었습니다!");
+          navigate("/pages/login");
+        } else {
+          alert("회원가입에 실패했습니다.");
+        }
+      } catch (error) {
+        console.log("회원가입 오류: ", error);
+        alert("API 오류발생: 회원가입에 실패하였습니다.");
+      }
+    }
+    
 
     return (
       <Page>
         <TitleWrap>회원가입</TitleWrap>
         <div style = {{marginLeft : "100px", marginTop : "10px"}}>
-        가입을 위해 이름과 닉네임을 입력해주세요.
+        가입을 위해 이름과 전화번호, 이메일을 입력해주세요.
         </div>
         <ContentWrap>
           <InputTitle>이름</InputTitle>
@@ -120,14 +172,22 @@ export default function Login() {
               onChange={handleNameChange}
             />
           </InputWrap>
-          
-          <InputTitle><br/>닉네임</InputTitle>
+          <InputTitle><br/>전화번호</InputTitle>
           <InputWrap>
             <InputField
               type="text"
-              id="nickname"
-              value={nickname}
-              onChange={handleNicknameChange}
+              id="phone"
+              value={phone}
+              onChange={handlePhoneChange}
+            />
+          </InputWrap><br/>
+          <InputTitle><br/>이메일</InputTitle>
+          <InputWrap>
+            <InputField
+              type="email"
+              id="email"
+              value={email}
+              onChange={handleEmailChange}
             />
           </InputWrap><br/>
 
@@ -140,7 +200,7 @@ export default function Login() {
           
 
         </ContentWrap>
-        <BottomButton>완료</BottomButton>
+        <BottomButton onClick={BottomBtn}>완료</BottomButton>
       </Page>
 
     );
