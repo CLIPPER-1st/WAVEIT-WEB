@@ -147,8 +147,9 @@ const Detail=()=>{
             navigate('/pages/Login');
         }
 
+        let response;
         try{
-            const response=await axios.patch(`/api/post/${id}/like`,{},{
+            response=await axios.patch(`/api/post/${id}/like`,{},{
                 headers:{
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${access_token}`
@@ -160,7 +161,8 @@ const Detail=()=>{
                 alert("찜하기에 성공했니다.");
                 handleLike();
             }else{
-                alert("서버 응답 실패: 찜하기에 실패했습니다.");
+                alert("응답 실패: 찜하기 실패했습니다.");
+                console.log("찜하기 실패: ", response.data);
             }
         }catch(error){
             console.error("찜하기 API 오류: ", error);

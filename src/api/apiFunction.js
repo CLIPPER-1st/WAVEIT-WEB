@@ -23,3 +23,12 @@ export const fetchPortfolio = async () => {
     }
   };
 
+// 포트폴리오 수정하는 함수
+export const editPortfolio = async (portfolioData) => {
+  try {
+    const response = await axios.post("/api/edit", portfolioData);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};

@@ -3,7 +3,6 @@ import { atom } from "recoil";
 // 내가 모집중인 프로젝트
 export const RecruitState = atom({
     key:"RecruitState",
-    /*atom에 어떤 변화가 있으면, atom을 구독하는 컴포넌트가 재렌더링*/
     default: [
         { 
             "id":1,
@@ -172,6 +171,7 @@ export const PortfolioState = atom({
         }
     ]
 });
+
 
 // 전체 모집 중인 프로젝트 
 export const MatchDataState = atom({

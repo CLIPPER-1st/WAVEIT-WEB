@@ -43,16 +43,16 @@ const InputTitle = styled.div`
 `
 
 const InputWrap = styled.div`
-display: flex;
-width: 470px;
-border-style:none;
-border-bottom: 1.4px solid #D9D9D9; 
-padding: 20px;
-margin-left: 100px;
-background-color: white;
-&: hover{
-  border-bottom: 1.4px solid #737373; 
-}
+  display: flex;
+  width: 470px;
+  border-style:none;
+  border-bottom: 1.4px solid #D9D9D9; 
+  padding: 20px;
+  margin-left: 100px;
+  background-color: white;
+  &: hover{
+    border-bottom: 1.4px solid #737373; 
+  }
 `
 
 const InputField = styled.input`

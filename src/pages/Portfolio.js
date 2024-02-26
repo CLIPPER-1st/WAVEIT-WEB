@@ -97,6 +97,8 @@ export default function Portfolio() {
         fetchPortfolioData();
       }, [setPortfolioData]); // 의존성 배열에 setPortfolioData 추가
 
+
+
       return(
             <div className="my-page">
             <Wrapper>

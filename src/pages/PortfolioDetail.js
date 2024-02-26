@@ -88,6 +88,24 @@ const PortfolioDetail = () => {
         let updatedPortfolioData = [...portfolioData];
         updatedPortfolioData[itemIndex] = item;
         setPortfolioData(updatedPortfolioData);
+    
+        fetch('/api/post', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(item), 
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('네트워크 응답이 정상적이지 않습니다.');
+            }
+            // Handle success
+        })
+        .catch(error => {
+            console.error('fetch 작업에 문제가 있습니다:', error);
+            // Handle error
+        });
     }
 
     const handleChange = (e) => {
@@ -95,6 +113,7 @@ const PortfolioDetail = () => {
         setItem(prevItem => ({ ...prevItem, [name]: value }));
     }
 
+    
     return (
         <Container>
             <NavBar 
