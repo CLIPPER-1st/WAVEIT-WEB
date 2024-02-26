@@ -20,6 +20,7 @@ import WritePortfolio from "./pages/WritePortfolio";
 import WishListPage from "./pages/WishListPage";
 import ApplicationPage from "./pages/ApplicationPage";
 
+
 const App=()=>{
   return(
     <Routes>

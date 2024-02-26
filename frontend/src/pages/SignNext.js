@@ -167,10 +167,10 @@ export default function Signnext() {
           if(id===""){
             alert("아이디 입력란이 비어있습니다.");
           }
-          else if(response.data.isDuplicate === false){
-            alert("사용 가능한 아이디입니다. 비밀번호를 설정해주세요.");
+          else if(response.data === "사용 가능한 아이디입니다."){
+            alert("사용 가능한 아이디입니다.");
           }else{
-            alert("해당 아이디는 이미 존재합니다. 아이디를 변경해주세요.");
+            alert("중복된 아이디입니다. 아이디를 변경해주세요.");
           }
         }catch(error){
           console.log("아이디 중복 검사 오류: ",error);
