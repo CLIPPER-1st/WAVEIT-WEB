@@ -132,9 +132,9 @@ const Matching=()=>{
         }
     };
     /***********************************************/
-     const handleApplyFilter=(field, recruit)=>{
-        setSelectedField(field);
-        setSelectedRecruit(recruit);
+     const handleApplyFilter=(category, part)=>{
+        setSelectedField(category);
+        setSelectedRecruit(part);
      }
      const modalOpen = () =>{
          setIsModalOpen(true);
@@ -146,8 +146,8 @@ const Matching=()=>{
      //필터링된 리스트
      //API 연동시 List -> info로 교체
      const filteredList=showAll? List: List.filter(item=>{
-        const fieldIncludes=item.field.includes(selectedField);
-        const recruitIncludes=item.recruit.toLowerCase().includes(selectedRecruit.toLowerCase());
+        const fieldIncludes=item.category.includes(selectedField);
+        const recruitIncludes=item.part.toLowerCase().includes(selectedRecruit.toLowerCase());
         return fieldIncludes&&recruitIncludes;
     })
 
@@ -190,10 +190,10 @@ const Matching=()=>{
                {                   
                /*api 연동시 map({item}=><MatchBox title={item.title} ... >)*/  
                     filteredList.length > 0 ? 
-                    filteredList.map(({title, field, recruit, id}) => (
+                    filteredList.map(({title, category, part, id}) => (
                        //Detail 페이지로 이동
                        <Link to={`/pages/detail/${id}`} style={{textDecoration:'none', color:'black'}}>
-                        <MatchBox key={title} title={title} field={field} recruit={recruit}/>
+                        <MatchBox key={title} title={title} category={category} part={part}/>
                         </Link>
                     )) : 
                     <NoMatch>

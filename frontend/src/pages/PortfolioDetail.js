@@ -113,7 +113,7 @@ const PortfolioDetail = () => {
                     <Row><Label>대학 및 전공 : </Label>    
                         <Input type="text" name="universityAndMajor" value={item.universityAndMajor} onChange={handleChange} /></Row>
                     <Row><Label>연락처 : </Label>
-                        <Input type="text" name="contact" value={item.contact} onChange={handleChange} /></Row>
+                        <Input type="text" name="cnt" value={item.cnt} onChange={handleChange} /></Row>
                     <Label>사용가능언어 : </Label>    
                         {['Java', 'Python', 'C', 'JS'].map((language) => (
                             <div key={language} style={{ marginRight: '0.5rem', display: 'flex'}}>

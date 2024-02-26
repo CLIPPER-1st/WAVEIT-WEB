@@ -166,7 +166,6 @@ export default function WritePortfolio(){
         ]}
       />
         
-            
             <Title>포트폴리오 작성</Title>
             <Page as="form">
                 <Row>
@@ -198,7 +197,7 @@ export default function WritePortfolio(){
                     <Label>연락처 :</Label>
                     <InputField
                      type="text" 
-                     name="contact" 
+                     name="cnt" 
                      value={state.contact} 
                      onChange={handleChange}
                      style={{width : '500px'}}

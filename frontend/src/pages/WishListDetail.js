@@ -86,13 +86,13 @@ const WishListDetail=()=>{
             <Title>{item.title}</Title>
             <GrayBox>
                 <div style={{lineHeight:"4vw",  fontSize:"1.5vw"}}><b>프로젝트 분야 </b> 
-                    <FieldBtn>{item.field}</FieldBtn> 
+                    <FieldBtn>{item.category}</FieldBtn> 
                 </div>
                 
-                <div style={{lineHeight:"4vw", fontSize:"1.5vw"}}><b>모집 파트 </b> {item.recruit}</div>
+                <div style={{lineHeight:"4vw", fontSize:"1.5vw"}}><b>모집 파트 </b> {item.part}</div>
                 <div style={{lineHeight:"4vw",  fontSize:"1.5vw"}}><b>모집자 프로필 </b> {item.profile}</div>
-                <div style={{lineHeight:"4vw",  fontSize:"1.5vw"}}><b>연락 보내기  </b>{item.contact}</div>
-                <div style={{lineHeight:"3vw",  fontSize:"1.5vw"}}><b>프로젝트 설명글 </b>{item.content}</div>
+                <div style={{lineHeight:"4vw",  fontSize:"1.5vw"}}><b>연락 보내기  </b>{item.cnt}</div>
+                <div style={{lineHeight:"3vw",  fontSize:"1.5vw"}}><b>프로젝트 설명글 </b>{item.description}</div>
                 <br/><BtnBox>
                     
                     <div>지원 동기 글 내용</div>

@@ -35,18 +35,18 @@ const FieldBtn=styled.button`
 
 
 
-const MatchBox=({title,field, recruit})=>{
+const MatchBox=({title,category, part})=>{
     return (
         <Matchbox>
             <MatchContent>{title}</MatchContent>
             <hr style={{fontSize:"3px"}}/>
             <MatchContent>
                 프로젝트 분야: 
-                {field.map((f, index) => (
+                {category.map((f, index) => (
                     <FieldBtn key={index}>{f}</FieldBtn> // 고유 key 추가
                 ))}
             </MatchContent>
-            <MatchContent>모집 파트: {recruit}</MatchContent>
+            <MatchContent>모집 파트: {part}</MatchContent>
         </Matchbox>
         
     )

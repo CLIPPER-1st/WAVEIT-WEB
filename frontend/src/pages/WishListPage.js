@@ -115,10 +115,10 @@ export default function WishListPage(){
                     <MatchContainer>
                     {                     
                         LikeData.length > 0 ? 
-                        LikeData.map(({title, field, recruit, id}) => (
+                        LikeData.map(({title, category, part, id}) => (
                        //WishListDetail 페이지로 이동
                        <Link to={`/pages/wishlistdetail/${id}`} style={{textDecoration:'none', color:'black'}}>
-                        <MatchBox key={title} title={title} field={field} recruit={recruit}/>
+                        <MatchBox key={title} title={title} category={category} part={part}/>
                         </Link>
                     )) : 
                     <NoMatch>

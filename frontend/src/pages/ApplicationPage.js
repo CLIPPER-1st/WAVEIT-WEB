@@ -108,10 +108,10 @@ export default function ApplicationPage(){
                     <MatchContainer>
                     {                     
                         ApplicationData.length > 0 ? 
-                        ApplicationData.map(({title, field, recruit, id}) => (
+                        ApplicationData.map(({title, category, part, id}) => (
                        //ApplicationDetail 페이지로 이동
                        <Link to={`/pages/applicationdetail/${id}`} style={{textDecoration:'none', color:'black'}}>
-                        <MatchBox key={title} title={title} field={field} recruit={recruit}/>
+                        <MatchBox key={title} title={title} category={category} part={part}/>
                         </Link>
                     )) : 
                     <NoMatch>

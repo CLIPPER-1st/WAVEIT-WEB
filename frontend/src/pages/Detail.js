@@ -198,14 +198,14 @@ const Detail=()=>{
             <Title>{item.title}</Title>
             <GrayBox>
                 <div style={{lineHeight:"4vw",  fontSize:"1.5vw"}}><b>프로젝트 분야 </b> 
-                {item.field.map((f, index) => (
+                {item.category.map((f, index) => (
                     <FieldBtn key={index}>{f}</FieldBtn> // 고유 key 추가
                 ))}
                 </div>
-                <div style={{lineHeight:"4vw", fontSize:"1.5vw"}}><b>모집 파트 </b> {item.recruit}</div>
+                <div style={{lineHeight:"4vw", fontSize:"1.5vw"}}><b>모집 파트 </b> {item.part}</div>
                 <div style={{lineHeight:"4vw",  fontSize:"1.5vw"}}><b>모집자 프로필 </b> {item.profile}</div>
-                <div style={{lineHeight:"4vw",  fontSize:"1.5vw"}}><b>연락 보내기  </b>{item.contact}</div>
-                <div style={{lineHeight:"3vw",  fontSize:"1.5vw"}}><b>프로젝트 설명글 </b>{item.content}</div>
+                <div style={{lineHeight:"4vw",  fontSize:"1.5vw"}}><b>연락 보내기  </b>{item.cnt}</div>
+                <div style={{lineHeight:"3vw",  fontSize:"1.5vw"}}><b>프로젝트 설명글 </b>{item.description}</div>
                 <BtnBox>
                     <Btn onClick={handleClick1}>찜하기</Btn>
                     <Btn onClick={handleClick2}>지원하기</Btn>
