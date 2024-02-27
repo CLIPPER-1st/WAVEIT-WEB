@@ -12,8 +12,8 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { PortfolioState } from "../recoil/recoil";
 
 // import axios
-import axios from "../api/axios";
-import { fetchPortfolio } from "../api/apiFunction";
+import axios from 'axios';
+import API from '../api/axios.js';
 
 const Wrapper=styled.div`
   background-color:white;
@@ -60,24 +60,6 @@ const NoMatch=styled.div`
     align-items:center;
 `
 
-const HomeStyles = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
-const Btn = styled.button`
-  margin-top : 80px;
-  font-weight: bold;
-  border-radius: 50px;
-  background-color:#94B6EF;
-  width: 250px;
-  height: 50px;
-  color: white;
-  border : none;
-`
-
 export default function Portfolio() {
 
     // useRecoilState 훅을 사용하여 PortfolioState를 가져오고 업데이트
@@ -87,8 +69,11 @@ export default function Portfolio() {
     useEffect(() => {
         const fetchPortfolioData = async () => {
           try {
-            const response = await fetchPortfolio(); // 사용자 데이터를 가져오는 API 경로
-            setPortfolioData(response); // 가져온 데이터를 Recoil 상태에 설정
+            // 사용자 데이터를 가져오는 API
+            const response = await axios.get('/api/portfolio/user/{userId}');
+            const fetchedPortfolioData = response.data;
+            // 가져온 데이터로 Recoil 상태를 업데이트
+            setPortfolioData(fetchedPortfolioData);
           } catch (error) {
             console.error("Failed to fetch user data:", error);
           }
@@ -96,6 +81,26 @@ export default function Portfolio() {
     
         fetchPortfolioData();
       }, [setPortfolioData]); // 의존성 배열에 setPortfolioData 추가
+
+    // 서버에서 userId에 해당하는 포트폴리오 링크 가져오기
+    const getPortfolioLink = async (userId) => {
+      try {
+        const response = await axios.get(`api/portfolio/user/${userId}`);
+
+        // 서버 응답에서 포트폴리오 링크 추출
+        const portfolioLink = response.data.link; 
+        console.log('포트폴리오 링크:', portfolioLink);
+
+        // Recoil 상태에 저장
+        setPortfolioData({ ...portfolioData, link: portfolioLink });
+      } catch (error) {
+        console.error('포트폴리오 링크 가져오기 오류:', error.response ? error.response.data : error);
+      }
+    };
+
+    // localStorage에서 내 userId 가져온 후 getPortfolioLink 실행
+    const userId = localStorage.getItem('userId');
+    getPortfolioLink(userId);
 
       return(
             <div className="my-page">
@@ -127,16 +132,8 @@ export default function Portfolio() {
                         </NoMatch>
                         }
                         </MatchContainer>
-                    </ContentItem>
-                    
-                </Content>
-
-                <HomeStyles>
-                
-                
-                </HomeStyles>
-
-                
+                    </ContentItem>             
+                </Content>               
             </Wrapper>
             </div>
         );

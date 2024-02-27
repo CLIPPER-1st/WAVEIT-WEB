@@ -110,8 +110,6 @@ const ApplyBtn = styled.button`
     box-shadow: 0 2px 4px rgba(0,0,0,0.3);
 `
 
-
-
 export default function WritePortfolio(){
     const [state, setPortfolioState] = useRecoilState(PortfolioState);
 
@@ -121,9 +119,9 @@ export default function WritePortfolio(){
         setPortfolioState({ ...state, [e.target.name]: e.target.value });
     };
 
-    /*********************************************************************/
-    /*임시*/
-    const userId=1;
+     // localStorage에서 userId 가져오기
+    const userId = localStorage.getItem('userId'); 
+   
     const portfolioLink='/dummy';
     /*마이페이지 - 내 포트폴리오 저장 로직 수행*/
     const savePortfolioLink=async(userId, portfolioLink)=>{
@@ -139,8 +137,8 @@ export default function WritePortfolio(){
         },
       });
         console.log('Porfolio link 저장: ', response.data);
-        navigate('/pages/mypage');
         alert("포트폴리오 저장에 성공하였습니다.");
+        navigate('/pages/mypage');
 
       } catch (error) {
         console.error('Portfolio link 저장 오류: ', error.response ? error.response.data : error);
@@ -148,8 +146,6 @@ export default function WritePortfolio(){
        
       }
     };
-
-    /*********************************************************************/
 
     return(
         <div className="my-page">
