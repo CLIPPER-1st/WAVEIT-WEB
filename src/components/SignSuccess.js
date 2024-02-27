@@ -8,8 +8,8 @@ const Modal = styled.div`
     width: 37vw;
     height: 30vh;
     position: absolute;
-    top: 40%;
-    left: 30%;
+    top: 25%;
+    left: 7%;
     background-color:white;
     border-radius: 10px;
 `

@@ -35,7 +35,7 @@ const Input=styled.input`
     border-radius: 6px;
     width: 30vw;
     height: 3vw;
-    color: white;
+    color: black;
     padding: 0px 10px;
 `
 const Title=styled.span`
@@ -117,6 +117,7 @@ const Matching=()=>{
     //필터 적용을 위한 state(프로젝트 분야 & 모집 분야)
      const [selectedField, setSelectedField] = useState('');
      const [selectedRecruit, setSelectedRecruit] = useState('');
+     const [search, setSearch]=useState('');
      
     //전체보기 사용시
      const [showAll, setShowAll] = useState(true);
@@ -143,7 +144,7 @@ const Matching=()=>{
         }
       }
       
-
+      
     useEffect(()=>{
         fetchPostData();
     },[]);
@@ -159,14 +160,30 @@ const Matching=()=>{
          setIsModalOpen(false);
      }
 
+     const handleSearchChange=(event)=>{
+        setSearch(event.target.value);
+     }
+
      //필터링된 리스트
      //API 연동시 List -> info로 교체
+     /*
      const filteredList=showAll? info: info.filter(item=>{
         const fieldIncludes=item.category?.toLowerCase().includes(selectedField.toLowerCase());
         const recruitIncludes=item.part?.toLowerCase().includes(selectedRecruit.toLowerCase());
         return fieldIncludes&&recruitIncludes;
     })
+    */
 
+    const filteredList = showAll ? info : info.filter(item => {
+        const fieldIncludes = item.category?.toLowerCase().includes(selectedField.toLowerCase());
+        const recruitIncludes = item.part?.toLowerCase().includes(selectedRecruit.toLowerCase());
+        return fieldIncludes && recruitIncludes;
+    });
+
+    // filteredList에서 검색어에 따라 추가로 필터링
+    const finalList = filteredList.filter(item => {
+        return item.title.toLowerCase().includes(search.toLowerCase());
+    });
    
 
     const handleClickViewAll=()=>{
@@ -175,6 +192,7 @@ const Matching=()=>{
         setSelectedRecruit('');
     }
 
+    
 
 
     return (
@@ -198,7 +216,7 @@ const Matching=()=>{
                     showAll?<div >전체 검색 결과입니다.</div>
                     :<div>"{selectedField}", "{selectedRecruit}" 필터 검색 결과입니다.</div>
                 }
-                <Input type="text" />
+                <Input type="text" onChange={handleSearchChange} value={search}/>
             </SearchBox>
             <SettingFilter 
                 isModalOpen={isModalOpen} 
@@ -207,9 +225,9 @@ const Matching=()=>{
                 setShowAll={setShowAll}
             />
             <MatchContainer>
-               {                   
-                    filteredList.length > 0 ? 
-                    filteredList.map((item) => (
+               {            
+                    finalList.length > 0 ? 
+                    finalList.map((item) => (
                        //Detail 페이지로 이동
                        <Link to={`/pages/detail/${item.postId}`} style={{textDecoration:'none', color:'black'}}>
                         <MatchBox key={item.postId} title={item.title} field={item.category} recruit={item.part}/>

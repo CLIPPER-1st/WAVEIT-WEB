@@ -148,8 +148,8 @@ export default function PostingPage(){
             프로젝트 분야 :</Label>
             <Select name="field" onChange={handleChange}>
                 <option value="">------ 선택하세요 ------</option>
-                <option value="앱 개발">앱 개발</option>
-                <option value="웹 개발">웹 개발</option>
+                <option value="앱 개발">APP</option>
+                <option value="웹 개발">WEB</option>
                 <option value="데이터 분석">데이터 분석</option>
                 <option value="게임 개발">게임 개발</option>
                 <option value="기타">기타</option>
@@ -160,8 +160,8 @@ export default function PostingPage(){
             모집 파트 :</Label>
             <Select name="part" onChange={handleChange}>
                 <option value="">------ 선택하세요 ------</option>
-                <option value="프론트엔드">프론트엔드</option>
-                <option value="백엔드">백엔드</option>
+                <option value="프론트엔드">FRONT</option>
+                <option value="백엔드">BACK</option>
                 <option value="디자이너">디자이너</option>
                 <option value="PM">PM</option>
                 <option value="AI 개발자">AI 개발자</option>

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Logo from '../static/Images/waveit_logo.png';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 //상단 네브바
 const Navbar = styled.div`
   background-color:transparent;
@@ -25,11 +25,26 @@ const MenuItems = styled.div`
   align-items: center;
 `;
 const NavBar = ({isLoggedIn, menuItems}) =>{
+  const navigate=useNavigate();
   /*로그인 여부에 따라 마이페이지 or 로그인하기로 갈리도록*/
-  const Items =[
+  let Items =[
     ...menuItems,
     isLoggedIn? {href: "/pages/mypage", text:"마이페이지"}:{href:"/pages/Login", text:"로그인하기"}
   ]
+
+  const handleLogout =()=>{
+    localStorage.setItem("userId","");  
+    navigate("/");
+
+
+  }
+
+  if(isLoggedIn){
+    Items=[
+      ...Items, {onClick:handleLogout, text:"로그아웃"}
+    ]
+  }
+
 
   return (
     <Navbar>

@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from 'styled-components';
 import axios from 'axios';
-
+import SignSuccess from '../components/SignSuccess';
+import Sign from './Sign';
 
 const Page = styled.div`
 margin-top:100px;
@@ -90,6 +91,10 @@ transform: translate(-50%, -50%);
 
 export default function Signup() {
 
+  //회원가입 완료
+  const [isModalOpen6, setIsModalOpen6]=useState(false);
+
+
     const navigate=useNavigate();
     const location = useLocation();
     /*useLocation 훅을 사용해 상태 전달받기*/
@@ -99,6 +104,14 @@ export default function Signup() {
     const [email, setEmail] = useState("");
     const [age,setAge]=useState(false);
   
+    const openModal6=()=>{
+      setIsModalOpen6(true);
+  }
+
+  const closeModal6=()=>{
+      setIsModalOpen6(false);
+  }
+
     const handleNameChange = (event) => {
       setName(event.target.value);
     };
@@ -119,7 +132,6 @@ export default function Signup() {
     const BottomBtn =() =>{
       if(name!="" && phone!="" && email!="" && age){
         successSignup({id, pw, name, phone, email});
-       
       } else{
         if(!age){
           alert("만 14세 이상만 가입 가능합니다.");
@@ -144,8 +156,12 @@ export default function Signup() {
       try {
         const response = await axios.post('/api/user/signup', signupData);
         if(response.data === "redirect:/login"){
-          alert("회원가입이 완료되었습니다!");
-          navigate("/pages/login");
+          //alert("회원가입이 완료되었습니다!");
+          openModal6();
+          setTimeout(() => {
+            navigate("/pages/login"); // 2초 후 페이지 이동
+          }, 3000);
+    
         } else {
           alert("회원가입에 실패했습니다.");
         }
@@ -201,6 +217,7 @@ export default function Signup() {
 
         </ContentWrap>
         <BottomButton onClick={BottomBtn}>완료</BottomButton>
+        <SignSuccess isOpen={isModalOpen6} closeModal={closeModal6} />
       </Page>
 
     );

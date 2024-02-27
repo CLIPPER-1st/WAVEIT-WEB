@@ -56,7 +56,9 @@ const InputWrap = styled.div`
 `
 
 const InputField = styled.input`
+  //font-size:40px;
   width: 100%;
+  min-height:100%;
   outline: none;
   border: none;
   height: 17px;
@@ -194,26 +196,25 @@ export default function Signnext() {
         setPw("");
       }
     }
-
-    const BottomBtn =() =>{
-      if(id!="" && pw!="" && pwcheck!=""){
-        if(!idValid && !pwValid){
+    const BottomBtn = () => {
+      //빈 입력란 있는지?
+      if (id !== "" && pw !== "" && pwcheck !== "") {
+        // 아이디, 비번 유효성
+        if (!idValid && !pwValid) {
           alert("아이디 중복 및 비밀번호 일치 확인을 해주세요.");
-        }
-        else if(!idValid){
+        } else if (!idValid) {
           alert("아이디 중복 확인을 해주세요.");
-        }
-        if(!pwValid){
+        } else if (!pwValid) {
           alert("비밀번호 일치 확인을 해주세요.");
+        } else {
+          // 검증 통과할때만, 다음 페이지로 이동
+          navigate("/pages/SignFinal", { state: { id, pw } });
         }
-        if(pwValid && idValid){
-          navigate("/pages/SignFinal",{state:{id,pw}});
-        }
-       
-      } else{
+      } else {
         alert("비어있는 입력란이 있습니다.");
       }
-    }
+    };
+    
     /************************************************************/
 
     return (
