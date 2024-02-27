@@ -56,7 +56,9 @@ const NavBar = ({isLoggedIn, menuItems}) =>{
       <MenuItems>
       {
         Items.map((item, index)=>(
-          <NavbarItem key={index} href={item.href}>{item.text}</NavbarItem>
+          item.onClick ?
+            <NavbarItem key={index} onClick={item.onClick} style={{cursor: 'pointer'}}>{item.text}</NavbarItem> :
+            <NavbarItem key={index} href={item.href}>{item.text}</NavbarItem>
         ))
       }
       </MenuItems>

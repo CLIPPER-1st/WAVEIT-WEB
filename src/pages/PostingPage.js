@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import '../css/PostingPage.css';
 import NavBar from '../components/NavBar.js';
@@ -8,6 +8,7 @@ import RegisterPosting from '../components/RegisterPosting.js';
 // import recoil
 import { useRecoilState, useRecoilValue, useSetRecoilState} from "recoil";
 import { MatchDataState, RecruitState } from "../recoil/recoil";
+import { useNavigate } from 'react-router-dom';
 
 const Wrapper=styled.div` 
 height: 100%;
@@ -115,9 +116,11 @@ export default function PostingPage(){
     });
     };
 
-    const storedUserId = localStorage.getItem("userId");
-    const [isLoggedIn, setIsLoggedIn]=useState(storedUserId);
+    
     const [isModalOpen, setIsModalOpen]=useState(false);
+    const navigate = useNavigate();
+    const storedUserId = localStorage.getItem("userId");
+    const [isLoggedIn, setIsLoggedIn] = useState(!!storedUserId);
 
     const openDialog = () => {
         setIsModalOpen(true);
@@ -126,6 +129,17 @@ export default function PostingPage(){
     const closeModal=()=>{
         setIsModalOpen(false);
     }
+
+
+
+    
+
+    useEffect(() => {
+        if (!isLoggedIn) {
+            alert("로그인 후 이용할 수 있는 서비스입니다.");
+            navigate("/pages/login");
+        }
+    }, [isLoggedIn, navigate]); // 의존성 배열에 isLoggedIn과 navigate를 추가
 
     return (
         <div className="posting-page">

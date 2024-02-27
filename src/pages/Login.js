@@ -126,6 +126,7 @@ const BottomButton = styled.button`
   top: 71%;
   left: 50%;
   transform: translate(-50%, -50%);
+  margin-top:80px;
 `
 
 const LoginText = styled.div`
@@ -261,6 +262,7 @@ export default function Login() {
         </div>
         <div>
           <BottomButton type="submit" onClick={handleLogin}>로그인</BottomButton>
+          {/*
           <div>
           <LoginText>
             소셜 계정으로 로그인
@@ -269,6 +271,7 @@ export default function Login() {
             <img src={Kakao} alt="카카오톡 로고" />
           </LoginLogo>
           </div>
+            */}
         </div>
       </Page>
 
