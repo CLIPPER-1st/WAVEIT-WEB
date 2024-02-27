@@ -139,7 +139,8 @@ function Startpage() {
         <span>내가 원하는 팀원과</span><br />
         <span>모집하고자 하는 분야와 인원, 
               그리고 어떤 분위기를 추구하는지
-              매칭 등록을 통하여 원하는 팀원과 프로젝트를 시작할 수 있습니다.</span>
+              매칭 등록을 통하여 원하는 팀원과 프로젝트를 시작할 수 있습니다.
+        </span>
       </Description>
       <Image src={Main2} width="350px" />
     </DesciptBox>

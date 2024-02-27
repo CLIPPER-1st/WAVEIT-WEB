@@ -73,6 +73,7 @@ const SettingFilter=({isModalOpen, modalClose, onApply, setShowAll})=>{
             <XBtn onClick={modalClose}>X</XBtn>
             <span style={{justifySelf: "center"}}>필터 설정</span>
         
+            {/*category*/}
             <div style={{display:"grid", gridTemplateColumns:"1.2fr 1.5fr"}}>
                 <span style={{fontSize: "1.5vw", margin:"0vw 2vw 0vw 0vw"}}>프로젝트 분야</span>
                 <Select options={[
@@ -86,7 +87,7 @@ const SettingFilter=({isModalOpen, modalClose, onApply, setShowAll})=>{
                 />
 
             </div>
-
+            {/*part*/}
             <div style={{display:"grid", gridTemplateColumns:"1.2fr 1.5fr"}}>
                 <span style={{fontSize: "1.5vw", margin:"0vw 2vw 0vw 0vw"}}>모집 분야</span>
                 <Select options={[
