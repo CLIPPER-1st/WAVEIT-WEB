@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {useParams, useNavigate} from 'react-router-dom';
+import {useParams, useNavigate, Link} from 'react-router-dom';
 import styled from 'styled-components';
 import List from '../json/MatchList.json'
 import WishList from "../components/WishList";
@@ -61,6 +61,21 @@ const Btn=styled.button`
     font-weight:bold;
 `
 
+const ProfileBox=styled.div`
+    background-color:#F0F4FF;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    border-radius: 5px;
+    width: 50%;
+    //height:30%;
+    text-align:center;
+    //ailgn-items:center;
+    margin:0px 0px 0px 20px;
+    padding:15px 0px 0px 0px;
+    font-size: 25px;
+    color:#4a4e69;
+    font-weight:bold;
+`
+
 /*
 플젝 분야
 모집 파트
@@ -73,13 +88,19 @@ const Detail=()=>{
     const navigate=useNavigate();
 
     //url 파라미터에서 id값 가져오기
-    const {id}=useParams();
+    const {postId}=useParams();
+    useEffect(() => {
+        console.log("postId: ", postId);
+      }, [postId]);
+      
+    console.log("postId: ",postId);
 
     //id값과 일치하는 List 가져오기
     //url에서 가져오는 params는 string 타입이므로, 타입변환 필요.
 
     /*API 연동시 fetchMatchDetailInfo함수에서 세팅한 detail state로 사용*/
-    const item=List.find(item=>String(item.id)===id);
+    const item=List.find(item=>String(item.postId)===postId);
+    const storedUserId=localStorage.getItem("userId");
     const [isLoggedIn, setIsLoggedIn]=useState(true);
     const [isModalOpen, setIsModalOpen]=useState(false);
     const [isApplicationModalOpen, setIsApplicationModalOpen]=useState(false);
@@ -87,9 +108,9 @@ const Detail=()=>{
     const [likes, setLikeState] = useRecoilState(LikeState);
     const [application, setApplicationState] = useRecoilState(ApplicationState);
 
-    const [detail, setDetail] = useState(null);
+    const [detail, setDetail] = useState({});
 
-    const userId=localStorage.getItem("userId");
+    
     /*isLoggedIn이 false인 경우*/
     const gotoLogin =() =>{
         alert("로그인이 필요한 서비스입니다.");
@@ -149,7 +170,7 @@ const Detail=()=>{
 
         let response;
         try{
-            response=await axios.patch(`/api/post/${id}/like`,{},{
+            response=await axios.patch(`/api/post/${storedUserId}/like`,{},{
                 headers:{
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${access_token}`
@@ -174,12 +195,17 @@ const Detail=()=>{
        const fetchMatchDetailInfo = async() =>{
         const access_token = localStorage.getItem('access');
         try{
-            const response = await axios.get(`/api/post/${id}`,{
+            const response = await axios.get('/api/post',{
                 headers:{
                     Authorization: `Bearer ${access_token}`,
                 },
             });
-            setDetail(response.data);
+            console.log("response.data: ",response.data);
+
+            const infoArray=response.data.information;
+            const item=infoArray.filter(item=>String(item.postId)===postId);
+            setDetail(item[0]);
+            console.log("filtered data: ",detail);
         }catch(e){
             console.log('API 오류: ', e);
         }
@@ -187,7 +213,13 @@ const Detail=()=>{
     /*id값 변경될 때마다 요청이 이루어지도록 - 의존성 배열에 id 추가*/
     useEffect(()=>{
         fetchMatchDetailInfo();
-    }, [id]);
+    }, []);
+
+    useEffect(() => {
+        console.log("Detail state updated: ", detail);
+      }, [detail]);
+
+
     /*title, category,  */
     return (
         <Container>
@@ -195,26 +227,33 @@ const Detail=()=>{
                 isLoggedIn={isLoggedIn}
                 menuItems={[
                     {href:"/pages/Matching", text:"매칭 모집"},
+                    {href:"/pages/postingpage", text:"매칭 등록"},
                 ]}
             />
-            <Title>{item.title}</Title>
+            <Title>{detail.title}</Title>
             <GrayBox>
                 <div style={{lineHeight:"4vw",  fontSize:"1.5vw"}}><b>프로젝트 분야 </b> 
-                {item.field.map((f, index) => (
+                {/*
+                {detail.category.map((f, index) => (
                     <FieldBtn key={index}>{f}</FieldBtn> // 고유 key 추가
-                ))}
+                ))}*/}
+                <FieldBtn>{detail.category}</FieldBtn> 
                 </div>
-                <div style={{lineHeight:"4vw", fontSize:"1.5vw"}}><b>모집 파트 </b> {item.recruit}</div>
-                <div style={{lineHeight:"4vw",  fontSize:"1.5vw"}}><b>모집자 프로필 </b> {item.profile}</div>
-                <div style={{lineHeight:"4vw",  fontSize:"1.5vw"}}><b>연락 보내기  </b>{item.contact}</div>
-                <div style={{lineHeight:"3vw",  fontSize:"1.5vw"}}><b>프로젝트 설명글 </b>{item.content}</div>
+                <div style={{lineHeight:"4vw", fontSize:"1.5vw"}}><b>모집 파트 </b> {detail.part}</div>
+                <div style={{display:'flex'}}>
+                <div style={{lineHeight:"4vw",  fontSize:"1.5vw"}}><b>모집자 프로필 </b>
+                </div>
+                <ProfileBox><Link to="/pages/profile" style={{textDecoration:"none", color:"black"}}>👉프로필 조회하기👈</Link></ProfileBox>
+                </div>
+                <div style={{lineHeight:"4vw",  fontSize:"1.5vw"}}><b>연락 보내기  </b>{detail.cnt}</div>
+                <div style={{lineHeight:"3vw",  fontSize:"1.5vw"}}><b>프로젝트 설명글 </b>{detail.description}</div>
                 <BtnBox>
                     <Btn onClick={handleClick1}>찜하기</Btn>
                     <Btn onClick={handleClick2}>지원하기</Btn>
                 </BtnBox>
             </GrayBox>
             <WishList isOpen={isModalOpen} closeModal={closeModal}/>
-            <Application postId={id} userId={userId} title={item.title} isOpen={isApplicationModalOpen} closeModal={closeApplicationModal} />
+            <Application postId={postId} userId={storedUserId} title={detail.title} isOpen={isApplicationModalOpen} closeModal={closeApplicationModal} />
         </Container>
     )
 }

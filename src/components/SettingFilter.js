@@ -1,5 +1,6 @@
 import React,{useState} from 'react';
 import styled from 'styled-components';
+import { RecruitState } from '../recoil/recoil';
 
 const Container=styled.div`
     position:absolute;
@@ -52,10 +53,12 @@ const SettingFilter=({isModalOpen, modalClose, onApply, setShowAll})=>{
     // 변경 핸들러 
     const handleFieldChange = (event) => {
         setSelectedField(event.target.value);
+        console.log("selectedField: ",selectedField);
     };
 
     const handleRecruitChange = (event) => {
         setSelectedRecruit(event.target.value);
+        console.log("recruitField: ",selectedRecruit);
     };
 
     // "적용하기" 클릭 핸들러
@@ -73,8 +76,8 @@ const SettingFilter=({isModalOpen, modalClose, onApply, setShowAll})=>{
             <div style={{display:"grid", gridTemplateColumns:"1.2fr 1.5fr"}}>
                 <span style={{fontSize: "1.5vw", margin:"0vw 2vw 0vw 0vw"}}>프로젝트 분야</span>
                 <Select options={[
-                { value: '앱개발', label: '앱개발' },
-                { value: '웹개발', label: '웹개발' },
+                { value: 'APP', label: 'APP' },
+                { value: 'WEB', label: 'WEB' },
                 { value: '데이터 분석', label: '데이터 분석' },
                 { value: '게임개발', label: '게임개발' },
                 { value: '기타', label: '기타' },
@@ -87,8 +90,8 @@ const SettingFilter=({isModalOpen, modalClose, onApply, setShowAll})=>{
             <div style={{display:"grid", gridTemplateColumns:"1.2fr 1.5fr"}}>
                 <span style={{fontSize: "1.5vw", margin:"0vw 2vw 0vw 0vw"}}>모집 분야</span>
                 <Select options={[
-                { value: '프론트엔드', label: '프론트엔드' },
-                { value: '백엔드', label: '백엔드' },
+                { value: 'FRONT', label: 'FRONT' },
+                { value: 'BACK', label: 'BACK' },
                 { value: '디자이너', label: '디자이너' },
                 { value: 'PM', label: 'PM' },
                 { value: 'AI 개발자', label: 'AI 개발자' },

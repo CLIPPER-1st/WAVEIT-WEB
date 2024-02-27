@@ -115,7 +115,8 @@ export default function PostingPage(){
     });
     };
 
-    const [isLoggedIn, setIsLoggedIn]=useState(true);
+    const storedUserId = localStorage.getItem("userId");
+    const [isLoggedIn, setIsLoggedIn]=useState(storedUserId);
     const [isModalOpen, setIsModalOpen]=useState(false);
 
     const openDialog = () => {

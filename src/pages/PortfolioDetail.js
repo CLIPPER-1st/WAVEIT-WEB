@@ -18,7 +18,7 @@ const Container=styled.div`
 `
 const GrayBox=styled.div`
     width: 65vw;
-    height: 65vw;
+    height: 38vw;
     background-color:#D9D9D9;
     box-sizing: border-box;
     padding: 2vw;
@@ -27,7 +27,7 @@ const GrayBox=styled.div`
 `
 
 const Title=styled.div`
-    margin: 5%;
+    margin: 3%;
     font-size: 2vw;
     font-weight:bold;
 `

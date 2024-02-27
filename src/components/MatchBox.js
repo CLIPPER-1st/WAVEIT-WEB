@@ -36,13 +36,14 @@ const FieldBtn=styled.button`
 
 
 const MatchBox=({title,field, recruit})=>{
+    const fieldsArray = Array.isArray(field) ? field : [field];
     return (
         <Matchbox>
             <MatchContent>{title}</MatchContent>
             <hr style={{fontSize:"3px"}}/>
             <MatchContent>
                 프로젝트 분야: 
-                {field.map((f, index) => (
+                {fieldsArray.map((f, index) => (
                     <FieldBtn key={index}>{f}</FieldBtn> // 고유 key 추가
                 ))}
             </MatchContent>

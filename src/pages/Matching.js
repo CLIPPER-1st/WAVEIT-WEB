@@ -1,11 +1,15 @@
+
 import React, {useState, useEffect} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import styled from 'styled-components';
 import MatchBox from '../components/MatchBox';
 import '../css/Matching.css';
 import SettingFilter from '../components/SettingFilter';
-import List from '../json/MatchList.json';
-import axios from '../api/axios';
+
+//import List from '../json/MatchList.json';
+//import axios from '../api/axios';
+//import styled from 'styled-components';
+import axios from 'axios';
 import MypageNavbar from '../components/MypageNavbar';
 import NavBar from '../components/NavBar';
 const Wrapper=styled.div`
@@ -68,7 +72,7 @@ const FilterBtn=styled.div`
     `
 const NoMatch=styled.div`
     width: 100vw;
-    height: 70vw;
+    height: 10vw;
     display:flex;
     flex-direction:column;
     justify-content:center;
@@ -94,19 +98,18 @@ const RecommendBtn=styled.div`
     text-align:center;
     font-size:2vw;
 `
-/*매칭 모집 전체 페이지*/ 
+
 
 const Matching=()=>{
-    /***********************************************/
+
     const [info, setInfo] = useState([]);
 
-    /*로그인 되어있는 상태에서만 네브바에 '마이페이지' 나타나도록*/
+   
     const storedUserId = localStorage.getItem("userId");
     const [isLoggedIn, setIsLoggedIn]=useState(storedUserId);
 
-    useEffect(()=>{
-        fetchMatchInfoData();
-    },[]);
+
+    
 
     //모달창 열고닫기
     const [isModalOpen, setIsModalOpen]=useState(false);
@@ -118,21 +121,33 @@ const Matching=()=>{
     //전체보기 사용시
      const [showAll, setShowAll] = useState(true);
 
-    //matchInfo 가져오기
-    const fetchMatchInfoData = async() =>{
-        const access_token = localStorage.getItem('access');
-        try{
-            const response = await axios.get(`/api/post/`,{
-                headers:{
-                    Authorization: `Bearer ${access_token}`,
-                },
-            });
-            setInfo(response.data);
-        }catch(e){
-            console.log('API 오류: ',e);
+   
+    const fetchPostData = async () => {
+        try {
+          const response = await fetch('/api/post', {
+            method: 'GET', // fetch의 기본 메서드는 GET이므로, 명시적으로 선언하지 않아도 됩니다.
+            headers: {
+              'Content-Type': 'application/json',
+              // JWT 적용이 필요 없으면 Authorization 헤더를 생략하거나 주석 처리합니다.
+              // 'Authorization': 'Bearer any_test_token_value'
+            }
+          });
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`); // 응답 상태가 "OK"가 아니라면 오류를 던집니다.
+          }
+          const data = await response.json(); // 응답 데이터를 JSON으로 파싱합니다.
+          setInfo(data.information);
+          console.log("response: ", data.information);
+        } catch (error) {
+          console.log("API 오류: ", error);
         }
-    };
-    /***********************************************/
+      }
+      
+
+    useEffect(()=>{
+        fetchPostData();
+    },[]);
+   
      const handleApplyFilter=(field, recruit)=>{
         setSelectedField(field);
         setSelectedRecruit(recruit);
@@ -146,17 +161,21 @@ const Matching=()=>{
 
      //필터링된 리스트
      //API 연동시 List -> info로 교체
-     const filteredList=showAll? List: List.filter(item=>{
-        const fieldIncludes=item.field.includes(selectedField);
-        const recruitIncludes=item.recruit.toLowerCase().includes(selectedRecruit.toLowerCase());
+     const filteredList=showAll? info: info.filter(item=>{
+        const fieldIncludes=item.category?.toLowerCase().includes(selectedField.toLowerCase());
+        const recruitIncludes=item.part?.toLowerCase().includes(selectedRecruit.toLowerCase());
         return fieldIncludes&&recruitIncludes;
     })
+
+   
 
     const handleClickViewAll=()=>{
         setShowAll(true);
         setSelectedField('');
         setSelectedRecruit('');
     }
+
+
 
     return (
         <Wrapper>
@@ -189,19 +208,17 @@ const Matching=()=>{
             />
             <MatchContainer>
                {                   
-               /*api 연동시 map({item}=><MatchBox title={item.title} ... >)*/  
                     filteredList.length > 0 ? 
-                    filteredList.map(({title, field, recruit, id}) => (
+                    filteredList.map((item) => (
                        //Detail 페이지로 이동
-                       <Link to={`/pages/detail/${id}`} style={{textDecoration:'none', color:'black'}}>
-                        <MatchBox key={title} title={title} field={field} recruit={recruit}/>
+                       <Link to={`/pages/detail/${item.postId}`} style={{textDecoration:'none', color:'black'}}>
+                        <MatchBox key={item.postId} title={item.title} field={item.category} recruit={item.part}/>
                         </Link>
                     )) : 
-                    <NoMatch>
+                    
+                <NoMatch>
                     <div style={{fontSize:"2vw", fontWeight:"bold", margin:"5vw 0vw 0vw 0vw"}}>해당 검색 결과가 없습니다.</div>
-                    <RecommendBtn>추천 매칭글 보러가기</RecommendBtn>
-                    </NoMatch>
-                
+                </NoMatch>
                 }
             </MatchContainer>
         </Wrapper>

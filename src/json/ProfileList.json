@@ -1,0 +1,7 @@
+{ 
+    "name":"홍길동",
+    "stack":["React", "Typescript", "Flutter", "AWS"],
+    "introduce" : "안녕하세요, 00대학교 컴퓨터공학과 3학년에 재학중인 홍길동입니다.\n플러터를 이용한 앱개발 프로젝트 경험 2번, \nReact를 사용한 웹프로젝트 경험 1번 있습니다.",
+    "profileImg":"https://i.pinimg.com/736x/9b/28/25/9b28258fdd7bb8a495f118fbc38e35bf.jpg",
+    "contact":"test1@gmail.com"
+}

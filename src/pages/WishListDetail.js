@@ -19,7 +19,7 @@ const Container=styled.div`
 `
 const GrayBox=styled.div`
     width: 55vw;
-    height: 40vw;
+    height: 36vw;
     background-color:#D9D9D9;
     box-sizing: border-box;
     padding: 2vw;

@@ -19,11 +19,12 @@ import PortfolioDetail from "./pages/PortfolioDetail";
 import WritePortfolio from "./pages/WritePortfolio";
 import WishListPage from "./pages/WishListPage";
 import ApplicationPage from "./pages/ApplicationPage";
-
+import Profile from './pages/Profile';
 const App=()=>{
   return(
     <Routes>
       <Route path="/" element={<Startpage />} />
+      <Route path="/pages/profile" element={<Profile />} />
       <Route path="/pages/Login" element = {<Login/>}/>
       <Route path="/pages/FindIdpw" element = {<FindIdpw/>}/>
       <Route path="/pages/Sign" element = {<Sign/>}/>
@@ -33,7 +34,7 @@ const App=()=>{
       <Route path="/pages/SignNext" element={<SignNext/>}/>
       <Route path="/pages/SignFinal" element={<SignFinal/>}/>
       <Route path="/pages/Matching" element={<Matching />} />
-      <Route path="pages/detail/:id" element={<Detail />} />
+      <Route path="pages/detail/:postId" element={<Detail />} />
       <Route path="pages/mypagedetail/:id" element={<MypageDetail />} />
       <Route path="pages/wishlistdetail/:id" element={<WishListDetail />} />
       <Route path="pages/applicationdetail/:id" element={<ApplicationDetail />} />
