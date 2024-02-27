@@ -147,7 +147,7 @@ const PortfolioDetail = () => {
                         <div style={{ lineHeight: "4vw", fontSize: "1.5vw" }}>
                             <b>대학 및 전공 : </b> {item.universityAndMajor}</div>
                         <div style={{ lineHeight: "4vw", fontSize: "1.5vw" }}>
-                            <b>연락처 : </b> {item.contact}</div>
+                            <b>연락처 : </b> {item.cnt}</div>
                         <div style={{ lineHeight: "4vw", fontSize: "1.5vw" }}>
                             <b>사용가능언어 : </b>
                             <FieldBtn>Java-{item.Java}</FieldBtn>

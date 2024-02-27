@@ -5,15 +5,16 @@ import '../css/MyPage.css';
 
 // import recoil
 import { useRecoilState, useRecoilValue, useSetRecoilState} from "recoil";
-import { LikeState } from "../recoil/recoil";
+import { LikeState, RecruitState } from "../recoil/recoil";
 // import component
 import MatchBox from '../components/MatchBox';
 import NavBar from '../components/NavBar';
 import MypageNavbar from '../components/MypageNavbar';
 
 // import axios
-import axios from "../api/axios";
-import { fetchLikeProject } from "../api/apiFunction";
+import axios from 'axios';
+import API from '../api/axios.js';
+
 
 const Wrapper=styled.div`
   background-color:white;
@@ -79,21 +80,30 @@ const NoMatch=styled.div`
 
 export default function WishListPage(){
 
-    const setLikeData = useSetRecoilState(LikeState); // Recoil 상태 설정 함수
-    const LikeData = useRecoilValue(LikeState);
+  const LikeData = useRecoilValue(LikeState);
+  const recruitData = useRecoilValue(RecruitState);
+  const setRecruitData = useSetRecoilState(RecruitState); 
+  const setLikeData = useSetRecoilState(LikeState); // Recoil 상태 설정 함수
 
+    // 서버에서 데이터를 가져와 Recoil 상태를 업데이트
     useEffect(() => {
         const fetchLikeData = async () => {
           try {
-            const response = await fetchLikeProject(); // 사용자 데이터를 가져오는 API 경로
-            setLikeData(response); // 가져온 데이터를 Recoil 상태에 설정
+            const response = await axios.get('api/likes/user/{userId}');
+            const fetchedRecruitData = response.data;
+            setRecruitData(fetchedRecruitData);
+
+            // Recoil 상태를 업데이트
+            const likeResponse = await axios.get('/api/like/user/{userId}');
+            const fetchedLikeData = likeResponse.data;
+            setLikeData(fetchedLikeData);
           } catch (error) {
             console.error("Failed to fetch user data:", error);
           }
         };
     
         fetchLikeData();
-      }, [setLikeData]); // 의존성 배열에 setLikeData 추가
+      }, [setRecruitData, setLikeData]); // 의존성 배열에 setLikeData 추가
 
         return(
             <div className="my-page">

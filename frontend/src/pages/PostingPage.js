@@ -101,8 +101,8 @@ const Btn = styled.button`
 export default function PostingPage(){
 
     const [project, setProject] = useState({
-        name: '',
-        field: '',
+        title: '',
+        category: '',
         part: '',
         email: '',
         description: '',
@@ -140,12 +140,12 @@ export default function PostingPage(){
             <Row>
             <Label>
             프로젝트 이름 :</Label>
-            <InputField type="text" name="name" onChange={handleChange} />
+            <InputField type="text" name="title" onChange={handleChange} />
             <br/></Row>
             <Row>
             <Label>
             프로젝트 분야 :</Label>
-            <Select name="field" onChange={handleChange}>
+            <Select name="category" onChange={handleChange}>
                 <option value="">------ 선택하세요 ------</option>
                 <option value="앱 개발">앱 개발</option>
                 <option value="웹 개발">웹 개발</option>
@@ -171,7 +171,7 @@ export default function PostingPage(){
             <Row>
             <Label>
             연락처(이메일) :</Label>
-            <InputField type="email" name="email" onChange={handleChange} />
+            <InputField type="email" name="cnt" onChange={handleChange} />
             <br/></Row>
             <Row>
             <Label>

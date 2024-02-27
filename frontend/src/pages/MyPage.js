@@ -1,15 +1,22 @@
 import styled from 'styled-components';
-import React from 'react';
-import { Link, Component } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
 import '../css/MyPage.css';
 import MatchBox from '../components/MatchBox';
 import List from '../json/MatchList.json';
 import MypageNavBar from '../components/MypageNavbar';
+
 // import recoil
-import { useRecoilState, useRecoilValue} from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState} from "recoil";
 import { RecruitState } from "../recoil/recoil";
+
+// import component
 import MypageNavbar from '../components/MypageNavbar';
 import NavBar from '../components/NavBar';
+
+// import axios
+import axios from 'axios';
+import API from '../api/axios.js';
 
 const Wrapper=styled.div`
   background-color:white;
@@ -44,14 +51,6 @@ const ContentItem = styled.div`
   margin-left : 100px;
   margin-top : 0px;
 `
-
-const HomeStyles = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`
-
 const Btn = styled.button`
   margin: 2vw;
   font-weight: bold;
@@ -86,6 +85,24 @@ const NoMatch=styled.div`
 
 export default function MyPage(){
   const recruitData = useRecoilValue(RecruitState);
+  const setRecruitData = useSetRecoilState(RecruitState);
+
+   // 서버에서 데이터를 가져와 Recoil 상태를 업데이트
+   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // 사용자 데이터를 가져오는 API 경로로 변경
+        const response = await axios.get('api/post/user/{userId}'); 
+        const fetchedRecruitData = response.data; 
+        // 가져온 데이터로 Recoil 상태를 업데이트
+        setRecruitData(fetchedRecruitData); 
+      } catch (error) {
+        console.error('데이터 가져오기 오류:', error);
+      }
+    };
+
+    fetchData();
+  }, [setRecruitData]);
 
         return(
             <div className="my-page">
@@ -121,18 +138,8 @@ export default function MyPage(){
                     </NoMatch>
                     }
                     </MatchContainer>
-
                     </ContentItem>
-                    
                 </Content>
-
-                <HomeStyles>
-                <Link to="/pages/postingpage">
-                
-                </Link>
-                </HomeStyles>
-
-                
             </Wrapper>
             </div>
         );
